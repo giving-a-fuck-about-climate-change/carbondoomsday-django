@@ -54,6 +54,10 @@ class Base(Configuration):
     DATABASES = {"default": database_url_parser()}
     SECRET_KEY = values.SecretValue()
     STATIC_URL = "/static/"
+    CELERY_BROKER_URL = values.Value()
+    CELERY_RESULT_BACKEND = values.Value()
+    CELERY_TASK_SERIALIZER = "json"
+    CELERY_RESULT_SERIALIZER = "json"
 
 
 class Production(Base):
@@ -67,3 +71,4 @@ class Staging(Base):
 class Development(Base):
     ENVIRONMENT = "Development"
     DEBUG = values.BooleanValue(True)
+    CELERY_TASK_ALWAYS_EAGER = values.BooleanValue(True)

@@ -1,9 +1,15 @@
+amqp==2.1.4               # via kombu
+billiard==3.5.0.2         # via celery
+celery[redis]==4.0.2
 dj-database-url==0.4.2
 django-configurations==2.0
 django-extensions==1.7.9
 django-filter==1.0.4
 django==1.11.2
 djangorestframework==3.6.3
+kombu==4.0.2              # via celery
 psycopg2==2.7.1
-pytz==2017.2              # via django
+pytz==2017.2              # via celery, django
+redis==2.10.5
 six==1.10.0               # via django-extensions
+vine==1.1.3               # via amqp
