@@ -53,6 +53,7 @@ class Base(Configuration):
     WSGI_APPLICATION = "carbondoomsday.wsgi.application"
     DATABASES = {"default": database_url_parser()}
     SECRET_KEY = values.SecretValue()
+    STATIC_URL = "/static/"
 
 
 class Production(Base):
