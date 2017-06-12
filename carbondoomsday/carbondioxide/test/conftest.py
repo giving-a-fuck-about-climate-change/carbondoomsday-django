@@ -1,0 +1,3 @@
+"""Test fixtures."""
+
+import pytest

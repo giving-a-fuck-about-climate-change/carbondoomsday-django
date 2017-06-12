@@ -1,0 +1,4 @@
+# Quality Assurance Dependencies
+
+isort
+pylama

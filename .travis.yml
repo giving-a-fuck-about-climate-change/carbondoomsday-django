@@ -1,0 +1,49 @@
+sudo: false
+
+language: python
+
+services:
+  - postgresql
+
+env:
+  - DATABASE_URL="postgresql://postgres@localhost:5432/carbondoomsday"
+  - DJANGO_CONFIGURATION="Development"
+  - DJANGO_SECRET_KEY="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  - DJANGO_SETTINGS_MODULE="carbondoomsday.settings"
+
+matrix:
+  fast_finish: true
+  include:
+    - env: BUILD=quality
+    - env: BUILD=migrate
+    - env: BUILD=test
+
+before_install:
+  - psql -c 'create database carbondoomsday;' -U postgres
+  - psql -c 'create database carbondoomsday_test;' -U postgres
+
+install:
+  - pip install -U pip
+  - set -e; case "$BUILD" in
+      quality)
+        pip install -r requirements/quality.in;;
+      migrate)
+        pip install -r requirements/production.in;;
+      test)
+        pip install -r requirements/test.in;;
+    esac
+
+script:
+  - set -e; case "$BUILD" in
+      quality)
+        make isort;
+        make lint;;
+      migrate)
+        make migrations;
+        make migrate;;
+      test)
+        make test;;
+    esac
+
+notifications:
+  email: false

@@ -1,0 +1,9 @@
+# Base dependencies
+
+dj-database-url
+django
+django-configurations
+django-extensions
+django-filter
+djangorestframework
+psycopg2

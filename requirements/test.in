@@ -1,0 +1,6 @@
+# Test Dependencies
+# Depends on base.in
+
+pytest
+pytest-cov
+pytest-django
