@@ -1,4 +1,5 @@
 PROJECT_ROOT := .
+SOURCE_DIR   := $(PROJECT_ROOT)/carbondoomsday/
 MANAGE_PY    := python manage.py
 REQS_DIR     := $(PROJECT_ROOT)/requirements
 REQS_BASE    := $(REQS_DIR)/base.txt
@@ -27,11 +28,11 @@ $(REQS_DIR)/%.txt: $(REQS_DIR)/%.in
 	@$(RM) "$@.tmp" /tmp/pip-compile.out.tmp
 
 lint:
-	pylama $(PROJECT_ROOT)/carbondoomsday
+	pylama $(SOURCE_DIR)
 .PHONY: lint
 
 isort:
-	find $(PROJECT_ROOT) -name "*.py" | xargs isort -c --diff -sp=setup.cfg
+	find $(SOURCE_DIR) -name "*.py" | xargs isort -c --diff -sp=setup.cfg
 .PHONY: isort
 
 PYTEST_ARGS?=
