@@ -2,5 +2,7 @@
 # Depends on base.in
 
 pytest
+pytest-capturelog
 pytest-cov
 pytest-django
+pytest-mock

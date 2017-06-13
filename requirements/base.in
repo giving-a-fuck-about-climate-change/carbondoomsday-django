@@ -9,3 +9,4 @@ django-filter
 djangorestframework
 psycopg2
 redis
+requests
