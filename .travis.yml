@@ -6,12 +6,13 @@ services:
   - postgresql
 
 env:
-  - DATABASE_URL="postgresql://postgres@localhost:5432/carbondoomsday"
-  - DJANGO_CONFIGURATION="Development"
-  - DJANGO_SECRET_KEY="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-  - DJANGO_SETTINGS_MODULE="carbondoomsday.settings"
-  - CELERY_BROKER_URL=redis://localhost:6379
-  - CELERY_RESULT_BACKEND=redis://localhost:6379
+  global:
+    - DATABASE_URL=postgresql://postgres@localhost:5432/carbondoomsday
+    - DJANGO_CONFIGURATION=Development
+    - DJANGO_SECRET_KEY=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    - DJANGO_SETTINGS_MODULE=carbondoomsday.settings
+    - CELERY_BROKER_URL=redis://localhost:6379
+    - CELERY_RESULT_BACKEND=redis://localhost:6379
 
 matrix:
   fast_finish: true
