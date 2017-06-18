@@ -1,16 +1,28 @@
 """Project settings."""
 
-import logging
 import os
 
 from configurations import Configuration, values
 from dj_database_url import config as database_url_parser
 
-logger = logging.getLogger(__name__)
-
 
 class Base(Configuration):
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
     DEBUG = values.BooleanValue(False)
+
+    WSGI_APPLICATION = "carbondoomsday.wsgi.application"
+
+    ROOT_URLCONF = "carbondoomsday.urls"
+
+    WSGI_APPLICATION = "carbondoomsday.wsgi.application"
+
+    DATABASES = {"default": database_url_parser()}
+
+    SECRET_KEY = values.SecretValue()
+
+    STATIC_URL = "/static/"
+
     INSTALLED_APPS = (
         "django.contrib.admin",
         "django.contrib.auth",
@@ -22,6 +34,7 @@ class Base(Configuration):
         "rest_framework",
         "django_extensions",
     )
+
     MIDDLEWARE_CLASSES = (
         "django.middleware.security.SecurityMiddleware",
         "django.contrib.sessions.middleware.SessionMiddleware",
@@ -32,6 +45,7 @@ class Base(Configuration):
         "django.contrib.messages.middleware.MessageMiddleware",
         "django.middleware.clickjacking.XFrameOptionsMiddleware",
     )
+
     TEMPLATES = [
         {
             "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -47,17 +61,31 @@ class Base(Configuration):
             },
         },
     ]
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    WSGI_APPLICATION = "carbondoomsday.wsgi.application"
-    ROOT_URLCONF = "carbondoomsday.urls"
-    WSGI_APPLICATION = "carbondoomsday.wsgi.application"
-    DATABASES = {"default": database_url_parser()}
-    SECRET_KEY = values.SecretValue()
-    STATIC_URL = "/static/"
+
+    LOGGING = {
+        "version": 1,
+        "handlers": {
+            "console": {
+                "class": "logging.StreamHandler",
+            }
+        },
+        "loggers": {
+            "carbondoomsday": {
+                "handlers": ["console"],
+                "level": "INFO",
+                "propagate": True,
+            },
+        },
+    }
+
     CELERY_BROKER_URL = values.Value()
     CELERY_RESULT_BACKEND = values.Value()
     CELERY_TASK_SERIALIZER = "json"
     CELERY_RESULT_SERIALIZER = "json"
+
+    LATEST_CO2_URL = (
+        "https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2_mlo_weekly.csv"
+    )
 
 
 class Production(Base):
