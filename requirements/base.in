@@ -6,7 +6,9 @@ django
 django-configurations
 django-extensions
 django-filter
+django-rest-swagger
 djangorestframework
+djangorestframework-filters
 psycopg2
 redis
 requests

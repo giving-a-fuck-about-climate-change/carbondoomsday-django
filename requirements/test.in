@@ -6,3 +6,5 @@ pytest-capturelog
 pytest-cov
 pytest-django
 pytest-mock
+docker-compose
+pip-tools
