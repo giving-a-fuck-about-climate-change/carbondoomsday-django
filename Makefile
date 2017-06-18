@@ -1,5 +1,5 @@
 PROJECT_ROOT := .
-SOURCE_DIR   := $(PROJECT_ROOT)/carbondoomsday/
+SOURCE_DIR   := $(PROJECT_ROOT)/carbondoomsday
 MANAGE_PY    := python manage.py
 REQS_DIR     := $(PROJECT_ROOT)/requirements
 REQS_BASE    := $(REQS_DIR)/base.txt
