@@ -3,12 +3,11 @@ SOURCE_DIR   := $(PROJECT_ROOT)/carbondoomsday
 MANAGE_PY    := python manage.py
 REQS_DIR     := $(PROJECT_ROOT)/requirements
 REQS_BASE    := $(REQS_DIR)/base.txt
-REQS_ADMIN   := $(REQS_DIR)/administration.txt
 REQS_TEST    := $(REQS_DIR)/test.txt
 REQS_QUALITY := $(REQS_DIR)/quality.txt
 REQS_PROD    := $(REQS_DIR)/production.txt
 
-REQS_ALL     := $(REQS_BASE) $(REQS_ADMIN) $(REQS_TEST) $(REQS_QUALITY) $(REQS_PROD)
+REQS_ALL     := $(REQS_BASE) $(REQS_TEST) $(REQS_QUALITY) $(REQS_PROD)
 reqs: $(REQS_ALL)
 .PHONY: reqs
 
