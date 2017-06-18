@@ -22,6 +22,7 @@ class Base(Configuration):
     SECRET_KEY = values.SecretValue()
 
     STATIC_URL = "/static/"
+    STATIC_ROOT = "/srv/carbondoomsday/static/"
 
     INSTALLED_APPS = (
         "django.contrib.admin",
@@ -33,6 +34,7 @@ class Base(Configuration):
         "carbondoomsday.carbondioxide",
         "rest_framework",
         "django_extensions",
+        "rest_framework_swagger",
     )
 
     MIDDLEWARE_CLASSES = (
@@ -86,6 +88,17 @@ class Base(Configuration):
     LATEST_CO2_URL = (
         "https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2_mlo_weekly.csv"
     )
+
+    REST_FRAMEWORK = {
+        "DEFAULT_FILTER_BACKENDS": (
+            "rest_framework_filters.backends.DjangoFilterBackend",
+        )
+    }
+
+    SWAGGER_SETTINGS = {
+        "APIS_SORTER": "alpha",
+        "DOC_EXPANSION": "list",
+    }
 
 
 class Production(Base):
