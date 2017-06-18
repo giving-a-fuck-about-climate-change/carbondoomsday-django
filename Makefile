@@ -66,3 +66,15 @@ reset:
 clean_migrations:
 	rm -rf $(SOURCE_DIR)/carbondioxide/migrations/
 .PHONY: clean_migrations
+
+celery:
+	celery -A carbondoomsday worker -l info
+.PHONY: celery
+
+static:
+	python manage.py collectstatic --noinput -v 3
+.PHONY: static
+
+server:
+	uwsgi --emperor uwsgi.ini
+.PHONY: server
