@@ -1,6 +1,12 @@
 """Test fixtures."""
 
+from datetime import date
+from decimal import Decimal
+
 import pytest
+from rest_framework.test import APIClient
+
+from carbondoomsday.carbondioxide.models import CO2Measurement
 
 
 @pytest.fixture
@@ -18,3 +24,14 @@ def mocked_co2_csv(mocker):
     mocked.content = bytes(mocked_csv, "utf-8")
     target = "carbondoomsday.carbondioxide.tasks.requests.get"
     mocker.patch(target, return_value=mocked)
+
+
+@pytest.fixture
+def co2_measurement():
+    today, ppm = date.today(), Decimal("449.15")
+    return CO2Measurement.objects.create(date=today, ppm=ppm)
+
+
+@pytest.fixture
+def client():
+    return APIClient()
