@@ -53,8 +53,17 @@ docker_build:
 
 migrations:
 	python manage.py makemigrations
+	python manage.py makemigrations carbondioxide
 .PHONY: makemigrations
 
 migrate:
 	python manage.py migrate
 .PHONY: migrate
+
+reset:
+	python manage.py reset_db
+.PHONY: migrate
+
+clean_migrations:
+	rm -rf $(SOURCE_DIR)/carbondioxide/migrations/
+.PHONY: clean_migrations
