@@ -29,11 +29,11 @@ install:
   - pip install -U pip
   - set -e; case "$BUILD" in
       quality)
-        pip install -r requirements/quality.in;;
+        pip install -r requirements/quality.txt;;
       migrate)
-        pip install -r requirements/production.in;;
+        pip install -r requirements/production.txt;;
       test)
-        pip install -r requirements/test.in;;
+        pip install -r requirements/test.txt;;
     esac
 
 script:
