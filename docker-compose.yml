@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+
+  carbondoomsday-postgresql:
+    container_name: "carbondoomsday-postgresql"
+    image: "postgres:9.6"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: carbondoomsday
+      POSTGRES_PASSWORD: passw0rd
+
+  carbondoomsday-celery:
+    container_name: "carbondoomsday-celery"
+    image: "decentral1se/carbondoomsday:latest"
+    command: "make celery"
+    env_file: "carbondoomsday.env"
+    depends_on:
+      - "carbondoomsday-redis"
+    links:
+      - "carbondoomsday-redis"
+    ports:
+     - "6379:6379"
+
+  carbondoomsday-redis:
+    container_name: "carbondoomsday-redis"
+    image: "redis:alpine"
+
+  # FIXME: not working
+  carbondoomsday-server:
+    container_name: "carbondoomsday-server"
+    image: "decentral1se/carbondoomsday:latest"
+    command: /bin/bash -c "bin/start-server"
+    expose:
+      - "8000"
+    env_file:
+      - "carbondoomsday.env"
+
+  # add nginx
