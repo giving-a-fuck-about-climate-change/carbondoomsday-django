@@ -26,7 +26,7 @@ matrix:
 before_install:
   - psql -c 'create database carbondoomsday;' -U postgres
   - psql -c 'create database carbondoomsday_test;' -U postgres
-  - pip install -U pip
+  - pip install -U pip -e .
 
 install:
   - |
