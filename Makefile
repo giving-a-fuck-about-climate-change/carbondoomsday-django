@@ -78,3 +78,7 @@ static:
 server:
 	uwsgi --emperor uwsgi.ini
 .PHONY: server
+
+admin:
+	python manage.py createsuperuser
+.PHONY: admin
