@@ -29,17 +29,17 @@ class Base(Configuration):
     STATIC_ROOT = "/srv/carbondoomsday/static/"
 
     INSTALLED_APPS = (
+        "carbondoomsday.carbondioxide",
         "django.contrib.admin",
         "django.contrib.auth",
         "django.contrib.contenttypes",
-        "django.contrib.sessions",
         "django.contrib.messages",
+        "django.contrib.sessions",
         "django.contrib.staticfiles",
-        "carbondoomsday.carbondioxide",
-        "rest_framework",
         "django_extensions",
-        "rest_framework_swagger",
         "django_filters",
+        "rest_framework",
+        "rest_framework_swagger",
     )
 
     MIDDLEWARE_CLASSES = (
