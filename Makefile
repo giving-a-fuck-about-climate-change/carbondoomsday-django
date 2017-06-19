@@ -40,10 +40,10 @@ test:
 	$(PYTEST) $(PROJECT_ROOT)/carbondoomsday
 .PHONY: test
 
-install:
+dev_install:
 	pip install -e .
-	pip install -r $(REQS_ADMIN) -r $(REQS_QUALITY) -r $(REQS_TEST)
-.PHONY: install
+	pip install -r $(REQS_TEST) -r $(REQS_QUALITY) -r $(REQS_PROD)
+.PHONY: dev_install
 
 DOCKER_IMAGE := carbondoomsday/carbondoomsday
 docker_build:
