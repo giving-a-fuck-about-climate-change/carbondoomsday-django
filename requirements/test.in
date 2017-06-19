@@ -1,8 +1,6 @@
 # Test Dependencies
 # Depends on base.in
 
-docker-compose
-pip-tools
 pytest
 pytest-capturelog
 pytest-cov

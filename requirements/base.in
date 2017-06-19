@@ -11,4 +11,3 @@ djangorestframework
 djangorestframework-filters
 psycopg2
 redis
-requests
