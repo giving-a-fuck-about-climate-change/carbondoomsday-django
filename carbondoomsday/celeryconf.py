@@ -1,7 +1,6 @@
 """Celery configuration module."""
 
 from celery import Celery
-
 from django.conf import settings
 
 app = Celery(settings.PROJECT)

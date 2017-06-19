@@ -1,7 +1,8 @@
 """Admin models."""
 
-from carbondoomsday.carbondioxide.models import CO2Measurement
 from django.contrib import admin
+
+from carbondoomsday.carbondioxide.models import CO2Measurement
 
 
 @admin.register(CO2Measurement)
