@@ -2,10 +2,9 @@
 
 from setuptools import find_packages, setup
 
-version = '0.0.1'
 
 setup(
-    name='carbondoomsday',
-    version=version,
-    packages=find_packages(".")
+    name="carbondoomsday",
+    version="0.0.1",
+    packages=find_packages("."),
 )

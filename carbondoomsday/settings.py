@@ -9,6 +9,10 @@ from dj_database_url import config as database_url_parser
 class Base(Configuration):
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+    PROJECT = "carbondoomsday"
+
+    SCHEMA_TITLE = "CarbonDoomsDay Web API"
+
     DEBUG = values.BooleanValue(False)
 
     WSGI_APPLICATION = "carbondoomsday.wsgi.application"
