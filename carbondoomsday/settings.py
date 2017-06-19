@@ -35,6 +35,7 @@ class Base(Configuration):
         "rest_framework",
         "django_extensions",
         "rest_framework_swagger",
+        "django_filters",
     )
 
     MIDDLEWARE_CLASSES = (
