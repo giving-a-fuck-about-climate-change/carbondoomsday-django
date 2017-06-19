@@ -55,6 +55,10 @@ migrations:
 	python manage.py makemigrations carbondioxide
 .PHONY: makemigrations
 
+check_migrations:
+	python manage.py makemigrations --check
+.PHONY: check_migrations
+
 migrate:
 	python manage.py migrate
 .PHONY: migrate
