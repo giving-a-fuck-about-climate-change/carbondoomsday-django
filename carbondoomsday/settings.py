@@ -79,7 +79,7 @@ class Base(Configuration):
         "loggers": {
             "carbondoomsday": {
                 "handlers": ["console"],
-                "level": "INFO",
+                "level": "DEBUG",
                 "propagate": True,
             },
         },
