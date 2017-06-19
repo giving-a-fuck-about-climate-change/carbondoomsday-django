@@ -34,10 +34,8 @@ isort:
 	find $(SOURCE_DIR) -name "*.py" | xargs isort -c --diff -sp=setup.cfg
 .PHONY: isort
 
-PYTEST_ARGS?=
-PYTEST=py.test -c setup.cfg $(PYTEST_ARGS)
 test:
-	$(PYTEST) $(PROJECT_ROOT)/carbondoomsday
+	pytest -c setup.cfg -v
 .PHONY: test
 
 dev_install:
