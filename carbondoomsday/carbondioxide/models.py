@@ -11,3 +11,7 @@ class CO2Measurement(models.Model):
 
     date = models.DateField(unique=True)
     ppm = models.DecimalField(max_digits=5, decimal_places=2)
+
+    def __str__(self):
+        date, ppm = str(self.date), str(self.ppm)
+        return "<CO2Measurement date={}, ppm={}>".format(date, ppm)
