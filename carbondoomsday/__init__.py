@@ -1,7 +1,9 @@
 """Project package."""
 
 from configurations import importer
-from .celery import app as celery_app  # noqa
 
+from .celeryconf import app as celery_app
 
 importer.install()
+
+__all__ = ['celery_app']

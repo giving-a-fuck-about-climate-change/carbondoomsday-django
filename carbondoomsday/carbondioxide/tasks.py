@@ -9,7 +9,7 @@ import requests
 from django.conf import settings
 from django.db import transaction
 
-from carbondoomsday.celery import app
+from carbondoomsday.celeryconf import app
 
 logger = logging.getLogger(__name__)
 
