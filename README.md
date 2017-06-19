@@ -6,6 +6,14 @@ A Django web app that gives a fuck.
 
 Work. In. Progress.
 
+# Current Misson
+
+From https://github.com/giving-a-fuck-about-climate-change/carbon-doomsday/issues/5#issuecomment-307584468:
+
+> Let's get the coinbase-inspired CO2 MVP prototyped and launched, get
+> eyeballs, collaborators, and media and keep our eyes peeled on what emerges
+> from there.
+
 # Mega Unstable Docker Development Setup
 
 You'll need to have Docker installed. The following `devdocker` script command
