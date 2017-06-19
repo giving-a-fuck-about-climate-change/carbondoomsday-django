@@ -6,7 +6,7 @@ from carbondoomsday.carbondioxide import tasks
 
 
 class Command(BaseCommand):
-    help = "Scrape the latest CO2 measurements"
+    help = "Scrape the latest CO2 measurements."
 
     def handle(self, *args, **options):
         tasks.scrape_latest()
