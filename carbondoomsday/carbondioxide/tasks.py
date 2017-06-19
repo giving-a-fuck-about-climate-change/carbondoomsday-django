@@ -11,17 +11,20 @@ from django.db import transaction
 
 from carbondoomsday.celery import app
 
+logger = logging.getLogger(__name__)
+
 
 @app.task
 @transaction.atomic
 def scrape_latest():
-    """Scrape the latest CO2 measurements."""
+    """Scrape latest CO2 measurements. Only parses daily PPM, if present."""
     from carbondoomsday.carbondioxide.models import CO2Measurement
 
     try:
         response = requests.get(settings.LATEST_CO2_URL)
     except Exception as err:
-        logging.error("Failed to retrieve CSV for latest CO2 scrape.")
+        msg = "Failed to retrieve CSV for latest CO2 scrape."
+        logger.error(msg)
         raise err
 
     decoded = str(response.content, "utf-8")
@@ -29,8 +32,14 @@ def scrape_latest():
     parsed = list(csv.reader(separated))
 
     drop_headers = slice(1, len(parsed))
-    for entry in parsed[drop_headers]:
+    without_header = parsed[drop_headers]
+
+    logger.info("Retrieved CSV file with latest data.")
+
+    stored, skipped = 0, 0
+    for entry in without_header:
         if not entry:
+            skipped += 1
             continue
 
         date, daily, _, _ = entry
@@ -40,17 +49,32 @@ def scrape_latest():
             intified = map(int, separated)
             co2_date = datetime.date(*intified)
         except (ValueError, TypeError):
-            msg = "Failed to parse date, found '{}'".format(date)
-            logging.error(msg)
+            msg = "Failed to parse date, found '{}'."
+            logger.debug(msg.format(date))
+            skipped += 1
             continue
 
         try:
             co2_ppm = Decimal(daily)
         except InvalidOperation:
+            msg = "Failed to convert '{}' to type decimal. Skipping."
+            logger.debug(msg.format(daily))
+            skipped += 1
             continue
 
         measurement = CO2Measurement.objects.filter(date=co2_date)
         if measurement.exists():
+            msg = "Entry for {} already stored. Skipping."
+            logger.debug(msg.format(str(co2_date)))
+            skipped += 1
             continue
 
         CO2Measurement.objects.create(date=co2_date, ppm=co2_ppm)
+        stored += 1
+
+        msg = "Stored new CO2 entry for {} with PPM of {}"
+        logger.info(msg.format(str(co2_date), str(co2_ppm)))
+
+    logger.info("Initially parsed {} entries.".format(len(without_header)))
+    logger.info("Stored {}.".format(stored))
+    logger.info("{} were skipped.".format(skipped))
