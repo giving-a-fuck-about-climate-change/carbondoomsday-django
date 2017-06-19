@@ -6,7 +6,7 @@ A Django web app that gives a fuck.
 
 Work. In. Progress.
 
-# Getting Started
+# Mega Unstable Docker Development Setup
 
 ``` bash
 $ git clone git@github.com:giving-a-fuck-about-climate-change/carbondoomsday-django.git
