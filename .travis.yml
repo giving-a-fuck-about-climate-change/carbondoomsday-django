@@ -24,29 +24,41 @@ matrix:
 before_install:
   - psql -c 'create database carbondoomsday;' -U postgres
   - psql -c 'create database carbondoomsday_test;' -U postgres
+  - pip install -U pip
 
 install:
-  - pip install -U pip
-  - set -e; case "$BUILD" in
+  - |
+    set -ex
+    case "$BUILD" in
       quality)
-        pip install -r requirements/quality.txt;;
+        pip install -r requirements/quality.txt
+        ;;
       migrate)
-        pip install -r requirements/production.txt;;
+        pip install -r requirements.txt
+        ;;
       test)
-        pip install -r requirements/test.txt;;
+        pip install -r requirements/test.txt
+        ;;
     esac
+    set +ex
 
 script:
-  - set -e; case "$BUILD" in
+  - |
+    set -ex
+    case "$BUILD" in
       quality)
-        make isort;
-        make lint;;
+        make isort
+        make lint
+        ;;
       migrate)
-        make migrations;
-        make migrate;;
+        make check_migrations
+        make migrate
+        ;;
       test)
-        make test;;
+        make test
+        ;;
     esac
+    set +ex
 
 notifications:
   email: false
