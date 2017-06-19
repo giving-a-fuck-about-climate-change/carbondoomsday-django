@@ -20,7 +20,7 @@ function runner (){
   docker run -itd \
     --name carbondoomsday-app -p 8089:8089 \
     --net carbondoomsday-network --net-alias carbondoomsday-app \
-    --env-file ../carbondoomsday.env -v "$PWD":/scripts \
+    --env-file carbondoomsday.env -v "$PWD"/bin:/scripts \
     decentral1se/carbondoomsday:latest
 }
 
