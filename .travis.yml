@@ -30,26 +30,10 @@ matrix:
 before_install:
   - psql -c 'create database carbondoomsday;' -U postgres
   - psql -c 'create database carbondoomsday_test;' -U postgres
-  - pip install -U pip -e .
+  - pip install -U pip -e . pipenv
 
 install:
-  - |
-    set -ex
-    case "$BUILD" in
-      isort)
-        pip install -r requirements/quality.txt
-        ;;
-      lint)
-        pip install -r requirements/quality.txt
-        ;;
-      migrate)
-        pip install -r requirements.txt
-        ;;
-      test)
-        pip install -r requirements/test.txt
-        ;;
-    esac
-    set +ex
+  - pipenv install --dev
 
 script:
   - |
