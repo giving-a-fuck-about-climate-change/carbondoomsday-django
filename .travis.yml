@@ -19,9 +19,13 @@ env:
 matrix:
   fast_finish: true
   include:
-    - env: BUILD=quality
+    - env: BUILD=lint
+    - env: BUILD=isort
     - env: BUILD=migrate
     - env: BUILD=test
+
+  allow_failures:
+    - env: BUILD=isort
 
 before_install:
   - psql -c 'create database carbondoomsday;' -U postgres
@@ -32,7 +36,10 @@ install:
   - |
     set -ex
     case "$BUILD" in
-      quality)
+      isort)
+        pip install -r requirements/quality.txt
+        ;;
+      lint)
         pip install -r requirements/quality.txt
         ;;
       migrate)
@@ -48,8 +55,10 @@ script:
   - |
     set -ex
     case "$BUILD" in
-      quality)
+      isort)
         make isort
+        ;;
+      lint)
         make lint
         ;;
       migrate)
