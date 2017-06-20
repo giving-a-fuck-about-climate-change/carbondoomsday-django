@@ -1,8 +1,0 @@
--r base.txt
-coverage==4.4.1           # via pytest-cov
-py==1.4.34                # via pytest, pytest-capturelog
-pytest-capturelog==0.7
-pytest-cov==2.5.1
-pytest-django==3.1.2
-pytest-mock==1.6.0
-pytest==3.1.2
