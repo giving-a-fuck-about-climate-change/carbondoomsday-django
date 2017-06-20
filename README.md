@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/giving-a-fuck-about-climate-change/carbondoomsday-django.svg?branch=master)](https://travis-ci.org/giving-a-fuck-about-climate-change/carbondoomsday-django)
+[![Build Status](https://travis-ci.org/giving-a-fuck-about-climate-change/carbondoomsday.svg?branch=master)](https://travis-ci.org/giving-a-fuck-about-climate-change/carbondoomsday)
 
-# carbondoomsday-django
+# carbondoomsday
 
 A Django web app that gives a fuck.
 
@@ -8,7 +8,9 @@ Work. In. Progress.
 
 # Current Misson
 
-From https://github.com/giving-a-fuck-about-climate-change/carbon-doomsday/issues/5#issuecomment-307584468:
+From [this discussion]:
+
+[this discussion]: https://github.com/giving-a-fuck-about-climate-change/carbon-doomsday/issues/5#issuecomment-307584468:
 
 > Let's get the coinbase-inspired CO2 MVP prototyped and launched, get
 > eyeballs, collaborators, and media and keep our eyes peeled on what emerges
@@ -24,8 +26,8 @@ front-end client.
 [source]: https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2_mlo_weekly.csv
 
 ``` bash
-$ git clone git@github.com:giving-a-fuck-about-climate-change/carbondoomsday-django.git
-$ cd carbondoomsday-django
+$ git clone git@github.com:giving-a-fuck-about-climate-change/carbondoomsday.git
+$ cd carbondoomsday
 $ ./bin/devdocker up
 ```
 
@@ -39,3 +41,7 @@ When you're finished, just run:
 ```
 $ ./bin/devdocker down
 ```
+
+I'm hacking away on various things, so please complain at [the lobby] if it breaks.
+
+[the lobby]: https://gitter.im/giving-a-fuck-about-climate-change/Lobby
