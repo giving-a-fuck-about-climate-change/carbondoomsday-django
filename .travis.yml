@@ -24,9 +24,6 @@ matrix:
     - env: BUILD=migrate
     - env: BUILD=test
 
-  allow_failures:
-    - env: BUILD=isort
-
 before_install:
   - psql -c 'create database carbondoomsday;' -U postgres
   - psql -c 'create database carbondoomsday_test;' -U postgres
