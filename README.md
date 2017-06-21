@@ -49,7 +49,7 @@ framework].
 
 Firstly, [fork the repository] and [git clone] it:
 
-[for the repository]: https://help.github.com/articles/fork-a-repo://help.github.com/articles/fork-a-repo/
+[fork the repository]: https://help.github.com/articles/fork-a-repo://help.github.com/articles/fork-a-repo/
 [git clone]: https://git-scm.com/book/en/Getting-Started-Git-Basics
 
 ```
