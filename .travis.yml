@@ -1,4 +1,4 @@
-sudo: false
+sudo: required
 
 python: "3.6"
 
@@ -6,6 +6,7 @@ language: python
 
 services:
   - postgresql
+  - docker
 
 env:
   global:
