@@ -1,0 +1,5 @@
+#!/bin/bash
+
+./dockercompose/bin/wait carbondoomsday-redis:6379
+
+make celery

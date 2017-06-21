@@ -1,8 +1,0 @@
-#!/bin/sh
-
-# A script for firing up the application called from the docker-compose.yml
-
-bin/wait carbondoomsday-postgresql:5432 -- echo "PostgreSQL is up. Moving on.";
-make migrate
-make static
-make server
