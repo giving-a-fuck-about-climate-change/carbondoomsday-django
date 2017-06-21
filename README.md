@@ -62,13 +62,14 @@ trending and many others will see the project and hopefully join the effort.
 
 ## Install Python Dependencies
 
-We manage our dependencies with [Pipenv]. [Install it fast] with:
+We manage our dependencies with [Pipenv], [install it via Pipsi] with:
 
 [Pipenv]: http://pipenv.org/
-[Install it fast]: http://docs.pipenv.org/en/latest/advanced.html#fancy-installation-of-pipenv
+[Install it via Pipsi]: http://docs.pipenv.org/en/latest/advanced.html#fancy-installation-of-pipenv
 
 ``` bash
 $ curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python3
+$ pipsi install pipenv
 ```
 
 Then inside the project root, run:
