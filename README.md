@@ -100,7 +100,7 @@ whenever you enter the directory.
 [django-configurations]: https://github.com/jazzband/django-configurations
 [The Twelve-Factor App]: https://12factor.net/config
 [autoenv]:https://github.com/kennethreitz/autoenv
-[a maintained list of variables]: https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/tree/master/carbondoomsday/dockercompose/app/carbondoomsday.env
+[a maintained list of variables]: https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/blob/master/dockercompose/app/carbondoomsday.env
 
 ## Run the Tests
 
