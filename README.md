@@ -168,7 +168,7 @@ there, come asking questions [on Gitter]. There will be an ongoing effort to
 make prospective work more discoverable for new contributors. Please help us
 improve this.
 
-[the issues]: https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/issues/11
+[the issues]: https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/issues/
 [on Gitter]: https://gitter.im/giving-a-fuck-about-climate-change/Lobby
 
 ## Submitting your Work
