@@ -12,7 +12,7 @@ isort:
 .PHONY: isort
 
 test:
-	pipenv run pytest
+	pipenv run pytest --cov=carbondoomsday
 .PHONY: test
 
 docker_build:
@@ -41,17 +41,29 @@ clean_migrations:
 .PHONY: clean_migrations
 
 celery:
-	pipenv run celery -A carbondoomsday worker -l info
+	pipenv run celery worker -A carbondoomsday -l info
 .PHONY: celery
 
 static:
-	pipenv python manage.py collectstatic --noinput -v 3
+	pipenv run python manage.py collectstatic --noinput -v 3
 .PHONY: static
 
 server:
 	pipenv run uwsgi --emperor uwsgi.ini
 .PHONY: server
 
+devserver:
+	pipenv run python manage.py runserver
+.PHONY: devserver
+
 admin:
 	pipenv run python manage.py createsuperuser
 .PHONY: admin
+
+scrape_latest:
+	pipenv run python manage.py scrape_latest
+.PHONY: scrape_latest
+
+compose:
+	cd dockercompose && docker-compose up
+.PHONY: compose
