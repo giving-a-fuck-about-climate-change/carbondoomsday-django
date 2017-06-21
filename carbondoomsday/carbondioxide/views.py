@@ -8,7 +8,7 @@ from carbondoomsday.carbondioxide.serializers import CO2MeasurementSerializer
 
 
 class CO2MeasurementViewSet(viewsets.ReadOnlyModelViewSet):
-    """CO2 measurements view set."""
+    """CO2 measurements from the Mauna Loa observatory."""
     lookup_field = "date"
     queryset = CO2Measurement.objects.all()
     serializer_class = CO2MeasurementSerializer
