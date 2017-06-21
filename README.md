@@ -114,17 +114,22 @@ $ make test
 
 ## Run the Static Analysis Tools
 
-In order to foster a more helpful code review atmosphere, similar
-coding styles and best standards in the code base, we automate the
+In order to foster a more helpful code review atmosphere, similar coding styles
+and best practices in the code base, we automate code quality opinions with the
 very useful static analysis tools [pylama] and [isort].
 
 [pylama]: https://github.com/klen/pylama
 [isort]: https://github.com/timothycrosley/isort
 
-You can run these two respectively with the following commands:
+Quality check the code with:
 
 ``` bash
 $ make lint
+```
+
+Check you've got your imports correct with:
+
+``` bash
 $ make isort
 ```
 
