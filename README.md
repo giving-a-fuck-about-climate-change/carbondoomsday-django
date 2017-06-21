@@ -52,7 +52,7 @@ Firstly, [fork the repository] and [git clone] it:
 [fork the repository]: https://help.github.com/articles/fork-a-repo://help.github.com/articles/fork-a-repo/
 [git clone]: https://git-scm.com/book/en/Getting-Started-Git-Basics
 
-```
+``` bash
 $ git clone git@github.com:<your-username>/carbondoomsday.git
 ```
 
@@ -74,7 +74,7 @@ $ pipsi install pipenv
 
 Then inside the project root, run:
 
-```
+``` bash
 $ pipenv install --dev
 ```
 
@@ -148,7 +148,7 @@ the entire application and all necessary services up and running, just run the f
 
 [docker-compose]: https://docs.docker.com/compose/
 
-```
+``` bash
 $ make compose
 ```
 
