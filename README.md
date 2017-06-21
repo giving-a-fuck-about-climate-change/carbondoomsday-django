@@ -14,6 +14,8 @@ change related data in order to fuel a new wave of interesting and engaging
 visualisations and interactive environments to help us all understand and more
 importantly, to act on stopping the ongoing trend of [ecocide].
 
+Join us, and give a fuck.
+
 [Django]: https://www.djangoproject.com/
 [no one giving a fuck]: http://titojankowski.com/no-one-gives-a-fck-about-climate-change/
 [freedom]: https://fsfe.org/about/basics/freesoftware.en.html
