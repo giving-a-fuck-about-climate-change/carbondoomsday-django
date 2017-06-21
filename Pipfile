@@ -22,6 +22,7 @@ djangorestframework-filters = "==0.10.1"
 psycopg2 = "==2.7.1"
 redis = "==2.10.5"
 uWSGI = "==2.0.15"
+"-e ." = "*"
 
 [packages.celery]
 extras = [ "redis",]

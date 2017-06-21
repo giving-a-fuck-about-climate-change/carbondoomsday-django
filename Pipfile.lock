@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "67ac28271f9372a27bfc2805e3edd29783dc166694cf6820109b28408cabdb52"
+            "sha256": "b70c000dca8f9bc878ecafcd278e22d84778c06a50dcd8cc95ecbeaa7accdbcc"
         },
         "requires": {},
         "sources": [
@@ -12,6 +12,7 @@
         ]
     },
     "default": {
+        "-e .": "*",
         "amqp": {
             "version": "==2.1.4"
         },
