@@ -65,5 +65,5 @@ scrape_latest:
 .PHONY: scrape_latest
 
 compose:
-	cd dockercompose && docker-compose up
+	cd dockercompose && pipenv run docker-compose up
 .PHONY: compose
