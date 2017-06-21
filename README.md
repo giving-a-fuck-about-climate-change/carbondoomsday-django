@@ -62,7 +62,7 @@ trending and many others will see the project and hopefully join the effort.
 
 ## Install Python Dependencies
 
-We manage our dependencies with [Pipenv], [install it via Pipsi] with:
+We manage our dependencies with [Pipenv], [install it via Pipsi]:
 
 [Pipenv]: http://pipenv.org/
 [Install it via Pipsi]: http://docs.pipenv.org/en/latest/advanced.html#fancy-installation-of-pipenv
