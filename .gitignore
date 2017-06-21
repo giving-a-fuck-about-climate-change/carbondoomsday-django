@@ -1,6 +1,5 @@
-.testmondata
 *.pyc
-.venv/
 .env
 *egg-info/
 .coverage
+*.sock
