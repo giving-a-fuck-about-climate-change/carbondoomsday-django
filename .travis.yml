@@ -13,8 +13,10 @@ env:
     - DJANGO_CONFIGURATION=Development
     - DJANGO_SECRET_KEY=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     - DJANGO_SETTINGS_MODULE=carbondoomsday.settings
-    - CELERY_BROKER_URL=redis://localhost:6379
-    - CELERY_RESULT_BACKEND=redis://localhost:6379
+    - CELERY_BROKER_URL=redis://localhost:6379/0
+    - CELERY_RESULT_BACKEND=redis://localhost:6379/0
+    - DJANGO_STATIC_URL=/tmp/static/
+    - DJANGO_LOG_LEVEL=DEBUG
 
 matrix:
   fast_finish: true
@@ -23,6 +25,7 @@ matrix:
     - env: BUILD=isort
     - env: BUILD=migrate
     - env: BUILD=test
+    - env: BUILD=compose
 
 before_install:
   - psql -c 'create database carbondoomsday;' -U postgres
@@ -49,8 +52,17 @@ script:
       test)
         make test
         ;;
+      compose)
+        cd dockercompose;
+        docker-compose up -d;
+        docker-compose down;
+        ;;
     esac
     set +ex
 
 notifications:
   email: false
+
+after_success:
+  - pip install codecov
+  - codecov --token=29a4b58d-9ed9-44aa-b44e-16efe2219614
