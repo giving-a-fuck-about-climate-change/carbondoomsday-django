@@ -174,15 +174,15 @@ improve this.
 ## Submitting your Work
 
 Thank you for taking time to contribute to this project. All contributors will
-be given equal access to the project and will be unconditionally be made
-members of the organisation.
+be given equal access to the project and will be unconditionally made members
+of the organisation.
 
 Just [submit a pull request] as you normally would. We use [Travis CI] for our
 continuous integration, and each pull request submitted will undergo various
-tests to help assert the correctness of it. A maintainer will try to review
-your change set as soon as possible.
+tests to help assert the correctness of it.
 
-Please complain [the lobby] if no one is responding.
+A maintainer will try to review your change set as soon as possible. Please
+complain [the lobby] if no one is responding.
 
 [submit a pull request]: https://help.github.com/articles/creating-a-pull-request/
 [Travis CI]: https://travis-ci.org/
