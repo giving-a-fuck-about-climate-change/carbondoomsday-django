@@ -27,6 +27,9 @@ matrix:
     - env: BUILD=migrate
     - env: BUILD=test
     - env: BUILD=compose
+  allow_failures:
+    # https://github.com/travis-ci/travis-ci/issues/7938
+    - env: BUILD=compose
 
 before_install:
   - psql -c 'create database carbondoomsday;' -U postgres
