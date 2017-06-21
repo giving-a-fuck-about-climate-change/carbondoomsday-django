@@ -26,7 +26,7 @@ class Base(Configuration):
     SECRET_KEY = values.SecretValue()
 
     STATIC_URL = "/static/"
-    STATIC_ROOT = "/srv/carbondoomsday/static/"
+    STATIC_ROOT = values.Value()
 
     INSTALLED_APPS = (
         "carbondoomsday.carbondioxide",
@@ -87,8 +87,6 @@ class Base(Configuration):
 
     CELERY_BROKER_URL = values.Value()
     CELERY_RESULT_BACKEND = values.Value()
-    CELERY_TASK_SERIALIZER = "json"
-    CELERY_RESULT_SERIALIZER = "json"
 
     LATEST_CO2_URL = (
         "https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2_mlo_weekly.csv"
