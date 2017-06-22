@@ -22,6 +22,7 @@ class Base(Configuration):
     WSGI_APPLICATION = "carbondoomsday.wsgi.application"
 
     DATABASES = {"default": database_url_parser()}
+    DATABASES["default"]["CONN_MAX_AGE"] = 500
 
     SECRET_KEY = values.SecretValue()
 
