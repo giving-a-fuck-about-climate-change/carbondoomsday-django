@@ -71,3 +71,6 @@ notifications:
 after_success:
   - pip install codecov
   - codecov --token=29a4b58d-9ed9-44aa-b44e-16efe2219614
+
+notifications:
+  email: false
