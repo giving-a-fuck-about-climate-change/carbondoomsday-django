@@ -22,7 +22,7 @@ class Base(Configuration):
     WSGI_APPLICATION = "carbondoomsday.wsgi.application"
 
     DATABASES = {"default": database_url_parser()}
-    DATABASES["default"]["CONN_MAX_AGE"] = 500
+    DATABASES['default']['CONN_MAX_AGE'] = 500
 
     SECRET_KEY = values.SecretValue()
 
@@ -102,7 +102,11 @@ class Base(Configuration):
     REST_FRAMEWORK = {
         "DEFAULT_FILTER_BACKENDS": (
             "rest_framework_filters.backends.DjangoFilterBackend",
-        )
+        ),
+        "DEFAULT_PAGINATION_CLASS": (
+            "rest_framework.pagination.LimitOffsetPagination"
+        ),
+        "PAGE_SIZE": 50,
     }
 
     SWAGGER_SETTINGS = {
