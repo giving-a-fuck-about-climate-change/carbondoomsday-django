@@ -182,7 +182,7 @@ continuous integration, and each pull request submitted will undergo various
 tests to help assert the correctness of it.
 
 A maintainer will try to review your change set as soon as possible. Please
-complain [the lobby] if no one is responding.
+complain in [the lobby] if no one is responding.
 
 [submit a pull request]: https://help.github.com/articles/creating-a-pull-request/
 [Travis CI]: https://travis-ci.org/
