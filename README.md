@@ -33,6 +33,7 @@ Join us, and give a fuck.
     * [Run the Entire Application](#run-the-entire-application)
     * [Find Some Work](#find-some-work)
     * [Submitting Your Work](#submitting-your-work)
+    * [Deploy with Heroku](#deploy-with-heroku)
 
 # Contribute
 
@@ -187,3 +188,24 @@ complain in [the lobby] if no one is responding.
 [submit a pull request]: https://help.github.com/articles/creating-a-pull-request/
 [Travis CI]: https://travis-ci.org/
 [the lobby]: https://gitter.im/giving-a-fuck-about-climate-change/Lobby
+
+## Deploy with Heroku
+
+We use [Heroku] to deploy the application. Every time a pull request is merged into
+the master branch, the application will be deployed to [a test instance]. Soon, we will
+add a production instance with which we will tag and manually deploy releases.
+
+[a test instance]: https://carbondoomsday-test.herokuapp.com/
+
+If your changes might affect the Heroku deployment, you'll need to test this
+locally. [Install the toolbelt] and run:
+
+[Install the toolbelt]: https://devcenter.heroku.com/articles/heroku-cli#download-and-install
+
+``` bash
+$ heroku local web
+```
+
+If the servers comes up, you can be fairly confident that things will work.
+
+[Heroku]: https://devcenter.heroku.com/
