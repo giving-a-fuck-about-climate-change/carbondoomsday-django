@@ -45,9 +45,11 @@ class Base(Configuration):
         "django_filters",
         "rest_framework",
         "rest_framework_swagger",
+        "opbeat.contrib.django",
     )
 
     MIDDLEWARE_CLASSES = (
+        "opbeat.contrib.django.middleware.OpbeatAPMMiddleware",
         "django.middleware.security.SecurityMiddleware",
         "django.contrib.sessions.middleware.SessionMiddleware",
         "django.middleware.common.CommonMiddleware",
