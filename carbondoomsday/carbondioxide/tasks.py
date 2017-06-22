@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 @app.task
 @transaction.atomic
 def scrape_latest():
-    """Scrape latest CO2 measurements. Only parses daily PPM, if present."""
+    """Scrape latest Mauna Loa daily CO2 measurements."""
     from carbondoomsday.carbondioxide.models import CO2Measurement
 
     try:
