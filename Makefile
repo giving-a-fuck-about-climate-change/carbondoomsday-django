@@ -67,3 +67,6 @@ scrape_latest:
 compose:
 	cd dockercompose && pipenv run docker-compose up
 .PHONY: compose
+
+proof: lint isort test check_migrations
+.PHONY: proof
