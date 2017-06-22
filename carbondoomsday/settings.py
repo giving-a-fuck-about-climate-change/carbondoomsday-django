@@ -39,6 +39,7 @@ class Base(Configuration):
         "django.contrib.contenttypes",
         "django.contrib.messages",
         "django.contrib.sessions",
+        "whitenoise.runserver_nostatic",
         "django.contrib.staticfiles",
         "django_extensions",
         "django_filters",
