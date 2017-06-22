@@ -11,7 +11,11 @@ server {
   client_max_body_size 10M;
 
   location /static {
-    alias /tmp/static/;
+    alias /tmp/staticfiles/;
+  }
+
+  location /media {
+    alias /tmp/mediafiles/;
   }
 
   location / {
