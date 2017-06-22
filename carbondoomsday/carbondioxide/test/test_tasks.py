@@ -78,3 +78,10 @@ def test_scrape_latest_existing_models(mocked_latest_co2_csv):
     assert CO2Measurement.objects.count() == 4
     scrape_latest()
     assert CO2Measurement.objects.count() == 4
+
+
+def test_scrape_historic_success(mocked_historic_co2_csv):
+    from carbondoomsday.carbondioxide.tasks import scrape_historic
+
+    scrape_historic()
+    assert CO2Measurement.objects.count() == 2
