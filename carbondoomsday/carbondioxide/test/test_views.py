@@ -14,9 +14,9 @@ def test_co2_ready_only_view(client, co2_measurement):
     assert client.patch(url).status_code == 405
 
     response = client.get(url)
-    assert len(response.json()) == 1
+    assert response.json()['count'] == 1
 
-    first = response.json()[0]
+    first = response.json()['results'][0]
     assert first['ppm'] == str(co2_measurement.ppm)
     assert first['date'] == str(co2_measurement.date)
 

@@ -13,13 +13,13 @@ def test_co2_filtering(client, co2_measurement):
     url = reverse("co2measurement-list")
 
     response = client.get(url, {"ppm__gte": Decimal("500.00")})
-    assert len(response.json()) == 0
+    assert response.json()['count'] == 0
 
     response = client.get(url, {"ppm__lte": Decimal("500.00")})
-    assert len(response.json()) == 1
+    assert response.json()['count'] == 1
 
     response = client.get(url, {"date__gte": date(2666, 6, 6)})
-    assert len(response.json()) == 0
+    assert response.json()['count'] == 0
 
     response = client.get(url, {"date": co2_measurement.date})
-    assert len(response.json()) == 1
+    assert response.json()['count'] == 1
