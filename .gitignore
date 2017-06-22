@@ -3,3 +3,5 @@
 *egg-info/
 .coverage
 *.sock
+staticfiles
+mediafiles
