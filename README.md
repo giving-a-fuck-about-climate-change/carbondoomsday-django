@@ -192,10 +192,11 @@ complain in [the lobby] if no one is responding.
 ## Deploy with Heroku
 
 We use [Heroku] to deploy the application. Every time a pull request is merged into
-the master branch, the application will be deployed to [a test instance]. Soon, we will
-add a production instance with which we will tag and manually deploy releases.
+the master branch, the application will be deployed to [a test instance]. We also have
+[a production instance] which we tag and manually deploy releases.
 
 [a test instance]: https://carbondoomsday-test.herokuapp.com/
+[a production instance]: https://carbondoomsday.herokuapp.com/
 
 If your changes might affect the Heroku deployment, you'll need to test this
 locally. [Install the toolbelt] and run:
