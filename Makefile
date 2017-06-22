@@ -64,6 +64,10 @@ scrape_latest:
 	pipenv run python manage.py scrape_latest
 .PHONY: scrape_latest
 
+scrape_historic:
+	pipenv run python manage.py scrape_historic
+.PHONY: scrape_historic
+
 compose:
 	cd dockercompose && pipenv run docker-compose up
 .PHONY: compose
