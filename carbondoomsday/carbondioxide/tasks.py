@@ -27,14 +27,14 @@ def scrape_latest():
         logger.error(msg)
         raise err
 
+    logger.info("Retrieved CSV file with latest data.")
+
     decoded = str(response.content, "utf-8")
     separated = decoded.split("\n")
     parsed = list(csv.reader(separated))
 
     drop_headers = slice(1, len(parsed))
     without_header = parsed[drop_headers]
-
-    logger.info("Retrieved CSV file with latest data.")
 
     stored, skipped = 0, 0
     for entry in without_header:
