@@ -99,6 +99,11 @@ class Base(Configuration):
         "https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2_mlo_weekly.csv"
     )
 
+    HISTORIC_CO2_URL = (
+        "http://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ"
+        "/surface/mlo/co2_mlo_surface-insitu_1_ccgg_DailyData.txt"
+    )
+
     REST_FRAMEWORK = {
         "DEFAULT_FILTER_BACKENDS": (
             "rest_framework_filters.backends.DjangoFilterBackend",
