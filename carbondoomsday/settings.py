@@ -28,6 +28,9 @@ class Base(Configuration):
     STATIC_URL = "/static/"
     STATIC_ROOT = values.Value()
 
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = values.Value()
+
     INSTALLED_APPS = (
         "carbondoomsday.carbondioxide",
         "django.contrib.admin",
