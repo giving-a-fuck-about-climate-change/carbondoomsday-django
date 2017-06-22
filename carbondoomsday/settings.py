@@ -27,10 +27,10 @@ class Base(Configuration):
     SECRET_KEY = values.SecretValue()
 
     STATIC_URL = "/static/"
-    STATIC_ROOT = values.Value()
+    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
     MEDIA_URL = "/media/"
-    MEDIA_ROOT = values.Value()
+    MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
 
     INSTALLED_APPS = (
         "carbondoomsday.carbondioxide",

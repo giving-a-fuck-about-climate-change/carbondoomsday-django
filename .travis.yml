@@ -16,9 +16,6 @@ env:
     - DJANGO_SETTINGS_MODULE=carbondoomsday.settings
     - CELERY_BROKER_URL=redis://localhost:6379/0
     - CELERY_RESULT_BACKEND=redis://localhost:6379/0
-    - DJANGO_STATIC_URL=/tmp/static/
-    - DJANGO_MEDIA_ROOT=/tmp/media/
-    - DJANGO_LOG_LEVEL=DEBUG
 
 matrix:
   fast_finish: true

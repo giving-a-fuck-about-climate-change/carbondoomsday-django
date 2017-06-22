@@ -42,7 +42,8 @@ services:
       - "carbondoomsday-redis"
     volumes:
       - "$PWD/../:/carbondoomsday/"
-      - "/tmp/static/:/tmp/static/"
+      - "./staticfiles/:/tmp/staticfiles/"
+      - "./mediafiles/:/tmp/mediafiles/"
 
   carbondoomsday-nginx:
     container_name: "carbondoomsday-nginx"
@@ -54,5 +55,6 @@ services:
     links:
       - "carbondoomsday-app"
     volumes:
-      - "/tmp/static/:/tmp/static/"
+      - "./staticfiles/:/tmp/staticfiles/"
+      - "./mediafiles/:/tmp/mediafiles/"
       - "./nginx/sites-enabled/:/etc/nginx/sites-enabled/"
