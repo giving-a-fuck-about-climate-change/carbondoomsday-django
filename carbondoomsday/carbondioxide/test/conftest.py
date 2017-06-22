@@ -10,7 +10,7 @@ from carbondoomsday.carbondioxide.models import CO2Measurement
 
 
 @pytest.fixture
-def mocked_co2_csv(mocker):
+def mocked_latest_co2_csv(mocker):
     mocked_csv = (
         "Date,day,month,week\n"
         "2017-06-08,409.49,409.65,409.65\n"

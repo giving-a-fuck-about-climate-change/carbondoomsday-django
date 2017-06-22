@@ -11,7 +11,7 @@ from carbondoomsday.carbondioxide.models import CO2Measurement
 pytestmark = pytest.mark.django_db
 
 
-def test_scrape_latest_success(mocked_co2_csv, caplog):
+def test_scrape_latest_success(mocked_latest_co2_csv):
     from carbondoomsday.carbondioxide.tasks import scrape_latest
 
     scrape_latest()
@@ -46,8 +46,8 @@ def test_scrape_latest_parse_date_failure(mocker, caplog):
     mocked = mocker.Mock()
     target = "carbondoomsday.carbondioxide.tasks.requests.get"
 
-    mocked_co2_csv = "Date,day,month,week\n9999-999-999,,,\n"
-    mocked.content = bytes(mocked_co2_csv, "utf-8")
+    mocked_latest_co2_csv = "Date,day,month,week\n9999-999-999,,,\n"
+    mocked.content = bytes(mocked_latest_co2_csv, "utf-8")
 
     with mocker.patch(target, return_value=mocked):
         scrape_latest()
@@ -62,8 +62,8 @@ def test_scrape_latest_parse_ppm_failure(mocker, caplog):
     mocked = mocker.Mock()
     target = "carbondoomsday.carbondioxide.tasks.requests.get"
 
-    mocked_co2_csv = "Date,day,month,week\n2017-06-06,x,y,z\n"
-    mocked.content = bytes(mocked_co2_csv, "utf-8")
+    mocked_latest_co2_csv = "Date,day,month,week\n2017-06-06,x,y,z\n"
+    mocked.content = bytes(mocked_latest_co2_csv, "utf-8")
 
     with mocker.patch(target, return_value=mocked):
         scrape_latest()
@@ -71,7 +71,7 @@ def test_scrape_latest_parse_ppm_failure(mocker, caplog):
     assert CO2Measurement.objects.count() == 0
 
 
-def test_scrape_latest_existing_models(mocked_co2_csv):
+def test_scrape_latest_existing_models(mocked_latest_co2_csv):
     from carbondoomsday.carbondioxide.tasks import scrape_latest
 
     scrape_latest()
