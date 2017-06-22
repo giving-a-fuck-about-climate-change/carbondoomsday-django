@@ -54,11 +54,59 @@ def scrape_latest():
             skipped += 1
             continue
 
+        measurement = CO2Measurement.objects.filter(date=co2_date)
+        if measurement.exists():
+            msg = "Entry for {} already stored. Skipping."
+            logger.debug(msg.format(str(co2_date)))
+            skipped += 1
+            continue
+
         try:
             co2_ppm = Decimal(daily)
         except InvalidOperation:
             msg = "Failed to convert '{}' to type decimal. Skipping."
             logger.debug(msg.format(daily))
+            skipped += 1
+            continue
+
+        CO2Measurement.objects.create(date=co2_date, ppm=co2_ppm)
+        msg = "Stored new CO2 entry for {} with PPM of {}."
+        logger.info(msg.format(str(co2_date), str(co2_ppm)))
+        stored += 1
+
+    logger.info("Initially parsed {} entries.".format(len(without_header)))
+    logger.info("Stored {}. Skipped {}.".format(stored, skipped))
+
+
+@app.task
+@transaction.atomic
+def scrape_historic():
+    """Scrape historical Mauna Loa CO2 measurements."""
+    from carbondoomsday.carbondioxide.models import CO2Measurement
+
+    try:
+        response = requests.get(settings.HISTORIC_CO2_URL)
+    except Exception as err:
+        msg = "Failed to retrieve CSV for historic CO2 scrape."
+        logger.error(msg)
+        raise err
+
+    logger.info("Retrieved CSV file with latest data.")
+
+    decoded = str(response.content, "utf-8")
+    separated = decoded.split("\n")
+    uncommented = [line for line in separated if line.startswith("MLO")]
+
+    stored, skipped = 0, 0
+    for line in uncommented:
+        try:
+            time_of_year = slice(1, 4)
+            year, month, day = line.split()[time_of_year]
+            intified = map(int, (year, month, day))
+            co2_date = datetime.date(*intified)
+        except (ValueError, TypeError):
+            msg = "Failed to parse entry, found '{}'."
+            logger.debug(msg.format(line))
             skipped += 1
             continue
 
@@ -69,12 +117,27 @@ def scrape_latest():
             skipped += 1
             continue
 
+        NOT_RECORDED = "-999.99"
+        PPM_HEADER = 7
+        try:
+            daily = line.split()[PPM_HEADER]
+            if daily == NOT_RECORDED:
+                msg = "{} marked as not recorded. Skipping."
+                logger.debug(msg.format(co2_date))
+                skipped += 1
+                continue
+            co2_ppm = Decimal(daily)
+        except (InvalidOperation, ValueError, TypeError):
+            msg = "Failed to convert '{}' to type decimal. Skipping."
+            logger.debug(msg.format(daily))
+            skipped += 1
+            continue
+
         CO2Measurement.objects.create(date=co2_date, ppm=co2_ppm)
         stored += 1
 
         msg = "Stored new CO2 entry for {} with PPM of {}"
         logger.info(msg.format(str(co2_date), str(co2_ppm)))
 
-    logger.info("Initially parsed {} entries.".format(len(without_header)))
-    logger.info("Stored {}.".format(stored))
-    logger.info("{} were skipped.".format(skipped))
+    logger.info("Initially parsed {} entries.".format(len(uncommented)))
+    logger.info("Stored {}. Skipped {}.".format(stored, skipped))
