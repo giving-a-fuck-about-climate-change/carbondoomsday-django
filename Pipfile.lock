@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "b70c000dca8f9bc878ecafcd278e22d84778c06a50dcd8cc95ecbeaa7accdbcc"
+            "sha256": "8af55e6ff95d57d8b63663d8bcd0e7e11b6355280bb4c929dd352aa9186e89fd"
         },
         "requires": {},
         "sources": [
@@ -105,7 +105,8 @@
         },
         "vine": {
             "version": "==1.1.3"
-        }
+        },
+        "whitenoise": "3.3.0"
     },
     "develop": {
         "cached-property": {
@@ -190,7 +191,7 @@
             "version": "==0.8.8"
         },
         "websocket-client": {
-            "version": "==0.42.1"
+            "version": "==0.43.0"
         }
     }
 }

@@ -106,6 +106,8 @@ class Base(Configuration):
         "DOC_EXPANSION": "list",
     }
 
+    STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
 
 class Production(Base):
     ENVIRONMENT = "Production"

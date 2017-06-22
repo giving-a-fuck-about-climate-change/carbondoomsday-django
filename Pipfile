@@ -23,6 +23,7 @@ psycopg2 = "==2.7.1"
 redis = "==2.10.5"
 uWSGI = "==2.0.15"
 "-e ." = "*"
+whitenoise = "3.3.0"
 
 [packages.celery]
 extras = [ "redis",]
