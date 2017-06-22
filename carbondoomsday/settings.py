@@ -116,6 +116,7 @@ class Production(Base):
 
 class Staging(Base):
     ENVIRONMENT = "Staging"
+    ALLOWED_HOSTS = ["carbondoomsday-test.herokuapp.com"]
 
 
 class Development(Base):
