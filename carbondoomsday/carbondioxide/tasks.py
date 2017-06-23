@@ -4,6 +4,7 @@ import csv
 import datetime
 import logging
 from decimal import Decimal, InvalidOperation
+from urllib.request import urlopen
 
 import requests
 from django.conf import settings
@@ -85,7 +86,8 @@ def scrape_historic():
     from carbondoomsday.carbondioxide.models import CO2Measurement
 
     try:
-        response = requests.get(settings.HISTORIC_CO2_URL)
+        handler = urlopen(settings.HISTORIC_CO2_URL)
+        response = handler.read()
     except Exception as err:
         logger.error("Failed to retrieve CSV for historic CO2 scrape.")
         logger.error("Saw the following error: {}".format(str(err)))
@@ -93,7 +95,7 @@ def scrape_historic():
 
     logger.info("Retrieved CSV file with latest data.")
 
-    decoded = str(response.content, "utf-8")
+    decoded = str(response, "utf-8")
     separated = decoded.split("\n")
     uncommented = [line for line in separated if line.startswith("MLO")]
 

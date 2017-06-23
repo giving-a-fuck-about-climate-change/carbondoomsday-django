@@ -89,7 +89,7 @@ def test_scrape_historic_success(mocked_historic_co2_csv):
 def test_scrape_historic_network_failure(mocker, caplog):
     from carbondoomsday.carbondioxide.tasks import scrape_historic
 
-    target = "carbondoomsday.carbondioxide.tasks.requests.get"
+    target = "carbondoomsday.carbondioxide.tasks.urlopen"
     mocker.patch(target, side_effect=Timeout())
 
     assert scrape_historic() is None
@@ -102,10 +102,11 @@ def test_scrape_historic_parse_date_failure(mocker, caplog):
     from carbondoomsday.carbondioxide.tasks import scrape_historic
 
     mocked = mocker.Mock()
-    target = "carbondoomsday.carbondioxide.tasks.requests.get"
+    target = "carbondoomsday.carbondioxide.tasks.urlopen"
 
-    mocked_historic_co2_csv = "MLO FOO BAR BAZ"
-    mocked.content = bytes(mocked_historic_co2_csv, "utf-8")
+    mocked_historic_co2_csv = bytes("MLO FOO BAR BAZ", "utf-8")
+    mocked_function_kwargs = {"read.return_value": mocked_historic_co2_csv}
+    mocked.configure_mock(**mocked_function_kwargs)
 
     with mocker.patch(target, return_value=mocked):
         scrape_historic()
@@ -118,10 +119,11 @@ def test_scrape_historic_parse_ppm_failure(mocker):
     from carbondoomsday.carbondioxide.tasks import scrape_historic
 
     mocked = mocker.Mock()
-    target = "carbondoomsday.carbondioxide.tasks.requests.get"
+    target = "carbondoomsday.carbondioxide.tasks.urlopen"
 
-    mocked_historic_co2_csv = "MLO 1974 1 1"
-    mocked.content = bytes(mocked_historic_co2_csv, "utf-8")
+    mocked_historic_co2_csv = bytes("MLO 1974 1 1", "utf-8")
+    mocked_function_kwargs = {"read.return_value": mocked_historic_co2_csv}
+    mocked.configure_mock(**mocked_function_kwargs)
 
     with mocker.patch(target, return_value=mocked):
         scrape_historic()
