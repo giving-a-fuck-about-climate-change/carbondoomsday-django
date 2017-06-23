@@ -185,6 +185,12 @@ Just [submit a pull request] as you normally would. We use [Travis CI] for our
 continuous integration, and each pull request submitted will undergo various
 tests to help assert the correctness of it.
 
+To be reasonably sure your change set will pass the CI, run:
+
+``` bash
+$ make proof
+```
+
 A maintainer will try to review your change set as soon as possible. Please
 complain in [the lobby] if no one is responding.
 
