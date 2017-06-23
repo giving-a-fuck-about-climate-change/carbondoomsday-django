@@ -127,9 +127,9 @@ def scrape_historic():
                 skipped += 1
                 continue
             co2_ppm = Decimal(daily)
-        except (InvalidOperation, ValueError, TypeError):
+        except (InvalidOperation, IndexError, ValueError, TypeError):
             msg = "Failed to convert '{}' to type decimal. Skipping."
-            logger.debug(msg.format(daily))
+            logger.debug(msg.format(line))
             skipped += 1
             continue
 
