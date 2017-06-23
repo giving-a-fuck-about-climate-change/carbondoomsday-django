@@ -28,7 +28,7 @@ def scrape_latest():
         logger.error(msg)
         return
 
-    logger.info("Retrieved CSV file with latest data.")
+    logger.debug("Retrieved CSV file with latest data.")
 
     decoded = str(response.content, "utf-8")
     separated = decoded.split("\n")
@@ -72,7 +72,7 @@ def scrape_latest():
 
         CO2Measurement.objects.create(date=co2_date, ppm=co2_ppm)
         msg = "Stored new CO2 entry for {} with PPM of {}."
-        logger.info(msg.format(str(co2_date), str(co2_ppm)))
+        logger.debug(msg.format(str(co2_date), str(co2_ppm)))
         stored += 1
 
     logger.info("Initially parsed {} entries.".format(len(without_header)))
@@ -93,7 +93,7 @@ def scrape_historic():
         logger.error("Saw the following error: {}".format(str(err)))
         return
 
-    logger.info("Retrieved CSV file with latest data.")
+    logger.debug("Retrieved CSV file with latest data.")
 
     decoded = str(response, "utf-8")
     separated = decoded.split("\n")
@@ -139,7 +139,7 @@ def scrape_historic():
         stored += 1
 
         msg = "Stored new CO2 entry for {} with PPM of {}"
-        logger.info(msg.format(str(co2_date), str(co2_ppm)))
+        logger.debug(msg.format(str(co2_date), str(co2_ppm)))
 
     logger.info("Initially parsed {} entries.".format(len(uncommented)))
     logger.info("Stored {}. Skipped {}.".format(stored, skipped))
