@@ -10,14 +10,6 @@ class CO2MeasurementFilter(filters.FilterSet):
     class Meta:
         model = CO2Measurement
         fields = {
-            "ppm": [
-                "gt", "gte",
-                "lt", "lte",
-                "exact",
-            ],
-            "date": [
-                "gt", "gte",
-                "lt", "lte",
-                "exact"
-            ]
+            "ppm": "__all__",
+            "date": "__all__",
         }
