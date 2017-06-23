@@ -1,18 +1,19 @@
 PROJECT_ROOT := .
 SOURCE_DIR   := $(PROJECT_ROOT)/carbondoomsday
-MANAGE_PY    := python manage.py
+MANAGEPY     := python manage.py
+PIPENVRUN    := pipenv run
 DOCKER_IMAGE := carbondoomsday/carbondoomsday
 
 lint:
-	pipenv run pylama $(SOURCE_DIR)
+	$(PIPENVRUN) pylama $(SOURCE_DIR)
 .PHONY: lint
 
 isort:
-	find $(SOURCE_DIR) -name "*.py" | xargs pipenv run isort -c --diff -sp=setup.cfg
+	find $(SOURCE_DIR) -name "*.py" | xargs $(PIPENVRUN) isort -c --diff -sp=setup.cfg
 .PHONY: isort
 
 test:
-	pipenv run pytest --cov=carbondoomsday
+	$(PIPENVRUN) pytest --cov=carbondoomsday
 .PHONY: test
 
 docker_build:
@@ -20,20 +21,20 @@ docker_build:
 .PHONY: docker_build
 
 migrations:
-	pipenv run python manage.py makemigrations
-	pipenv run python manage.py makemigrations carbondioxide
+	$(PIPENVRUN) $(MANAGEPY) makemigrations
+	$(PIPENVRUN) $(MANAGEPY) makemigrations carbondioxide
 .PHONY: makemigrations
 
 check_migrations:
-	pipenv run python manage.py makemigrations --check
+	$(PIPENVRUN) $(MANAGEPY) makemigrations --check
 .PHONY: check_migrations
 
 migrate:
-	pipenv run python manage.py migrate
+	$(PIPENVRUN) $(MANAGEPY) migrate
 .PHONY: migrate
 
 reset:
-	pipenv run python manage.py reset_db
+	$(PIPENVRUN) $(MANAGEPY) reset_db
 .PHONY: migrate
 
 clean_migrations:
@@ -41,35 +42,35 @@ clean_migrations:
 .PHONY: clean_migrations
 
 celery:
-	pipenv run celery worker -A carbondoomsday -l info
+	$(PIPENVRUN) celery worker -A carbondoomsday -l info
 .PHONY: celery
 
 static:
-	pipenv run python manage.py collectstatic --noinput -v 3
+	$(PIPENVRUN) $(MANAGEPY) collectstatic --noinput -v 3
 .PHONY: static
 
 server:
-	pipenv run uwsgi --emperor uwsgi.ini
+	$(PIPENVRUN) uwsgi --emperor uwsgi.ini
 .PHONY: server
 
 devserver:
-	pipenv run python manage.py runserver
+	$(PIPENVRUN) $(MANAGEPY) runserver
 .PHONY: devserver
 
 admin:
-	pipenv run python manage.py createsuperuser
+	$(PIPENVRUN) $(MANAGEPY) createsuperuser
 .PHONY: admin
 
 scrape_latest:
-	pipenv run python manage.py scrape_latest
+	$(PIPENVRUN) $(MANAGEPY) scrape_latest
 .PHONY: scrape_latest
 
 scrape_historic:
-	pipenv run python manage.py scrape_historic
+	$(PIPENVRUN) $(MANAGEPY) scrape_historic
 .PHONY: scrape_historic
 
 compose:
-	cd dockercompose && pipenv run docker-compose up
+	cd dockercompose && $(PIPENVRUN) docker-compose up
 .PHONY: compose
 
 proof: lint isort test check_migrations
