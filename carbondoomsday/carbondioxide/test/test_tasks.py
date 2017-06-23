@@ -33,8 +33,7 @@ def test_scrape_latest_network_failure(mocker, caplog):
     target = "carbondoomsday.carbondioxide.tasks.requests.get"
     mocker.patch(target, side_effect=Timeout())
 
-    with pytest.raises(Timeout):
-        scrape_latest()
+    assert scrape_latest() is None
 
     expected_msg = "Failed to retrieve CSV"
     assert any((expected_msg in rec.msg for rec in caplog.records()))
@@ -93,8 +92,7 @@ def test_scrape_historic_network_failure(mocker, caplog):
     target = "carbondoomsday.carbondioxide.tasks.requests.get"
     mocker.patch(target, side_effect=Timeout())
 
-    with pytest.raises(Timeout):
-        scrape_historic()
+    assert scrape_historic() is None
 
     expected_msg = "Failed to retrieve CSV"
     assert any((expected_msg in rec.msg for rec in caplog.records()))
