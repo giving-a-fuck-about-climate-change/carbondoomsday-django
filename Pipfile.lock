@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e65b5bbc53f67fa2db1ad00ae0b755ac6743e58162f0b8b76cb97463d7fa4d8e"
+            "sha256": "c6ab6fd511650a34538dd4b336c6d7fe6e881464e93cc3398be4e9fac0e865ec"
         },
         "requires": {},
         "sources": [
@@ -196,7 +196,7 @@
             "version": "==0.8.8"
         },
         "websocket-client": {
-            "version": "==0.43.0"
+            "version": "==0.44.0"
         }
     }
 }
