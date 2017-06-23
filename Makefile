@@ -75,3 +75,11 @@ compose:
 
 proof: lint isort test check_migrations
 .PHONY: proof
+
+prodbash:
+	heroku run bash -a carbondoomsday
+.PHONY: prodbash
+
+testbash:
+	heroku run bash -a carbondoomsday-test
+.PHONY: testbash
