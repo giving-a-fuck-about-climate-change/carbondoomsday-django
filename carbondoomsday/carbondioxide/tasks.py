@@ -25,7 +25,7 @@ def scrape_latest():
     except Exception as err:
         msg = "Failed to retrieve CSV for latest CO2 scrape."
         logger.error(msg)
-        raise err
+        return
 
     logger.info("Retrieved CSV file with latest data.")
 
@@ -89,7 +89,7 @@ def scrape_historic():
     except Exception as err:
         msg = "Failed to retrieve CSV for historic CO2 scrape."
         logger.error(msg)
-        raise err
+        return
 
     logger.info("Retrieved CSV file with latest data.")
 
