@@ -5,3 +5,4 @@
 *.sock
 staticfiles
 mediafiles
+celerybeat-schedule
