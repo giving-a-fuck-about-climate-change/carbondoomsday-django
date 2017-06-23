@@ -100,8 +100,8 @@ class Base(Configuration):
     )
 
     HISTORIC_CO2_URL = (
-        "http://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ"
-        "/surface/mlo/co2_mlo_surface-insitu_1_ccgg_DailyData.txt"
+        "ftp://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ/"
+        "surface/mlo/co2_mlo_surface-insitu_1_ccgg_DailyData.txt"
     )
 
     REST_FRAMEWORK = {
