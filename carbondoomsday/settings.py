@@ -1,6 +1,7 @@
 """Project settings."""
 
 import os
+from datetime import timedelta
 
 from configurations import Configuration, values
 from dj_database_url import config as database_url_parser
@@ -129,6 +130,13 @@ class Base(Configuration):
         "APP_ID": OPBEAT_APP_ID,
         "ORGANIZATION_ID": OPBEAT_ORGANIZATION_ID,
         "SECRET_TOKEN": OPBEAT_SECRET_TOKEN,
+    }
+
+    CELERY_BEAT_SCHEDULE = {
+        "scrape-latest-co2-measurements-from-MLO": {
+            "task": "carbondoomsday.carbondioxide.tasks.scrape_latest",
+            "schedule": timedelta(hours=6)
+        }
     }
 
 
