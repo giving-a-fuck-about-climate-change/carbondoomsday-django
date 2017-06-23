@@ -17,7 +17,7 @@ importantly, to act on stopping the ongoing trend of [ecocide].
 
 Join us, and give a fuck.
 
-http://carbondoomsday.herokuapp.com/
+http://api.carbondoomsday.com
 
 [Django]: https://www.djangoproject.com/
 [no one giving a fuck]: http://titojankowski.com/no-one-gives-a-fck-about-climate-change/
