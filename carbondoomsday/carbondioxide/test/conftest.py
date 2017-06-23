@@ -42,8 +42,9 @@ def mocked_historic_co2_csv(mocker):
     )
 
     mocked = mocker.Mock()
-    mocked.content = bytes(mocked_csv, "utf-8")
-    target = "carbondoomsday.carbondioxide.tasks.requests.get"
+    mocked_function_kwargs = {"read.return_value": bytes(mocked_csv, "utf-8")}
+    mocked.configure_mock(**mocked_function_kwargs)
+    target = "carbondoomsday.carbondioxide.tasks.urlopen"
     mocker.patch(target, return_value=mocked)
 
 
