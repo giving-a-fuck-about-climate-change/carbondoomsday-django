@@ -56,7 +56,7 @@ def test_scrape_latest_parse_date_failure(mocker, caplog):
     assert any((expected_msg in rec.msg for rec in caplog.records()))
 
 
-def test_scrape_latest_parse_ppm_failure(mocker, caplog):
+def test_scrape_latest_parse_ppm_failure(mocker):
     from carbondoomsday.carbondioxide.tasks import scrape_latest
 
     mocked = mocker.Mock()
@@ -83,5 +83,58 @@ def test_scrape_latest_existing_models(mocked_latest_co2_csv):
 def test_scrape_historic_success(mocked_historic_co2_csv):
     from carbondoomsday.carbondioxide.tasks import scrape_historic
 
+    scrape_historic()
+    assert CO2Measurement.objects.count() == 2
+
+
+def test_scrape_historic_network_failure(mocker, caplog):
+    from carbondoomsday.carbondioxide.tasks import scrape_historic
+
+    target = "carbondoomsday.carbondioxide.tasks.requests.get"
+    mocker.patch(target, side_effect=Timeout())
+
+    with pytest.raises(Timeout):
+        scrape_historic()
+
+    expected_msg = "Failed to retrieve CSV"
+    assert any((expected_msg in rec.msg for rec in caplog.records()))
+
+
+def test_scrape_historic_parse_date_failure(mocker, caplog):
+    from carbondoomsday.carbondioxide.tasks import scrape_historic
+
+    mocked = mocker.Mock()
+    target = "carbondoomsday.carbondioxide.tasks.requests.get"
+
+    mocked_historic_co2_csv = "MLO FOO BAR BAZ"
+    mocked.content = bytes(mocked_historic_co2_csv, "utf-8")
+
+    with mocker.patch(target, return_value=mocked):
+        scrape_historic()
+
+    expected_msg = "Failed to parse entry"
+    assert any((expected_msg in rec.msg for rec in caplog.records()))
+
+
+def test_scrape_historic_parse_ppm_failure(mocker):
+    from carbondoomsday.carbondioxide.tasks import scrape_historic
+
+    mocked = mocker.Mock()
+    target = "carbondoomsday.carbondioxide.tasks.requests.get"
+
+    mocked_historic_co2_csv = "MLO 1974 1 1"
+    mocked.content = bytes(mocked_historic_co2_csv, "utf-8")
+
+    with mocker.patch(target, return_value=mocked):
+        scrape_historic()
+
+    assert CO2Measurement.objects.count() == 0
+
+
+def test_scrape_historic_existing_models(mocked_historic_co2_csv):
+    from carbondoomsday.carbondioxide.tasks import scrape_historic
+
+    scrape_historic()
+    assert CO2Measurement.objects.count() == 2
     scrape_historic()
     assert CO2Measurement.objects.count() == 2
