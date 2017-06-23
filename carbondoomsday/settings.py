@@ -142,7 +142,7 @@ class Base(Configuration):
 
 class Production(Base):
     ENVIRONMENT = "Production"
-    ALLOWED_HOSTS = ["carbondoomsday.herokuapp.com"]
+    ALLOWED_HOSTS = ["carbondoomsday.herokuapp.com", "api.carbondoomsday.com"]
 
 
 class Staging(Base):
