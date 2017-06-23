@@ -122,6 +122,15 @@ class Base(Configuration):
 
     STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
+    OPBEAT_APP_ID = values.Value()
+    OPBEAT_ORGANIZATION_ID = values.Value()
+    OPBEAT_SECRET_TOKEN = values.SecretValue()
+    OPBEAT = {
+        "APP_ID": OPBEAT_APP_ID,
+        "ORGANIZATION_ID": OPBEAT_ORGANIZATION_ID,
+        "SECRET_TOKEN": OPBEAT_SECRET_TOKEN,
+    }
+
 
 class Production(Base):
     ENVIRONMENT = "Production"
@@ -137,3 +146,4 @@ class Development(Base):
     ENVIRONMENT = "Development"
     DEBUG = values.BooleanValue(True)
     CELERY_TASK_ALWAYS_EAGER = values.BooleanValue(True)
+    OPBEAT_DISABLE_SEND = values.BooleanValue(True)
