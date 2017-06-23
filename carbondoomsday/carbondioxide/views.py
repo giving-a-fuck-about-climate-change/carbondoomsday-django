@@ -13,3 +13,4 @@ class CO2MeasurementViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = CO2Measurement.objects.all()
     serializer_class = CO2MeasurementSerializer
     filter_class = CO2MeasurementFilter
+    ordering_fields = "__all__"
