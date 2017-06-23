@@ -87,8 +87,8 @@ def scrape_historic():
     try:
         response = requests.get(settings.HISTORIC_CO2_URL)
     except Exception as err:
-        msg = "Failed to retrieve CSV for historic CO2 scrape."
-        logger.error(msg)
+        logger.error("Failed to retrieve CSV for historic CO2 scrape.")
+        logger.error("Saw the following error: {}".format(str(err)))
         return
 
     logger.info("Retrieved CSV file with latest data.")
