@@ -1,9 +1,11 @@
 """Web API view sets."""
 
 from rest_framework import viewsets
+from rest_framework.renderers import JSONRenderer
 
 from carbondoomsday.carbondioxide.filters import CO2MeasurementFilter
 from carbondoomsday.carbondioxide.models import CO2Measurement
+from carbondoomsday.carbondioxide.renderers import PaginatedCSVRenderer
 from carbondoomsday.carbondioxide.serializers import CO2MeasurementSerializer
 
 
@@ -31,3 +33,4 @@ class CO2MeasurementViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = CO2MeasurementSerializer
     filter_class = CO2MeasurementFilter
     ordering_fields = "__all__"
+    renderer_classes = (JSONRenderer, PaginatedCSVRenderer,)
