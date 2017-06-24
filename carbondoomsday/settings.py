@@ -119,6 +119,8 @@ class Base(Configuration):
     SWAGGER_SETTINGS = {
         "APIS_SORTER": "alpha",
         "DOC_EXPANSION": "list",
+        "JSON_EDITOR": True,
+        "SHOW_REQUEST_HEADERS": True,
     }
 
     STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
