@@ -38,7 +38,7 @@ http://api.carbondoomsday.com
     * [Submitting Your Work](#submitting-your-work)
     * [Deploy with Heroku](#deploy-with-heroku)
   * [Consume the API](#consume-the-api)
-    * [Using CoreAPI Client Libraries](#using-coreapi-client-libraries)
+    * [Using the CoreAPI Client Libraries](#using-the-coreapi-client-libraries)
 
 # Contribute to the API
 
@@ -223,6 +223,8 @@ If the servers comes up, you can be fairly confident that things will work.
 [Heroku]: https://devcenter.heroku.com/
 
 # Consume the API
+
+## Using the CoreAPI Client Libraries
 
 Since [Django REST Framework] supports [API clients], client creators
 automatically have access to the existing wealth of clients that speak
