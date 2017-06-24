@@ -244,11 +244,13 @@ clients:
 [JavaScript client]: http://www.django-rest-framework.org/topics/api-clients/#javascript-client-library
 [Python client]: http://www.django-rest-framework.org/topics/api-clients/#python-client-library
 
-The command line is useful for prototyping interactions with the API, or simply exploring
-what is available. As an example, here's how we consume a single CO2 measurement with `coreapi-cli`:
+The command line is useful for prototyping interactions with the API. As an
+example, here's how we consume a single CO2 measurement with [coreapi-cli]:
+
+[coreapi-cli]: http://www.coreapi.org/tools-and-resources/command-line-client/
 
 ```bash
-$ pip install coreapi
+$ pip install coreapi-cli
 $ coreapi get http://carbondoomsday.herokuapp.com/
 $ coreapi action co2 read --param date=2017-01-01
 ```
