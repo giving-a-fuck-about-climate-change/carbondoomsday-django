@@ -2,7 +2,17 @@
 
 This project adheres to [Semantic Versioning].
 
+This change log follows the [keepachangelog.com] format.
+
 [Semantic Versioning]: http://semver.org/
+[keepachangelog.com]: http://keepachangelog.com/en/0.3.0/
+
+# 0.0.5 [2017-07-24]
+
+## Added
+* Add all possible filters for CO2Measurements.
+* Allow requests from the new api.carbondoomsday.
+* Enable CSV export for paginated results.
 
 # 0.0.4 [2017-06-24]
 
