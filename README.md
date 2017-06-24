@@ -26,7 +26,7 @@ http://api.carbondoomsday.com
 
 # Table of Contents
 
-  * [Contribute](#contribute-to-development)
+  * [Contribute to the API](#contribute-to-the-api)
     * [Get a Local Copy](#get-a-local-copy)
     * [Install Python Dependencies](#install-python-dependencies)
     * [Install Services](#install-services)
@@ -37,8 +37,10 @@ http://api.carbondoomsday.com
     * [Find Some Work](#find-some-work)
     * [Submitting Your Work](#submitting-your-work)
     * [Deploy with Heroku](#deploy-with-heroku)
+  * [Consume the API](#consume-the-api)
+    * [Using CoreAPI Client Libraries](#using-coreapi-client-libraries)
 
-# Contribute
+# Contribute to the API
 
 The following instructions are for setting up a local environment for
 contributing to the development of this application.
@@ -219,3 +221,41 @@ $ heroku local web
 If the servers comes up, you can be fairly confident that things will work.
 
 [Heroku]: https://devcenter.heroku.com/
+
+# Consume the API
+
+Since [Django REST Framework] supports [API clients], client creators
+automatically have access to the existing wealth of clients that speak
+[coreAPI's Document model]. As far as I know, there are three existing
+clients:
+
+[Django REST Framework]: http://www.django-rest-framework.org/
+[API clients]: http://www.django-rest-framework.org/topics/api-clients/
+[coreAPI's Document model]: http://www.coreapi.org/specification/document/
+
+
+  * The [command line client]
+  * The [JavaScript client]
+  * The [Python client]
+
+[command line client]: http://www.django-rest-framework.org/topics/api-clients/#command-line-client
+[JavaScript client]: http://www.django-rest-framework.org/topics/api-clients/#javascript-client-library
+[Python client]: http://www.django-rest-framework.org/topics/api-clients/#python-client-library
+
+The command line is useful for prototyping interactions with the API, or simply exploring
+what is available. As an example, here's how we consume a single CO2 measurement with `coreapi-cli`:
+
+```bash
+$ pip install coreapi
+$ coreapi get http://carbondoomsday.herokuapp.com/
+$ coreapi action co2 read --param date=2017-01-01
+```
+
+Please also check the [clientexamples] directory for an example of using the
+Python library. If you are a JavaScript programmer, please consider
+contributing an example of using the library as well if you start to use the
+API. It would be much appreciated.
+
+[clientexamples]: https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/tree/master/clientexamples
+
+Happy Hacking!
