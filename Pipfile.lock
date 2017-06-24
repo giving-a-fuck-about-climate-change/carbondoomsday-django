@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c6ab6fd511650a34538dd4b336c6d7fe6e881464e93cc3398be4e9fac0e865ec"
+            "sha256": "cd5b3ebe3c15bb446a98fd8c593fdebc98bdf3724c5e010e9ad2a29eb7496678"
         },
         "requires": {},
         "sources": [
@@ -55,6 +55,9 @@
         "djangorestframework": {
             "version": "==3.6.3"
         },
+        "djangorestframework-csv": {
+            "version": "==2.0.0"
+        },
         "djangorestframework-filters": {
             "version": "==0.10.1"
         },
@@ -96,6 +99,9 @@
         },
         "six": {
             "version": "==1.10.0"
+        },
+        "unicodecsv": {
+            "version": "==0.14.1"
         },
         "uritemplate": {
             "version": "==3.0.0"
