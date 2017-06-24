@@ -1,4 +1,5 @@
 *.pyc
+*.csv
 .env
 *egg-info/
 .coverage
@@ -6,3 +7,4 @@
 staticfiles
 mediafiles
 celerybeat-schedule
+clientexamples/*.csv
