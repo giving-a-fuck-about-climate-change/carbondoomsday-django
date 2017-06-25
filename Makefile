@@ -40,7 +40,7 @@ pytest:  ##@python Run the Python tests.
 	@$(PIPENVRUN) pytest --cov=carbondoomsday
 .PHONY: pytest
 
-pyproof: lint isort test check_migrations  ##@python Pretend to be Travis CI and check the changes.
+pyproof: pylint pysort pytest dbcheckmigrations  ##@python Pretend to be Travis CI and check the changes.
 .PHONY: pyproof
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

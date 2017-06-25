@@ -123,7 +123,7 @@ You'll need to initialize your PostgreSQL database:
 
 
 ``` bash
-$ make dbmakemigrations
+$ make dbmigrations
 $ make dbmigrate
 ```
 
