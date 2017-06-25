@@ -277,7 +277,6 @@ clients:
 [API clients]: http://www.django-rest-framework.org/topics/api-clients/
 [coreAPI's Document model]: http://www.coreapi.org/specification/document/
 
-
   * The [command line client]
   * The [JavaScript client]
   * The [Python client]
@@ -296,12 +295,3 @@ $ pip install coreapi-cli
 $ coreapi get http://carbondoomsday.herokuapp.com/
 $ coreapi action co2 read --param date=2017-01-01
 ```
-
-Please also check the [clientexamples] directory for an example of using the
-Python library. If you are a JavaScript programmer, please consider
-contributing an example of using the library as well if you start to use the
-API. It would be much appreciated.
-
-[clientexamples]: https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/tree/master/clientexamples
-
-Happy Hacking!
