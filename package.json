@@ -1,7 +1,7 @@
 {
   "name": "carbondoomsday",
   "version": "0.0.1",
-  "description": "A web API for climate change",
+  "description": "A front-end interface for climate change.",
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.config.js --progress --colors --watch"
