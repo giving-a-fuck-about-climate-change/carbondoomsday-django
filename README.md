@@ -100,8 +100,10 @@ is responding.
 
 ## Install Javascript Dependencies
 
-We use [react.js], [webpack] and [django-channels] to build a responsive front-end. In
-order to get started, you must have [node] and [npm] installed. Personally, I use [nvm].
+We use [react.js], [webpack] and [django-channels] to build a responsive front-end.
+
+In order to get started, you must have [node] and [npm] installed. Please refer
+to your distribution's installation guide for getting node and npm installed.
 
 [react.js]: https://facebook.github.io/react/
 [webpack]: https://webpack.github.io/
@@ -110,7 +112,7 @@ order to get started, you must have [node] and [npm] installed. Personally, I us
 [npm]: https://www.npmjs.com/
 [nvm]: https://github.com/creationix/nvm#installation
 
-Once you have those installed, you can run:
+Once you have them installed, run:
 
 ```bash
 $ npm install
@@ -118,7 +120,7 @@ $ npm install
 
 ## Compile Javascript Assets
 
-Simply run:
+Just run:
 
 ``` bash
 $ npm run build
