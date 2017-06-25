@@ -22,5 +22,13 @@
   "bugs": {
     "url": "https://github.com/lwm/carbondoomsday/issues"
   },
-  "homepage": "https://github.com/lwm/carbondoomsday#readme"
+  "homepage": "https://github.com/lwm/carbondoomsday#readme",
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.0",
+    "react": "^15.6.1",
+    "webpack": "^3.0.0",
+    "webpack-bundle-tracker": "^0.2.0"
+  }
 }
