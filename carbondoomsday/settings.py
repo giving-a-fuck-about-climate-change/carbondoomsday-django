@@ -144,6 +144,13 @@ class Base(Configuration):
         }
     }
 
+    CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND": "asgiref.inmemory.ChannelLayer",
+            "ROUTING": "carbondoomsday.routing.channel_routing",
+        },
+    }
+
 
 class Production(Base):
     ENVIRONMENT = "Production"
