@@ -1,4 +1,5 @@
-var React = require('react')
-var App = require('./app')
+var React    = require('react')
+var ReactDOM = require('react-dom')
+var App      = require('./app')
 
-React.render(<App/>, document.getElementById('react-app'))
+ReactDOM.render(<App/>, document.getElementById('react-app'))

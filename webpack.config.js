@@ -18,12 +18,19 @@ module.exports = {
 
   module: {
     loaders: [
-      { test: /\.jsx?$/, exclude: /node_modules/, loader: "babel-loader"},
+      { test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+        query:
+        {
+          presets: ["es2015", "react"]
+        }
+      },
     ],
   },
 
   resolve: {
     modules: ["node_modules"],
-    extensions: ["*", ".js", ".jsx"]
+    extensions: [".js", ".jsx"]
   },
 }
