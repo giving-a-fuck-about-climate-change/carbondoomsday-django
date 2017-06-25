@@ -12,11 +12,8 @@
     "url": "git+https://github.com/lwm/carbondoomsday.git"
   },
   "keywords": [
-    "climate",
-    "change",
-    "django",
-    "react",
-    "node"
+    "climate-change",
+    "co2-tracker"
   ],
   "author": "Luke Murphy",
   "license": "AGPL-3.0",
