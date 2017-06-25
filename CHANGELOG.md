@@ -12,6 +12,9 @@ This change log follows the [keepachangelog.com] format.
 ## Added
 * Add CORS allow headers for development.
 
+## Changed
+* Swagger documentation is now available at `/api/` and not `/`.
+
 # 0.0.5 [2017-07-24]
 
 ## Added
@@ -39,4 +42,4 @@ This change log follows the [keepachangelog.com] format.
 # 0.0.1 [2017-06-22]
 
 ## Added
-* Initial release of carbondoomsday/-test on Heroku.
+* Initial release of carbondoomsday-test on Heroku.

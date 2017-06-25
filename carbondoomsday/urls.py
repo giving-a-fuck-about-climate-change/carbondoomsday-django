@@ -10,7 +10,7 @@ from carbondoomsday.carbondioxide import urls
 schema_view = get_swagger_view(title=settings.SCHEMA_TITLE)
 
 urlpatterns = [
-    url(r"^$", schema_view),
     url(r"^admin/", admin.site.urls),
     url(r"^api/measurements/", include(urls)),
+    url(r"^api/", schema_view),
 ]
