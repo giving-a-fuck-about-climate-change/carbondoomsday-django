@@ -48,6 +48,7 @@ class Base(Configuration):
         "rest_framework_swagger",
         "opbeat.contrib.django",
         "corsheaders",
+        "channels",
     )
 
     MIDDLEWARE_CLASSES = (
