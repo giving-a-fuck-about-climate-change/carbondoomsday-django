@@ -4,7 +4,7 @@
   "description": "A web API for climate change",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack.config.js --progress --colors"
+    "build": "webpack --config webpack.config.js --progress --colors --watch"
   },
   "repository": {
     "type": "git",
