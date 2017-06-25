@@ -7,6 +7,11 @@ This change log follows the [keepachangelog.com] format.
 [Semantic Versioning]: http://semver.org/
 [keepachangelog.com]: http://keepachangelog.com/en/0.3.0/
 
+# 0.0.6 [UNRELEASED]
+
+## Added
+* Add CORS allow headers for development.
+
 # 0.0.5 [2017-07-24]
 
 ## Added
