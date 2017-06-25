@@ -45,17 +45,17 @@ script:
     set -ex
     case "$BUILD" in
       isort)
-        make isort
+        make pysort
         ;;
       lint)
-        make lint
+        make pylint
         ;;
       migrate)
-        make check_migrations
-        make migrate
+        make dbcheckmigrations
+        make dbmigrate
         ;;
       test)
-        make test
+        make pytest
         ;;
       compose)
         cd dockercompose;
