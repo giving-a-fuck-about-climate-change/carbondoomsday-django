@@ -37,21 +37,19 @@ http://api.carbondoomsday.com
       * [Get a Local Copy](#get-a-local-copy)
       * [Find Some Work](#find-some-work)
       * [Submitting Your Work](#submitting-your-work)
-
-    * [The Front-End](#the-front-end)
-      * [Install Javascript Dependencies](#install-javascript-dependencies)
-
-    * [The Back-End](#the-back-end)
+      * [Code of Conduct](https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/blob/master/CONDUCT.md)
+  * [The Front-End](#the-front-end)
+      * [Install JavaScript Dependencies](#install-javascript-dependencies)
+      * [Compile JavaScript Assets](#compile-javascript-assets)
+  * [The Back-End](#the-back-end)
       * [Install Python Dependencies](#install-python-dependencies)
       * [Install Services](#install-services)
       * [Configure the Environment](#configure-the-environment)
       * [Run the Tests](#run-the-tests)
       * [Run the Development Server](#run-the-development-server)
       * [Run the Entire Application](#run-the-entire-application)
-
-    * [The Deployment](#the-deployment)
+  * [The Deployment](#the-deployment)
       * [Deploy with Heroku](#deploy-with-heroku)
-
   * [Consume the API](#consume-the-api)
     * [Using the CoreAPI Client Libraries](#using-the-coreapi-client-libraries)
 
@@ -101,6 +99,34 @@ is responding.
 # The Front-End
 
 ## Install Javascript Dependencies
+
+We use [react.js], [webpack] and [django-channels] to build a responsive front-end. In
+order to get started, you must have [node] and [npm] installed. Personally, I use [nvm].
+
+[react.js]: https://facebook.github.io/react/
+[webpack]: https://webpack.github.io/
+[django-channels]: https://channels.readthedocs.io/
+[node]: https://nodejs.org/
+[npm]: https://www.npmjs.com/
+[nvm]: https://github.com/creationix/nvm#installation
+
+Once you have those installed, you can run:
+
+```bash
+$ npm install
+```
+
+## Compile Javascript Assets
+
+Simply run:
+
+``` bash
+$ npm run build
+```
+
+Webpack will compile the `.jsx` files in `/assets/js/` and they will
+then be picked up and rendered in the `carbondoomsday/carbondioxide/templates/`
+files.
 
 # The Back-End
 
