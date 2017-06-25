@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "3f6a62c2b00c7ba39cd106c11fcaa34de0b6e149e8377c6daa96f5911a3c0eaf"
+            "sha256": "9eb1514eeb3803b46422101f5c15b62074a03d0de5c7b3e604ef3b41dff6a566"
         },
         "requires": {},
         "sources": [
@@ -16,6 +16,18 @@
         "amqp": {
             "version": "==2.1.4"
         },
+        "asgiref": {
+            "version": "==1.1.2"
+        },
+        "attrs": {
+            "version": "==17.2.0"
+        },
+        "autobahn": {
+            "version": "==17.6.2"
+        },
+        "automat": {
+            "version": "==0.6.0"
+        },
         "billiard": {
             "version": "==3.5.0.2"
         },
@@ -25,14 +37,23 @@
         "certifi": {
             "version": "==2017.4.17"
         },
+        "channels": {
+            "version": "==1.1.5"
+        },
         "chardet": {
             "version": "==3.0.4"
+        },
+        "constantly": {
+            "version": "==15.1.0"
         },
         "coreapi": {
             "version": "==2.3.1"
         },
         "coreschema": {
             "version": "==0.0.4"
+        },
+        "daphne": {
+            "version": "==1.3.0"
         },
         "dj-database-url": {
             "version": "==0.4.2"
@@ -64,8 +85,14 @@
         "djangorestframework-filters": {
             "version": "==0.10.1"
         },
+        "hyperlink": {
+            "version": "==17.2.1"
+        },
         "idna": {
             "version": "==2.5"
+        },
+        "incremental": {
+            "version": "==17.5.0"
         },
         "itypes": {
             "version": "==1.1.0"
@@ -97,11 +124,20 @@
         "requests": {
             "version": "==2.18.1"
         },
+        "setuptools": {
+            "version": "==36.0.1"
+        },
         "simplejson": {
             "version": "==3.11.1"
         },
         "six": {
             "version": "==1.10.0"
+        },
+        "twisted": {
+            "version": "==17.5.0"
+        },
+        "txaio": {
+            "version": "==2.8.0"
         },
         "unicodecsv": {
             "version": "==0.14.1"
@@ -120,6 +156,9 @@
         },
         "whitenoise": {
             "version": "==3.3.0"
+        },
+        "zope.interface": {
+            "version": "==4.4.2"
         }
     },
     "develop": {
