@@ -30,7 +30,7 @@ class Base(Configuration):
     STATIC_URL = "/static/"
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
     STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, "assets")
+        os.path.join(BASE_DIR, "assets"),
     ]
 
     MEDIA_URL = "/media/"
@@ -52,6 +52,7 @@ class Base(Configuration):
         "opbeat.contrib.django",
         "corsheaders",
         "channels",
+        "webpack_loader",
     )
 
     MIDDLEWARE_CLASSES = (
@@ -152,6 +153,13 @@ class Base(Configuration):
             "BACKEND": "asgiref.inmemory.ChannelLayer",
             "ROUTING": "carbondoomsday.routing.channel_routing",
         },
+    }
+
+    WEBPACK_LOADER = {
+        "DEFAULT": {
+            "BUNDLE_DIR_NAME": "bundles/",
+            "STATS_FILE": os.path.join(BASE_DIR, "webpack-stats.json"),
+        }
     }
 
 
