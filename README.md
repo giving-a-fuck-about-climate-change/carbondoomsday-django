@@ -34,29 +34,28 @@ http://api.carbondoomsday.com
 # Table of Contents
 
   * [Contribute to the API](#contribute-to-the-api)
-    * [Get a Local Copy](#get-a-local-copy)
-    * [Install Python Dependencies](#install-python-dependencies)
-    * [Install Services](#install-services)
-    * [Configure the Environment](#configure-the-environment)
-    * [Run the Tests](#run-the-tests)
-    * [Run the Development Server](#run-the-development-server)
-    * [Run the Entire Application](#run-the-entire-application)
-    * [Find Some Work](#find-some-work)
-    * [Submitting Your Work](#submitting-your-work)
-    * [Deploy with Heroku](#deploy-with-heroku)
+      * [Get a Local Copy](#get-a-local-copy)
+      * [Find Some Work](#find-some-work)
+      * [Submitting Your Work](#submitting-your-work)
+
+    * [The Front-End](#the-front-end)
+      * [Install Javascript Dependencies](#install-javascript-dependencies)
+
+    * [The Back-End](#the-back-end)
+      * [Install Python Dependencies](#install-python-dependencies)
+      * [Install Services](#install-services)
+      * [Configure the Environment](#configure-the-environment)
+      * [Run the Tests](#run-the-tests)
+      * [Run the Development Server](#run-the-development-server)
+      * [Run the Entire Application](#run-the-entire-application)
+
+    * [The Deployment](#the-deployment)
+      * [Deploy with Heroku](#deploy-with-heroku)
+
   * [Consume the API](#consume-the-api)
     * [Using the CoreAPI Client Libraries](#using-the-coreapi-client-libraries)
 
 # Contribute to the API
-
-The following instructions are for setting up a local environment for
-contributing to the development of this application.
-
-We are using version 3 of the [Python programming language] and the [Django Web
-framework].
-
-[Python programming language]: https://www.python.org/
-[Django Web framework]: https://www.djangoproject.com/
 
 ## Get a Local Copy
 
@@ -72,6 +71,45 @@ $ git clone git@github.com:<your-username>/carbondoomsday.git
 If you are feeling particularly generous, star the repository so that any of
 your followers might see it or ultimately that the repository will be marked as
 trending and many others will see the project and hopefully join the effort.
+
+## Find Some Work
+
+Please take a look at [the issues] or if you don't find something interesting
+there, come asking questions [on Gitter]. There will be an ongoing effort to
+make prospective work more discoverable for new contributors. Please help us
+improve this.
+
+[the issues]: https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/issues/
+[on Gitter]: https://gitter.im/giving-a-fuck-about-climate-change/Lobby
+
+## Submitting your Work
+
+Thank you for taking time to contribute to this project. All contributors will
+be given equal access to the project and will be unconditionally made members
+of the organisation.
+
+Just [submit a pull request] as you normally would. We use [Travis CI] for our
+continuous integration, and each pull request submitted will undergo various
+tests to help assert the correctness of it. A maintainer will try to review
+your change set as soon as possible. Please complain in [the lobby] if no one
+is responding.
+
+[submit a pull request]: https://help.github.com/articles/creating-a-pull-request/
+[Travis CI]: https://travis-ci.org/
+[the lobby]: https://gitter.im/giving-a-fuck-about-climate-change/Lobby
+
+# The Front-End
+
+## Install Javascript Dependencies
+
+# The Back-End
+
+We are using version 3 of the [Python programming language] and the [Django Web
+framework] along with a rake of plugins. You'll figure it all out as you go
+along.
+
+[Python programming language]: https://www.python.org/
+[Django Web framework]: https://www.djangoproject.com/
 
 ## Install Python Dependencies
 
@@ -174,38 +212,7 @@ affect the entire system can be locally tested.
 [development server]: #run-the-development-server
 [nginx]: https://www.nginx.com/resources/wiki/
 
-## Find Some Work
-
-Please take a look at [the issues] or if you don't find something interesting
-there, come asking questions [on Gitter]. There will be an ongoing effort to
-make prospective work more discoverable for new contributors. Please help us
-improve this.
-
-[the issues]: https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/issues/
-[on Gitter]: https://gitter.im/giving-a-fuck-about-climate-change/Lobby
-
-## Submitting your Work
-
-Thank you for taking time to contribute to this project. All contributors will
-be given equal access to the project and will be unconditionally made members
-of the organisation.
-
-Just [submit a pull request] as you normally would. We use [Travis CI] for our
-continuous integration, and each pull request submitted will undergo various
-tests to help assert the correctness of it.
-
-To be reasonably sure your change set will pass the CI, run:
-
-``` bash
-$ make proof
-```
-
-A maintainer will try to review your change set as soon as possible. Please
-complain in [the lobby] if no one is responding.
-
-[submit a pull request]: https://help.github.com/articles/creating-a-pull-request/
-[Travis CI]: https://travis-ci.org/
-[the lobby]: https://gitter.im/giving-a-fuck-about-climate-change/Lobby
+# The Deployment
 
 ## Deploy with Heroku
 
