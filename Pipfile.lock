@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "9eb1514eeb3803b46422101f5c15b62074a03d0de5c7b3e604ef3b41dff6a566"
+            "sha256": "f5259818d8d1effb8b22ebbf581df3bf35b1bc47e956cabc33fb84c7cd29afa8"
         },
         "requires": {},
         "sources": [
@@ -75,6 +75,9 @@
         },
         "django-rest-swagger": {
             "version": "==2.1.2"
+        },
+        "django-webpack-loader": {
+            "version": "==0.5.0"
         },
         "djangorestframework": {
             "version": "==3.6.3"
