@@ -47,10 +47,12 @@ class Base(Configuration):
         "rest_framework",
         "rest_framework_swagger",
         "opbeat.contrib.django",
+        "corsheaders",
     )
 
     MIDDLEWARE_CLASSES = (
         "opbeat.contrib.django.middleware.OpbeatAPMMiddleware",
+        "corsheaders.middleware.CorsMiddleware",
         "django.middleware.security.SecurityMiddleware",
         "django.contrib.sessions.middleware.SessionMiddleware",
         "django.middleware.common.CommonMiddleware",
@@ -157,3 +159,5 @@ class Development(Base):
     DEBUG = values.BooleanValue(True)
     CELERY_TASK_ALWAYS_EAGER = values.BooleanValue(True)
     OPBEAT_DISABLE_SEND = values.BooleanValue(True)
+    CORS_ORIGIN_ALLOW_ALL = values.BooleanValue(True)
+    CORS_ALLOW_CREDENTIALS = values.BooleanValue(False)

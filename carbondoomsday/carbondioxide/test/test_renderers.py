@@ -10,7 +10,7 @@ def test_csv_renderer(client, co2_measurement):
     url = reverse("co2measurement-list")
 
     response = client.get(url, HTTP_ACCEPT="application/json")
-    assert response.accepted_media_type == "application/json"
+    assert "application/json" in response['content-type']
 
     response = client.get(url, HTTP_ACCEPT="text/csv")
-    assert response.accepted_media_type == "text/csv"
+    assert "text/csv" in response['content-type']

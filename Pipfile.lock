@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "cd5b3ebe3c15bb446a98fd8c593fdebc98bdf3724c5e010e9ad2a29eb7496678"
+            "sha256": "3f6a62c2b00c7ba39cd106c11fcaa34de0b6e149e8377c6daa96f5911a3c0eaf"
         },
         "requires": {},
         "sources": [
@@ -42,6 +42,9 @@
         },
         "django-configurations": {
             "version": "==2.0"
+        },
+        "django-cors-headers": {
+            "version": "==2.1.0"
         },
         "django-extensions": {
             "version": "==1.7.9"
