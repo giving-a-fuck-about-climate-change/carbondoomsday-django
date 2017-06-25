@@ -4,7 +4,8 @@
   "description": "A front-end interface for climate change.",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack.config.js --progress --colors --watch"
+    "build": "webpack --config webpack.config.js --progress --colors",
+    "watch": "webpack --config webpack.config.js --progress --colors --watch"
   },
   "repository": {
     "type": "git",
