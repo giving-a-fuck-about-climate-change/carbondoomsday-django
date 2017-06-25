@@ -10,4 +10,3 @@ celerybeat-schedule
 clientexamples/*.csv
 node_modules
 *.json
-frontend/bundles/
