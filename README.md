@@ -2,7 +2,11 @@
 [![codecov](https://codecov.io/gh/giving-a-fuck-about-climate-change/carbondoomsday/branch/master/graph/badge.svg)](https://codecov.io/gh/giving-a-fuck-about-climate-change/carbondoomsday)
 [![Heroku](https://img.shields.io/badge/Heroku-Deployed-brightgreen.svg)](http://carbondoomsday.herokuapp.com/)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
+[![GitHub issues](https://img.shields.io/github/issues/giving-a-fuck-about-climate-change/carbondoomsday.svg)](https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/issues)
+[![GitHub forks](https://img.shields.io/github/forks/giving-a-fuck-about-climate-change/carbondoomsday.svg)](https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/network)
+[![GitHub stars](https://img.shields.io/github/stars/giving-a-fuck-about-climate-change/carbondoomsday.svg)](https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/stargazers)
 [![Gitter chat](https://badges.gitter.im/giving-a-fuck-about-climate-change/gitter.png)](https://gitter.im/giving-a-fuck-about-climate-change/Lobby)
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/giving-a-fuck-about-climate-change/carbondoomsday.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D)
 
 # carbondoomsday
 
