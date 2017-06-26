@@ -1,6 +1,6 @@
-var config        = require("./webpack.config.js")
 var path          = require("path")
 var BundleTracker = require("webpack-bundle-tracker")
+var config        = require("./webpack.config.js")
 
 config.output.path = path.resolve("./frontend/dist/")
 
