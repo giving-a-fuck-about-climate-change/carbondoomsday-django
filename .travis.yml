@@ -72,6 +72,10 @@ notifications:
 after_success:
   - pip install codecov
   - codecov --token=29a4b58d-9ed9-44aa-b44e-16efe2219614
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push $DOCKER_USERNAME/carbondoomsday;
+    fi
 
 notifications:
   email: false
