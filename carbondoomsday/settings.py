@@ -6,10 +6,11 @@ from datetime import timedelta
 from configurations import Configuration, values
 from dj_database_url import config as database_url_parser
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 class Base(Configuration):
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+    """The base configuration for each environment."""
     PROJECT = "carbondoomsday"
 
     SCHEMA_TITLE = "CarbonDoomsDay Web API"
@@ -156,32 +157,40 @@ class Base(Configuration):
     }
 
     WEBPACK_LOADER = {
-        "BUNDLE_DIR_NAME": "dist/",
-        "STATS_FILE": os.path.join(BASE_DIR, "webpack-stats-prod.json")
+        "DEFAULT": {
+            "BUNDLE_DIR_NAME": "bundles/",
+            "STATS_FILE": os.path.join(BASE_DIR, "webpack-stats.json"),
+        },
     }
 
 
-class Production(Base):
+class WebPackProduction(Configuration):
+    """The production settings for WebPack."""
+    WEBPACK_LOADER = {
+        "DEFAULT": {
+            "BUNDLE_DIR_NAME": "dist/",
+            "STATS_FILE": os.path.join(BASE_DIR, "webpack-stats-prod.json")
+        },
+    }
+
+
+class Production(Base, WebPackProduction):
+    """The production environment."""
     ENVIRONMENT = "Production"
     ALLOWED_HOSTS = ["carbondoomsday.herokuapp.com", "api.carbondoomsday.com"]
 
 
-class Staging(Base):
+class Staging(Base, WebPackProduction):
+    """The staging environment."""
     ENVIRONMENT = "Staging"
     ALLOWED_HOSTS = ["carbondoomsday-test.herokuapp.com"]
 
 
 class Development(Base):
+    """The development environment."""
     ENVIRONMENT = "Development"
     DEBUG = values.BooleanValue(True)
     CELERY_TASK_ALWAYS_EAGER = values.BooleanValue(True)
     OPBEAT_DISABLE_SEND = values.BooleanValue(True)
     CORS_ORIGIN_ALLOW_ALL = values.BooleanValue(True)
     CORS_ALLOW_CREDENTIALS = values.BooleanValue(False)
-
-    WEBPACK_LOADER = {
-        "DEFAULT": {
-            "BUNDLE_DIR_NAME": "bundles/",
-            "STATS_FILE": os.path.join(Base.BASE_DIR, "webpack-stats.json"),
-        }
-    }
