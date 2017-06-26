@@ -119,10 +119,7 @@ Please refer to the relevant installation method for your operating system.
 
 ## Setup the Database
 
-Once you have your PostgreSQL service up and running, and the correct
-`DATABASE_URL` connection string configured in your environment, you'll need to
-get the CO2 data in there with:
-
+You can load the latest data into your PostgreSQL with:
 
 ``` bash
 $ make dbmigrations
