@@ -79,6 +79,10 @@ static:  ##@django Collect all static files needed for Django.
 	@$(PIPENVRUN) $(MANAGEPY) collectstatic --noinput -v 3
 .PHONY: static
 
+shell:  ##@django Run a completion powered Django shell
+	@$(PIPENVRUN) $(MANAGEPY) shell_plus
+.PHONY: shell
+
 devserver:  ##@django Run the development mode server
 	@$(PIPENVRUN) $(MANAGEPY) runserver
 .PHONY: devserver
