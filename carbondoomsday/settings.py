@@ -44,7 +44,7 @@ class Base(Configuration):
     WSGI_APPLICATION = "carbondoomsday.wsgi.application"
 
     DATABASES = {"default": database_url_parser()}
-    DATABASES['default']['CONN_MAX_AGE'] = 500
+    DATABASES["default"]["CONN_MAX_AGE"] = 500
 
     SECRET_KEY = values.SecretValue()
 
@@ -151,7 +151,7 @@ class Base(Configuration):
         "SHOW_REQUEST_HEADERS": True,
     }
 
-    STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+    STATICFILES_STORAGE = "whitenoise.django.GzipManifestStaticFilesStorage"
 
     OPBEAT_APP_ID = values.Value()
     OPBEAT_ORGANIZATION_ID = values.Value()
