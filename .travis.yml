@@ -28,9 +28,6 @@ matrix:
     - env: BUILD=migrate
     - env: BUILD=test
     - env: BUILD=compose
-  allow_failures:
-    # https://github.com/travis-ci/travis-ci/issues/7938
-    - env: BUILD=compose
 
 before_install:
   - psql -c 'create database carbondoomsday;' -U postgres
@@ -58,9 +55,10 @@ script:
         make pytest
         ;;
       compose)
-        cd dockercompose;
-        docker-compose up -d;
-        docker-compose down;
+        docker build -t $DOCKER_USERNAME/carbondoomsday .
+        cd dockercompose
+        docker-compose up -d
+        docker-compose down
         ;;
     esac
     set +ex
