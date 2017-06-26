@@ -64,7 +64,6 @@ class Base(Configuration):
         "django.contrib.contenttypes",
         "django.contrib.messages",
         "django.contrib.sessions",
-        "whitenoise.runserver_nostatic",
         "django.contrib.staticfiles",
         "django_extensions",
         "django_filters",
@@ -77,9 +76,10 @@ class Base(Configuration):
     )
 
     MIDDLEWARE_CLASSES = (
+        "django.middleware.security.SecurityMiddleware",
+        "whitenoise.middleware.WhiteNoiseMiddleware",
         "opbeat.contrib.django.middleware.OpbeatAPMMiddleware",
         "corsheaders.middleware.CorsMiddleware",
-        "django.middleware.security.SecurityMiddleware",
         "django.contrib.sessions.middleware.SessionMiddleware",
         "django.middleware.common.CommonMiddleware",
         "django.middleware.csrf.CsrfViewMiddleware",
