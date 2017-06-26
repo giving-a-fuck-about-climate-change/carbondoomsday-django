@@ -6,6 +6,6 @@ from carbondoomsday.carbondioxide import views
 
 router = DefaultRouter()
 
-router.register(r"co2", views.CO2MeasurementViewSet)
+router.register(r"measurements/co2", views.CO2MeasurementViewSet)
 
 urlpatterns = router.urls

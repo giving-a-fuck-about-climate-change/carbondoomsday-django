@@ -12,7 +12,7 @@ schema_view = get_swagger_view(title=settings.SCHEMA_TITLE)
 
 urlpatterns = [
     url(r"^admin/", admin.site.urls),
-    url(r"^api/measurements/", include(urls)),
-    url(r"^api/", schema_view),
-    url(r"^$", CO2TrackerView.as_view()),
+    url(r"^apidocs/", schema_view),
+    url(r"^api/", include(urls)),
+    url(r"^$", CO2TrackerView.as_view(), name="co2-tracker"),
 ]

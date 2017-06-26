@@ -12,6 +12,7 @@ This change log follows the [keepachangelog.com] format.
 ## Added
 * Add CORS allow headers for development.
 * Initial setup for the front-end localted at `/`.
+* Move Swagger documentation to its final home - `/apidocs/`.
 
 ## Changed
 * Swagger documentation is now available at `/api/` and not `/`.
