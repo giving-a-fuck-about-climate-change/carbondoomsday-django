@@ -11,7 +11,7 @@ WHITE  := $(shell tput -Txterm setaf 7)
 YELLOW := $(shell tput -Txterm setaf 3)
 RESET  := $(shell tput -Txterm sgr0)
 
-HELP_FUN = \
+HELPME = \
 	%help; \
 	while(<>) { push @{$$help{$$2 // 'options'}}, [$$1, $$3] if /^([a-zA-Z\-]+)\s*:.*\#\#(?:@([a-zA-Z\-]+))?\s(.*)$$/ }; \
 	for (sort keys %help) { \
@@ -22,8 +22,20 @@ HELP_FUN = \
 	}; \
 	print "\n"; }
 
-help:  ##@helpful Show the list of all commands available.
-	@perl -e '$(HELP_FUN)' $(MAKEFILE_LIST)
+help:
+	@perl -e '$(HELPME)' $(MAKEFILE_LIST)
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# DOCKER
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+dockerbuild:  ##@docker Build the application docker image.
+	@docker build -t $(DOCKER_IMAGE) .
+.PHONY: dockerbuild
+
+compose:  ##@docker Run the docker-compose powered setup.
+	@cd dockercompose && $(PIPENVRUN) docker-compose up
+.PHONY: compose
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # PYTHON
@@ -46,13 +58,9 @@ pyproof: pylint pysort pytest dbcheckmigrations  ##@python Pretend to be Travis 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # DJANGO
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-dockerbuild:  ##@docker Build the application docker image.
-	@docker build -t $(DOCKER_IMAGE) .
-.PHONY: dockerbuild
-
-compose:  ##@docker Run the docker-compose powered setup.
-	@cd dockercompose && $(PIPENVRUN) docker-compose up
-.PHONY: compose
+showurls:  ##@django List all available URLS served by Django.
+	@$(PIPENVRUN) $(MANAGEPY) show_urls -f aligned | less
+.PHONY: showurls
 
 dbmigrations:  ##@django Create database migrations
 	@$(PIPENVRUN) $(MANAGEPY) makemigrations
