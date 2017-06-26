@@ -1,11 +1,15 @@
 {
   "name": "carbondoomsday",
+  "engines": {
+    "node": "6.11.0"
+  },
   "version": "0.0.1",
   "description": "A front-end interface for climate change.",
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.config.js --progress --colors",
-    "watch": "webpack --config webpack.config.js --progress --colors --watch"
+    "watch": "webpack --config webpack.config.js --progress --colors --watch",
+    "postinstall": "webpack --config webpack-prod.config.js"
   },
   "repository": {
     "type": "git",
