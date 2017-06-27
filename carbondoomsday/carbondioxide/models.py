@@ -13,5 +13,13 @@ class CO2Measurement(models.Model):
     ppm = models.DecimalField(max_digits=5, decimal_places=2)
 
     def __str__(self):
+        """Fancy string representation of the CO2Measurement."""
         date, ppm = str(self.date), str(self.ppm)
         return "<CO2Measurement date={}, ppm={}>".format(date, ppm)
+
+    def tojson(self):
+        """JSON representation of the CO2Measurement."""
+        return {
+            "date": str(self.date),
+            "ppm": str(self.ppm)
+        }

@@ -2,8 +2,8 @@
 
 from channels.routing import route_class
 
-from carbondoomsday.carbondioxide.consumers import FrontEndConsumer
+from carbondoomsday.carbondioxide.consumers import CO2FrontEndConsumer
 
-channel_routing = [
-    route_class(FrontEndConsumer,  path=r"^/frontend/"),
+appchannels = [
+    route_class(CO2FrontEndConsumer,  path=r"^/co2/"),
 ]

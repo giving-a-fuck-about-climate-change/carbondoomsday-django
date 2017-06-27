@@ -4,21 +4,24 @@ import logging
 
 from channels.generic.websockets import JsonWebsocketConsumer
 
+from carbondoomsday.carbondioxide.models import CO2Measurement
+
 logger = logging.getLogger(__name__)
 
 
-class FrontEndConsumer(JsonWebsocketConsumer):
-    """Channel consumer for front-end/back-end communication."""
-    http_user = True
-
+class CO2FrontEndConsumer(JsonWebsocketConsumer):
+    """Channel consumer for front-end CO2 related communication."""
     def connection_groups(self, **kwargs):
-        return ["frontend"]
+        return ["co2"]
 
-    def connect(self, message, **kwargs):
-        logger.debug("Connected over the channel bro.")
+    def receive(self, filters, **kwargs):
+        msg = "Here are the filters I got from the front-end: {}"
+        logger.info(msg.format(filters))
 
-    def receive(self, content, **kwargs):
-        logger.debug("Received a message over the channel bro.")
+        filtered = CO2Measurement.objects.filter(**filters)
+        json_payload = [obj.tojson() for obj in filtered]
 
-    def disconnect(self, message, **kwargs):
-        pass
+        msg = "Here is what I am sending back: {}"
+        logger.info(msg.format(json_payload))
+
+        self.send(json_payload)

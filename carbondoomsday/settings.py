@@ -172,7 +172,7 @@ class Base(Configuration):
     CHANNEL_LAYERS = {
         "default": {
             "BACKEND": "asgiref.inmemory.ChannelLayer",
-            "ROUTING": "carbondoomsday.routing.channel_routing",
+            "ROUTING": "carbondoomsday.routing.appchannels",
         },
     }
 
