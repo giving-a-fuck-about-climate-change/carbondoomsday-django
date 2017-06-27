@@ -31,7 +31,6 @@ django-cors-headers = "==2.1.0"
 channels = "==1.1.5"
 django-webpack-loader = "==0.5.0"
 asgi_redis = "==1.4.2"
-dj-redis-url = "==0.1.4"
 
 [packages.celery]
 extras = [ "redis",]
