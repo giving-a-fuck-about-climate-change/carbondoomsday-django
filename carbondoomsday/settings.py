@@ -152,8 +152,9 @@ class Base(Configuration):
         },
     }
 
-    CELERY_BROKER_URL = values.Value()
-    CELERY_RESULT_BACKEND = values.Value()
+    REDIS_URL = values.Value()
+    CELERY_BROKER_URL = REDIS_URL
+    CELERY_RESULT_BACKEND = REDIS_URL
 
     LATEST_CO2_URL = (
         "https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2_mlo_weekly.csv"

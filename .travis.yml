@@ -17,9 +17,7 @@ env:
     - DJANGO_CONFIGURATION=Development
     - DJANGO_SECRET_KEY=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     - DJANGO_SETTINGS_MODULE=carbondoomsday.settings
-    - REDIS_URL=redis://localhost:6379/0
-    - CELERY_BROKER_URL=redis://localhost:6379/0
-    - CELERY_RESULT_BACKEND=redis://localhost:6379/0
+    - DJANGO_REDIS_URL=redis://localhost:6379/0
     - DJANGO_OPBEAT_ORGANIZATION_ID=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     - DJANGO_OPBEAT_APP_ID=aaaaaaaaaa
     - DJANGO_OPBEAT_SECRET_TOKEN=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
