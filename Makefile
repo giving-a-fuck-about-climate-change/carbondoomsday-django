@@ -132,6 +132,6 @@ jsbuild:  ##@javascript Build the React components
 	@npm run build
 .PHONY: jsbuild
 
-jswatch:  ##@javascript Build and watch the React components (Run with `make devserver for frontend hacking)
+jswatch:  ##@javascript Build and watch the React components
 	@npm run watch
 .PHONY: jswatch
