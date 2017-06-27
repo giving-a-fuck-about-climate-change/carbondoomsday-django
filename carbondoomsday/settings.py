@@ -158,7 +158,9 @@ class WebPackDist(Base):
     WEBPACK_LOADER = {
         "DEFAULT": {
             "BUNDLE_DIR_NAME": "dist/",
-            "STATS_FILE": os.path.join(Base.BASE_DIR, "webpack-stats-prod.json")
+            "STATS_FILE": os.path.join(
+                Base.BASE_DIR, "webpack-stats-prod.json"
+            )
         },
     }
 
