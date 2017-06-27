@@ -87,6 +87,7 @@ class Base(Configuration):
         },
     ]
 
+    LOG_LEVEL = values.Value(environ_name="LOG_LEVEL")
     LOGGING = {
         "version": 1,
         "handlers": {
@@ -97,13 +98,13 @@ class Base(Configuration):
         "loggers": {
             "carbondoomsday": {
                 "handlers": ["console"],
-                "level": "DEBUG",
+                "level": LOG_LEVEL,
                 "propagate": True,
             },
         },
     }
 
-    REDIS_URL = values.Value()
+    REDIS_URL = values.Value(environ_name="REDIS_URL")
     CELERY_BROKER_URL = REDIS_URL
     CELERY_RESULT_BACKEND = REDIS_URL
 
@@ -171,7 +172,7 @@ class ChannelsWithRedis(Base):
         "default": {
             "BACKEND": "asgi_redis.RedisChannelLayer",
             "ROUTING": "carbondoomsday.routing.appchannels",
-            "CONFIG": {"hosts": [str(Base.REDIS_URL)]},
+            "CONFIG": {"hosts": [Base.REDIS_URL]},
         },
     }
 
