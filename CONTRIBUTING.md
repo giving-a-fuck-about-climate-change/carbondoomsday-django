@@ -122,7 +122,6 @@ Please refer to the relevant installation method for your operating system.
 You can load the latest data into your PostgreSQL with:
 
 ``` bash
-$ make dbmigrations
 $ make dbmigrate
 ```
 
