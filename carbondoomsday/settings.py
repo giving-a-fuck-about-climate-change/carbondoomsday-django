@@ -3,10 +3,13 @@
 import os
 from datetime import timedelta
 
+import dj_database_url
+import dj_redis_url
 from configurations import Configuration, values
-from dj_database_url import config as database_url_parser
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+redis_config = dj_redis_url.config()
 
 
 class WebPackDevelopment():
@@ -29,6 +32,32 @@ class WebPackProduction():
     }
 
 
+class ChannelsDevelopment():
+    """Channels development settings."""
+    CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND": "asgiref.inmemory.ChannelLayer",
+            "ROUTING": "carbondoomsday.routing.appchannels",
+        },
+    }
+
+
+class ChannelsProduction():
+    """Channels production settings."""
+    CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND": "asgi_redis.RedisChannelLayer",
+            "ROUTING": "carbondoomsday.routing.appchannels",
+            "CONFIG": {
+                "hosts": [(
+                    redis_config["HOST"],
+                    redis_config["PORT"]
+                )],
+            },
+        },
+    }
+
+
 class Base(Configuration):
     """The base configuration for each environment."""
     PROJECT = "carbondoomsday"
@@ -43,7 +72,7 @@ class Base(Configuration):
 
     WSGI_APPLICATION = "carbondoomsday.wsgi.application"
 
-    DATABASES = {"default": database_url_parser()}
+    DATABASES = {"default": dj_database_url.config()}
     DATABASES["default"]["CONN_MAX_AGE"] = 500
 
     SECRET_KEY = values.SecretValue()
@@ -92,7 +121,9 @@ class Base(Configuration):
     TEMPLATES = [
         {
             "BACKEND": "django.template.backends.django.DjangoTemplates",
-            "DIRS": [os.path.join(BASE_DIR, "carbondioxide", "templates")],
+            "DIRS": [
+                os.path.join(BASE_DIR, "carbondioxide", "templates")
+            ],
             "APP_DIRS": True,
             "OPTIONS": {
                 "context_processors": [
@@ -169,22 +200,8 @@ class Base(Configuration):
         }
     }
 
-    CHANNEL_LAYERS = {
-        "default": {
-            "BACKEND": "asgiref.inmemory.ChannelLayer",
-            "ROUTING": "carbondoomsday.routing.appchannels",
-        },
-    }
 
-    WEBPACK_LOADER = {
-        "DEFAULT": {
-            "BUNDLE_DIR_NAME": "bundles/",
-            "STATS_FILE": os.path.join(BASE_DIR, "webpack-stats.json"),
-        },
-    }
-
-
-class Production(Base, WebPackProduction):
+class Production(WebPackProduction, ChannelsProduction, Base):
     """The production environment."""
     ENVIRONMENT = "Production"
     ALLOWED_HOSTS = [
@@ -193,7 +210,7 @@ class Production(Base, WebPackProduction):
     ]
 
 
-class Staging(WebPackProduction, Base):
+class Staging(WebPackProduction, ChannelsProduction, Base):
     """The staging environment."""
     ENVIRONMENT = "Staging"
     ALLOWED_HOSTS = [
@@ -201,7 +218,7 @@ class Staging(WebPackProduction, Base):
     ]
 
 
-class Development(WebPackDevelopment, Base):
+class Development(WebPackDevelopment, ChannelsDevelopment, Base):
     """The development environment."""
     ENVIRONMENT = "Development"
     DEBUG = values.BooleanValue(True)
