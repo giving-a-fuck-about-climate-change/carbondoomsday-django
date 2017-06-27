@@ -14,7 +14,9 @@ module.exports = React.createClass({
 
     // Show what we get back in an alert
     socket.onmessage = function(e) {
-      alert(e.data);
+      console.log("Hi. A message from your loving back-end.");
+      console.log("Here is what I sent you.");
+      console.log(e.data);
     }
 
     // When the socket opens, send the request
