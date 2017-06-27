@@ -2,7 +2,7 @@ PROJECT_ROOT := .
 SOURCE_DIR   := $(PROJECT_ROOT)/carbondoomsday
 MANAGEPY     := python manage.py
 PIPENVRUN    := pipenv run
-DOCKER_IMAGE := carbondoomsday/carbondoomsday
+DOCKER_IMAGE := carbondoomsday/measurements/
 
 .DEFAULT_GOAL := help
 
@@ -25,7 +25,6 @@ HELPME = \
 help:
 	@perl -e '$(HELPME)' $(MAKEFILE_LIST)
 
-
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # DOCKER
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -33,27 +32,23 @@ dockerbuild:  ##@docker Build the application docker image.
 	@docker build -t $(DOCKER_IMAGE) .
 .PHONY: dockerbuild
 
-compose:  ##@docker Run the docker-compose powered setup.
-	@cd dockercompose && $(PIPENVRUN) docker-compose up
-.PHONY: compose
-
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # PYTHON
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-pylint: ##@python Check the Python source code for code quality issues.
+lint: ##@python Check the Python source code for code quality issues.
 	@$(PIPENVRUN) pylama $(SOURCE_DIR)
-.PHONY: pylint
+.PHONY: lint
 
-pysort:  ##@python Check that the Python source code imports are sorted correctly.
+sort:  ##@python Check that the Python source code imports are sorted correctly.
 	@find $(SOURCE_DIR) -name "*.py" | xargs $(PIPENVRUN) isort -c --diff -sp=setup.cfg
-.PHONY: pysort
+.PHONY: sort
 
-pytest:  ##@python Run the Python tests.
+test:  ##@python Run the Python tests.
 	@$(PIPENVRUN) pytest --cov=carbondoomsday
-.PHONY: pytest
+.PHONY: test
 
-pyproof: pylint pysort pytest dbcheckmigrations  ##@python Pretend to be Travis CI and check the changes.
-.PHONY: pyproof
+proof: lint sort test dbcheckmigrations  ##@python Pretend to be Travis CI and check the changes.
+.PHONY: proof
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # DJANGO
@@ -62,10 +57,9 @@ showurls:  ##@django List all available URLS served by Django.
 	@$(PIPENVRUN) $(MANAGEPY) show_urls -f aligned | less
 .PHONY: showurls
 
-dbmigrations:  ##@django Create database migrations
-	@$(PIPENVRUN) $(MANAGEPY) makemigrations
-	@$(PIPENVRUN) $(MANAGEPY) makemigrations carbondioxide
-.PHONY: dbmakemigrations
+dbmigrations:  ##@django Create database migrations.
+	@$(PIPENVRUN) $(MANAGEPY) makemigrations measurements
+.PHONY: dbmigrations
 
 dbcheckmigrations:  ##@django Check if you need to create a new migration.
 	@$(PIPENVRUN) $(MANAGEPY) makemigrations --check
@@ -75,7 +69,7 @@ dbmigrate:  ##@django Run the database migrations.
 	@$(PIPENVRUN) $(MANAGEPY) migrate
 .PHONY: dbmigrate
 
-dbreset:  ##@django Reset the database. Watch your environment!
+dbreset:  ##@django Reset the database.
 	@$(PIPENVRUN) $(MANAGEPY) reset_db
 .PHONY: dbreset
 
@@ -83,21 +77,17 @@ celery:  ##@django Run the celery worker.
 	@$(PIPENVRUN) celery -A carbondoomsday -l info worker -B -E
 .PHONY: celery
 
-static:  ##@django Collect all static files needed for Django.
-	@$(PIPENVRUN) $(MANAGEPY) collectstatic --noinput -v 3
-.PHONY: static
-
-shell:  ##@django Run a completion powered Django shell
+shell:  ##@django Run a completion powered Django shell.
 	@$(PIPENVRUN) $(MANAGEPY) shell_plus
 .PHONY: shell
 
-devserver:  ##@django Run the development mode server
+server:  ##@django Run the development mode server.
 	@$(PIPENVRUN) $(MANAGEPY) runserver
-.PHONY: devserver
+.PHONY: server
 
-createadmin:  ##@django Create an admin user for the Django admin.
+dbadmin:  ##@django Create an admin user for the Django admin.
 	@$(PIPENVRUN) $(MANAGEPY) createsuperuser
-.PHONY: createadmin
+.PHONY: dbadmin
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # DATA
@@ -117,21 +107,14 @@ prodbash:  ##@heroku Run a bash console on the production server.
 	@heroku run bash -a carbondoomsday
 .PHONY: prodbash
 
-testbash:  ##@heroku Run a bash console on the test server.
+prodlogs:  ##@heroku Tail the logs for the production environment.
+	@heroku logs -t -a carbondoomsday
+.PHONY: prodlogs
+
+testbash:  ##@heroku Run a bash console on the staging server.
 	@heroku run bash -a carbondoomsday-test
 .PHONY: testbash
 
-runlocal:  ##@heroku Run a local web server like Heroku would.
-	@heroku local web
-.PHONY: testbash
-
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# JAVASCRIPT
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-jsbuild:  ##@javascript Build the React components
-	@npm run build
-.PHONY: jsbuild
-
-jswatch:  ##@javascript Build and watch the React components
-	@npm run watch
-.PHONY: jswatch
+testlogs:  ##@heroku Tail the logs for the staging environment.
+	@heroku logs -t -a carbondoomsday-test
+.PHONY: testlogs

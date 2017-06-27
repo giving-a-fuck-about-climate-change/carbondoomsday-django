@@ -1,9 +1,5 @@
 """Channels routing."""
 
-from channels.routing import route_class
-
-from carbondoomsday.carbondioxide.consumers import CO2FrontEndConsumer
-
-appchannels = [
-    route_class(CO2FrontEndConsumer,  path=r"^/co2/"),
-]
+# Nothing here for now, but if we ever need it, just
+# wire up the routes here and look at the Procfile.expensive.
+appchannels = []

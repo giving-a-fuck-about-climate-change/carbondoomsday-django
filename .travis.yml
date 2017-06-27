@@ -18,9 +18,6 @@ env:
     - DJANGO_SECRET_KEY=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     - DJANGO_SETTINGS_MODULE=carbondoomsday.settings
     - DJANGO_REDIS_URL=redis://localhost:6379/0
-    - DJANGO_OPBEAT_ORGANIZATION_ID=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    - DJANGO_OPBEAT_APP_ID=aaaaaaaaaa
-    - DJANGO_OPBEAT_SECRET_TOKEN=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
 matrix:
   fast_finish: true
@@ -29,14 +26,11 @@ matrix:
     - env: BUILD=isort
     - env: BUILD=migrate
     - env: BUILD=test
-    - env: BUILD=compose
 
 before_install:
   - psql -c 'create database carbondoomsday;' -U postgres
   - psql -c 'create database carbondoomsday_test;' -U postgres
-  - pip install -U pip -e . pipenv
-  - sudo apt-get update
-  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-engine
+  - pip install pipenv
 
 install:
   - pipenv install --dev
@@ -57,12 +51,6 @@ script:
         ;;
       test)
         make pytest
-        ;;
-      compose)
-        docker build -t $DOCKER_USERNAME/carbondoomsday .
-        cd dockercompose
-        docker-compose up -d
-        docker-compose down
         ;;
     esac
     set +ex

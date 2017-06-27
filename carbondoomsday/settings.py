@@ -11,192 +11,175 @@ class Base(Configuration):
     """The base configuration for each environment."""
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-    PROJECT = "carbondoomsday"
+    PROJECT = 'carbondoomsday'
 
-    SCHEMA_TITLE = "CarbonDoomsDay Web API"
+    SCHEMA_TITLE = 'CarbonDoomsDay Web API'
 
     DEBUG = values.BooleanValue(False)
 
-    WSGI_APPLICATION = "carbondoomsday.wsgi.application"
+    WSGI_APPLICATION = 'carbondoomsday.wsgi.application'
 
-    ROOT_URLCONF = "carbondoomsday.urls"
+    ROOT_URLCONF = 'carbondoomsday.urls'
 
-    WSGI_APPLICATION = "carbondoomsday.wsgi.application"
+    WSGI_APPLICATION = 'carbondoomsday.wsgi.application'
 
-    DATABASES = {"default": dj_database_url.config()}
-    DATABASES["default"]["CONN_MAX_AGE"] = 500
+    DATABASES = {'default': dj_database_url.config()}
+    DATABASES['default']['CONN_MAX_AGE'] = 500
 
     SECRET_KEY = values.SecretValue()
 
-    STATIC_URL = "/static/"
-    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, "frontend"),
-    ]
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-    MEDIA_URL = "/media/"
-    MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 
     INSTALLED_APPS = (
-        "carbondoomsday.carbondioxide",
-        "django.contrib.admin",
-        "django.contrib.auth",
-        "django.contrib.contenttypes",
-        "django.contrib.messages",
-        "django.contrib.sessions",
-        "django.contrib.staticfiles",
-        "django_extensions",
-        "django_filters",
-        "rest_framework",
-        "rest_framework_swagger",
-        "opbeat.contrib.django",
-        "corsheaders",
-        "channels",
-        "webpack_loader",
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.messages',
+        'django.contrib.sessions',
+        'django.contrib.staticfiles',
+        'carbondoomsday.measurements',
+        'django_extensions',
+        'django_filters',
+        'rest_framework',
+        'rest_framework_swagger',
+        'opbeat.contrib.django',
+        'corsheaders',
+        'channels',
     )
 
     MIDDLEWARE_CLASSES = (
-        "django.middleware.security.SecurityMiddleware",
-        "whitenoise.middleware.WhiteNoiseMiddleware",
-        "opbeat.contrib.django.middleware.OpbeatAPMMiddleware",
-        "corsheaders.middleware.CorsMiddleware",
-        "django.contrib.sessions.middleware.SessionMiddleware",
-        "django.middleware.common.CommonMiddleware",
-        "django.middleware.csrf.CsrfViewMiddleware",
-        "django.contrib.auth.middleware.AuthenticationMiddleware",
-        "django.contrib.auth.middleware.SessionAuthenticationMiddleware",
-        "django.contrib.messages.middleware.MessageMiddleware",
-        "django.middleware.clickjacking.XFrameOptionsMiddleware",
+        'django.middleware.security.SecurityMiddleware',
+        'whitenoise.middleware.WhiteNoiseMiddleware',
+        'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
+        'corsheaders.middleware.CorsMiddleware',
+        'django.contrib.sessions.middleware.SessionMiddleware',
+        'django.middleware.common.CommonMiddleware',
+        'django.middleware.csrf.CsrfViewMiddleware',
+        'django.contrib.auth.middleware.AuthenticationMiddleware',
+        'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+        'django.contrib.messages.middleware.MessageMiddleware',
+        'django.middleware.clickjacking.XFrameOptionsMiddleware',
     )
 
     TEMPLATES = [
         {
-            "BACKEND": "django.template.backends.django.DjangoTemplates",
-            "DIRS": [
-                os.path.join(BASE_DIR, "carbondioxide", "templates")
-            ],
-            "APP_DIRS": True,
-            "OPTIONS": {
-                "context_processors": [
-                    "django.template.context_processors.debug",
-                    "django.template.context_processors.request",
-                    "django.contrib.auth.context_processors.auth",
-                    "django.contrib.messages.context_processors.messages",
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': [],
+            'APP_DIRS': True,
+            'OPTIONS': {
+                'context_processors': [
+                    'django.template.context_processors.debug',
+                    'django.template.context_processors.request',
+                    'django.contrib.auth.context_processors.auth',
+                    'django.contrib.messages.context_processors.messages',
                 ],
             },
         },
     ]
 
-    LOG_LEVEL = values.Value(environ_name="LOG_LEVEL")
     LOGGING = {
-        "version": 1,
-        "handlers": {
-            "console": {
-                "class": "logging.StreamHandler",
+        'version': 1,
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
             }
         },
-        "loggers": {
-            "carbondoomsday": {
-                "handlers": ["console"],
-                "level": LOG_LEVEL,
-                "propagate": True,
+        'loggers': {
+            'carbondoomsday': {
+                'handlers': ['console'],
+                'level': 'INFO',
+                'propagate': True,
             },
         },
     }
 
-    REDIS_URL = values.Value(environ_name="REDIS_URL")
-    CELERY_BROKER_URL = REDIS_URL
-    CELERY_RESULT_BACKEND = REDIS_URL
+    CELERY_BROKER_URL = values.Value()
+    CELERY_RESULT_BACKEND = values.Value()
 
     LATEST_CO2_URL = (
-        "https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2_mlo_weekly.csv"
+        'https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2_mlo_weekly.csv'
     )
 
     HISTORIC_CO2_URL = (
-        "ftp://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ/"
-        "surface/mlo/co2_mlo_surface-insitu_1_ccgg_DailyData.txt"
+        'ftp://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ/'
+        'surface/mlo/co2_mlo_surface-insitu_1_ccgg_DailyData.txt'
     )
 
     REST_FRAMEWORK = {
-        "DEFAULT_FILTER_BACKENDS": (
-            "rest_framework_filters.backends.DjangoFilterBackend",
-            "rest_framework.filters.OrderingFilter",
+        'DEFAULT_FILTER_BACKENDS': (
+            'rest_framework_filters.backends.DjangoFilterBackend',
+            'rest_framework.filters.OrderingFilter',
         ),
-        "DEFAULT_PAGINATION_CLASS": (
-            "rest_framework.pagination.LimitOffsetPagination"
+        'DEFAULT_PAGINATION_CLASS': (
+            'rest_framework.pagination.LimitOffsetPagination'
         ),
-        "PAGE_SIZE": 50,
+        'PAGE_SIZE': 50,
     }
 
     SWAGGER_SETTINGS = {
-        "APIS_SORTER": "alpha",
-        "DOC_EXPANSION": "list",
-        "JSON_EDITOR": True,
-        "SHOW_REQUEST_HEADERS": True,
-    }
-
-    STATICFILES_STORAGE = "whitenoise.django.GzipManifestStaticFilesStorage"
-
-    OPBEAT_APP_ID = values.Value()
-    OPBEAT_ORGANIZATION_ID = values.Value()
-    OPBEAT_SECRET_TOKEN = values.SecretValue()
-    OPBEAT = {
-        "APP_ID": OPBEAT_APP_ID,
-        "ORGANIZATION_ID": OPBEAT_ORGANIZATION_ID,
-        "SECRET_TOKEN": OPBEAT_SECRET_TOKEN,
+        'APIS_SORTER': 'alpha',
+        'DOC_EXPANSION': 'list',
+        'JSON_EDITOR': True,
+        'SHOW_REQUEST_HEADERS': True,
     }
 
     CELERY_BEAT_SCHEDULE = {
-        "scrape-latest-co2-measurements-from-MLO": {
-            "task": "carbondoomsday.carbondioxide.tasks.scrape_latest",
-            "schedule": timedelta(hours=6)
+        'scrape-latest-co2-measurements-from-MLO': {
+            'task': 'carbondoomsday.measurements.tasks.scrape_latest',
+            'schedule': timedelta(hours=6)
         }
     }
 
 
-class WebPackDist(Base):
-    """The production settings for webpack."""
-    WEBPACK_LOADER = {
-        "DEFAULT": {
-            "BUNDLE_DIR_NAME": "dist/",
-            "STATS_FILE": os.path.join(
-                Base.BASE_DIR, "webpack-stats-prod.json"
-            )
-        },
-    }
-
-
-class ChannelsWithRedis(Base):
+class ChannelsWithRedis():
     """Channels production settings."""
+    REDIS_URL = values.Value(environ_name='REDIS_URL')
     CHANNEL_LAYERS = {
-        "default": {
-            "BACKEND": "asgi_redis.RedisChannelLayer",
-            "ROUTING": "carbondoomsday.routing.appchannels",
-            "CONFIG": {"hosts": [Base.REDIS_URL]},
+        'default': {
+            'BACKEND': 'asgi_redis.RedisChannelLayer',
+            'ROUTING': 'carbondoomsday.routing.appchannels',
+            'CONFIG': {'hosts': [REDIS_URL]},
         },
     }
 
 
-class Production(WebPackDist, ChannelsWithRedis):
+class OpbeatCredentials():
+    """Opbeat communication credentials."""
+    OPBEAT_APP_ID = values.Value()
+    OPBEAT_ORGANIZATION_ID = values.Value()
+    OPBEAT_SECRET_TOKEN = values.SecretValue()
+    OPBEAT = {
+        'APP_ID': OPBEAT_APP_ID,
+        'ORGANIZATION_ID': OPBEAT_ORGANIZATION_ID,
+        'SECRET_TOKEN': OPBEAT_SECRET_TOKEN,
+    }
+
+
+class Production(ChannelsWithRedis, OpbeatCredentials, Base):
     """The production environment."""
-    ENVIRONMENT = "Production"
+    ENVIRONMENT = 'Production'
     ALLOWED_HOSTS = [
-        "carbondoomsday.herokuapp.com",
-        "api.carbondoomsday.com",
+        'carbondoomsday.herokuapp.com',
+        'api.carbondoomsday.com',
     ]
 
 
-class Staging(WebPackDist, ChannelsWithRedis):
+class Staging(ChannelsWithRedis, OpbeatCredentials, Base):
     """The staging environment."""
-    ENVIRONMENT = "Staging"
+    ENVIRONMENT = 'Staging'
     ALLOWED_HOSTS = [
-        "carbondoomsday-test.herokuapp.com"
+        'carbondoomsday-test.herokuapp.com'
     ]
 
 
 class Development(Base):
     """The development environment."""
-    ENVIRONMENT = "Development"
+    ENVIRONMENT = 'Development'
     DEBUG = values.BooleanValue(True)
     CELERY_TASK_ALWAYS_EAGER = values.BooleanValue(True)
     OPBEAT_DISABLE_SEND = values.BooleanValue(True)
@@ -204,15 +187,8 @@ class Development(Base):
     CORS_ALLOW_CREDENTIALS = values.BooleanValue(False)
 
     CHANNEL_LAYERS = {
-        "default": {
-            "BACKEND": "asgiref.inmemory.ChannelLayer",
-            "ROUTING": "carbondoomsday.routing.appchannels",
-        },
-    }
-
-    WEBPACK_LOADER = {
-        "DEFAULT": {
-            "BUNDLE_DIR_NAME": "bundles/",
-            "STATS_FILE": os.path.join(Base.BASE_DIR, "webpack-stats.json")
+        'default': {
+            'BACKEND': 'asgiref.inmemory.ChannelLayer',
+            'ROUTING': 'carbondoomsday.routing.appchannels',
         },
     }
