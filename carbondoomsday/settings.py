@@ -4,62 +4,13 @@ import os
 from datetime import timedelta
 
 import dj_database_url
-import dj_redis_url
 from configurations import Configuration, values
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-redis_config = dj_redis_url.config()
-
-
-class WebPackDevelopment():
-    """The development settings for webpack."""
-    WEBPACK_LOADER = {
-        "DEFAULT": {
-            "BUNDLE_DIR_NAME": "bundles/",
-            "STATS_FILE": os.path.join(BASE_DIR, "webpack-stats.json")
-        },
-    }
-
-
-class WebPackProduction():
-    """The production settings for webpack."""
-    WEBPACK_LOADER = {
-        "DEFAULT": {
-            "BUNDLE_DIR_NAME": "dist/",
-            "STATS_FILE": os.path.join(BASE_DIR, "webpack-stats-prod.json")
-        },
-    }
-
-
-class ChannelsDevelopment():
-    """Channels development settings."""
-    CHANNEL_LAYERS = {
-        "default": {
-            "BACKEND": "asgiref.inmemory.ChannelLayer",
-            "ROUTING": "carbondoomsday.routing.appchannels",
-        },
-    }
-
-
-class ChannelsProduction():
-    """Channels production settings."""
-    CHANNEL_LAYERS = {
-        "default": {
-            "BACKEND": "asgi_redis.RedisChannelLayer",
-            "ROUTING": "carbondoomsday.routing.appchannels",
-            "CONFIG": {
-                "hosts": [(
-                    redis_config["HOST"],
-                    redis_config["PORT"]
-                )],
-            },
-        },
-    }
 
 
 class Base(Configuration):
     """The base configuration for each environment."""
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
     PROJECT = "carbondoomsday"
 
     SCHEMA_TITLE = "CarbonDoomsDay Web API"
@@ -202,7 +153,28 @@ class Base(Configuration):
     }
 
 
-class Production(WebPackProduction, ChannelsProduction, Base):
+class WebPackDist(Base):
+    """The production settings for webpack."""
+    WEBPACK_LOADER = {
+        "DEFAULT": {
+            "BUNDLE_DIR_NAME": "dist/",
+            "STATS_FILE": os.path.join(Base.BASE_DIR, "webpack-stats-prod.json")
+        },
+    }
+
+
+class ChannelsWithRedis(Base):
+    """Channels production settings."""
+    CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND": "asgi_redis.RedisChannelLayer",
+            "ROUTING": "carbondoomsday.routing.appchannels",
+            "CONFIG": {"hosts": [Base.REDIS_URL]},
+        },
+    }
+
+
+class Production(WebPackDist, ChannelsWithRedis):
     """The production environment."""
     ENVIRONMENT = "Production"
     ALLOWED_HOSTS = [
@@ -211,7 +183,7 @@ class Production(WebPackProduction, ChannelsProduction, Base):
     ]
 
 
-class Staging(WebPackProduction, ChannelsProduction, Base):
+class Staging(WebPackDist, ChannelsWithRedis):
     """The staging environment."""
     ENVIRONMENT = "Staging"
     ALLOWED_HOSTS = [
@@ -219,7 +191,7 @@ class Staging(WebPackProduction, ChannelsProduction, Base):
     ]
 
 
-class Development(WebPackDevelopment, ChannelsDevelopment, Base):
+class Development(Base):
     """The development environment."""
     ENVIRONMENT = "Development"
     DEBUG = values.BooleanValue(True)
@@ -227,3 +199,17 @@ class Development(WebPackDevelopment, ChannelsDevelopment, Base):
     OPBEAT_DISABLE_SEND = values.BooleanValue(True)
     CORS_ORIGIN_ALLOW_ALL = values.BooleanValue(True)
     CORS_ALLOW_CREDENTIALS = values.BooleanValue(False)
+
+    CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND": "asgiref.inmemory.ChannelLayer",
+            "ROUTING": "carbondoomsday.routing.appchannels",
+        },
+    }
+
+    WEBPACK_LOADER = {
+        "DEFAULT": {
+            "BUNDLE_DIR_NAME": "bundles/",
+            "STATS_FILE": os.path.join(Base.BASE_DIR, "webpack-stats.json")
+        },
+    }
