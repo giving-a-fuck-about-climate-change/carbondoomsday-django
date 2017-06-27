@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e0ad0b45072a0eae39c2c9ce0febb60afbcd37fe1cd344376494fe7e8518e1a5"
+            "sha256": "4579fa4f7fd7a941c82cdbdcb795ba8458b8a853264e28308daae1b8729e1e31"
         },
         "requires": {},
         "sources": [
@@ -60,6 +60,9 @@
         },
         "dj-database-url": {
             "version": "==0.4.2"
+        },
+        "dj-redis-url": {
+            "version": "==0.1.4"
         },
         "django": {
             "version": "==1.11.2"
