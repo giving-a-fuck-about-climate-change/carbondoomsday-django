@@ -10,7 +10,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 class WebPackDevelopment():
-    """The development settings for WebPack."""
+    """The development settings for webpack."""
     WEBPACK_LOADER = {
         "DEFAULT": {
             "BUNDLE_DIR_NAME": "bundles/",
@@ -20,7 +20,7 @@ class WebPackDevelopment():
 
 
 class WebPackProduction():
-    """The production settings for WebPack."""
+    """The production settings for webpack."""
     WEBPACK_LOADER = {
         "DEFAULT": {
             "BUNDLE_DIR_NAME": "dist/",
