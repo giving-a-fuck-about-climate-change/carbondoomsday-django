@@ -1,4 +1,4 @@
-"""Celery tasks module."""
+"""Celery tasks."""
 
 import csv
 import datetime
