@@ -2,16 +2,6 @@
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 
-[dev-packages]
-pytest = "==3.1.2"
-pytest-capturelog = "==0.7"
-pytest-cov = "==2.5.1"
-pytest-django = "==3.1.2"
-pytest-mock = "==1.6.0"
-isort = "==4.2.15"
-pylama = "==7.3.3"
-docker-compose = "==1.14.0"
-
 [packages]
 dj-database-url = "==0.4.2"
 Django = "==1.11.2"
@@ -30,6 +20,17 @@ djangorestframework-csv = "==2.0.0"
 django-cors-headers = "==2.1.0"
 channels = "==1.1.5"
 django-webpack-loader = "==0.5.0"
+asgi_redis = "==1.4.2"
+
+[dev-packages]
+pytest = "==3.1.2"
+pytest-capturelog = "==0.7"
+pytest-cov = "==2.5.1"
+pytest-django = "==3.1.2"
+pytest-mock = "==1.6.0"
+isort = "==4.2.15"
+pylama = "==7.3.3"
+docker-compose = "==1.14.0"
 
 [packages.celery]
 extras = [ "redis",]

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f5259818d8d1effb8b22ebbf581df3bf35b1bc47e956cabc33fb84c7cd29afa8"
+            "sha256": "e0ad0b45072a0eae39c2c9ce0febb60afbcd37fe1cd344376494fe7e8518e1a5"
         },
         "requires": {},
         "sources": [
@@ -15,6 +15,9 @@
         "-e .": "*",
         "amqp": {
             "version": "==2.1.4"
+        },
+        "asgi-redis": {
+            "version": "==1.4.2"
         },
         "asgiref": {
             "version": "==1.1.2"
@@ -108,6 +111,9 @@
         },
         "markupsafe": {
             "version": "==1.0"
+        },
+        "msgpack-python": {
+            "version": "==0.4.8"
         },
         "opbeat": {
             "version": "==3.5.2"
