@@ -171,7 +171,7 @@ class ChannelsWithRedis(Base):
         "default": {
             "BACKEND": "asgi_redis.RedisChannelLayer",
             "ROUTING": "carbondoomsday.routing.appchannels",
-            "CONFIG": {"hosts": [Base.REDIS_URL]},
+            "CONFIG": {"hosts": [str(Base.REDIS_URL)]},
         },
     }
 
