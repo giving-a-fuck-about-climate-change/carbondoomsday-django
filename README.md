@@ -30,7 +30,3 @@ importantly, to act on stopping the ongoing trend of [ecocide].
 Please see the [contribution documentation] if you'd like to help out.
 
 [contribution documentation]: https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/blob/master/CONTRIBUTING.md
-
-Please consider starring the repository so that any of your followers might see
-it or ultimately that the repository will be marked as trending and many others
-will see the project and hopefully join the effort.
