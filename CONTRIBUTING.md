@@ -22,17 +22,25 @@ We use [django-configurations] to configure the application in the spirit of
 the [The Twelve-Factor App].
 
 You'll need to export a number of environment variables to configure the
-application. Please see [a maintained list of variables].
+application. You'll have to change the values slightly to suit your local setup.
+Please see [the example configuration to get started].
 
-You'll have to change the values slightly to suit your local setup. For
-convenience, you can place all of these in a `.env` file in the project root
-and use [autoenv] to automatically export all those values whenever you enter
-the directory.
+You can export them into your environment with:
+
+``` bash
+$ set -a
+$ source example.env
+$ set +a
+```
+
+Or, for convenience, you can place all of these in a `.env` file in the project
+root and use [autoenv] to automatically export all those values whenever you
+enter the directory.
 
 [django-configurations]: https://github.com/jazzband/django-configurations
 [The Twelve-Factor App]: https://12factor.net/config
 [autoenv]:https://github.com/kennethreitz/autoenv
-[a maintained list of variables]: https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/blob/master/dockercompose/app/carbondoomsday.env
+[the example configuration to get started]: https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/blob/master/example.env
 
 # Install Python Dependencies
 
@@ -72,5 +80,5 @@ $ make dbmigrate
 And get the latest data:
 
 ``` bash
-$ make scrape_latest
+$ make scrape_latest_co2
 ```
