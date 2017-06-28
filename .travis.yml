@@ -40,17 +40,17 @@ script:
     set -ex
     case "$BUILD" in
       isort)
-        make pysort
+        make sort
         ;;
       lint)
-        make pylint
+        make lint
         ;;
       migrate)
         make dbcheckmigrations
         make dbmigrate
         ;;
       test)
-        make pytest
+        make test
         ;;
     esac
     set +ex
