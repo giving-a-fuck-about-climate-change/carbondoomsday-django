@@ -18,14 +18,16 @@ A [Django] web API for climate change data inspired by [no one giving a fuck].
 [no one giving a fuck]: http://titojankowski.com/no-one-gives-a-fck-about-climate-change/
 
 This is a community driven project which aims to bring all levels of
-contributor to engage in providing a reliable, free (price and [freedom]) and
-feature packed web API to allow front-end client creators consume climate
-change related data in order to fuel a new wave of interesting and engaging
-visualisations and interactive environments to help us all understand and more
-importantly, to act on stopping the ongoing trend of [ecocide].
+contributor to engage in providing a reliable, [free] and feature packed web
+API to allow front-end client creators consume climate change related data in
+order to fuel a new wave of interesting and engaging visualisations and
+interactive environments.
 
-[freedom]: https://fsfe.org/about/basics/freesoftware.en.html
-[ecocide]: https://en.wikipedia.org/wiki/Ecocide
+[free]: https://fsfe.org/about/basics/freesoftware.en.html
+
+Please see the [Swagger API documentation] to get started.
+
+[Swagger API documentation]: http://api.carbondoomsday.com/
 
 Please see the [contribution documentation] if you'd like to help out.
 
