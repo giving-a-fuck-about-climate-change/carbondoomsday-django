@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 @app.task
 @transaction.atomic
-def scrape_latest():
+def scrape_latest_co2():
     """Scrape latest Mauna Loa daily CO2 measurements."""
     from carbondoomsday.measurements.models import CO2
 
@@ -81,7 +81,7 @@ def scrape_latest():
 
 @app.task
 @transaction.atomic
-def scrape_historic():
+def scrape_historic_co2():
     """Scrape historical Mauna Loa CO2 measurements."""
     from carbondoomsday.measurements.models import CO2
 

@@ -130,7 +130,7 @@ class Base(Configuration):
 
     CELERY_BEAT_SCHEDULE = {
         'scrape-latest-co2-measurements-from-MLO': {
-            'task': 'carbondoomsday.measurements.tasks.scrape_latest',
+            'task': 'carbondoomsday.measurements.tasks.scrape_latest_co2',
             'schedule': timedelta(hours=6)
         }
     }

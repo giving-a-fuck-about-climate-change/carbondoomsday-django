@@ -11,10 +11,10 @@ from carbondoomsday.measurements.models import CO2
 pytestmark = pytest.mark.django_db
 
 
-def test_scrape_latest_success(mocked_latest_co2_csv):
-    from carbondoomsday.measurements.tasks import scrape_latest
+def test_scrape_latest_co2_success(mocked_latest_co2_csv):
+    from carbondoomsday.measurements.tasks import scrape_latest_co2
 
-    scrape_latest()
+    scrape_latest_co2()
 
     assert CO2.objects.count() == 4
 
@@ -27,17 +27,17 @@ def test_scrape_latest_success(mocked_latest_co2_csv):
     assert expected_range.count() == 2
 
 
-def test_scrape_latest_network_failure(mocker):
-    from carbondoomsday.measurements.tasks import scrape_latest
+def test_scrape_latest_co2_network_failure(mocker):
+    from carbondoomsday.measurements.tasks import scrape_latest_co2
 
     target = "carbondoomsday.measurements.tasks.requests.get"
     with mocker.patch(target, side_effect=Timeout()):
-        scrape_latest()
+        scrape_latest_co2()
     assert CO2.objects.count() == 0
 
 
-def test_scrape_latest_parse_date_failure(mocker):
-    from carbondoomsday.measurements.tasks import scrape_latest
+def test_scrape_latest_co2_parse_date_failure(mocker):
+    from carbondoomsday.measurements.tasks import scrape_latest_co2
 
     mocked = mocker.Mock()
     mocked_latest_co2_csv = "Date,day,month,week\n9999-999-999,,,\n"
@@ -45,12 +45,12 @@ def test_scrape_latest_parse_date_failure(mocker):
     target = "carbondoomsday.measurements.tasks.requests.get"
 
     with mocker.patch(target, return_value=mocked):
-        scrape_latest()
+        scrape_latest_co2()
     assert CO2.objects.count() == 0
 
 
-def test_scrape_latest_parse_ppm_failure(mocker):
-    from carbondoomsday.measurements.tasks import scrape_latest
+def test_scrape_latest_co2_parse_ppm_failure(mocker):
+    from carbondoomsday.measurements.tasks import scrape_latest_co2
 
     mocked = mocker.Mock()
     mocked_latest_co2_csv = "Date,day,month,week\n2017-06-06,x,y,z\n"
@@ -58,38 +58,38 @@ def test_scrape_latest_parse_ppm_failure(mocker):
     target = "carbondoomsday.measurements.tasks.requests.get"
 
     with mocker.patch(target, return_value=mocked):
-        scrape_latest()
+        scrape_latest_co2()
 
     assert CO2.objects.count() == 0
 
 
-def test_scrape_latest_existing_models(mocked_latest_co2_csv):
-    from carbondoomsday.measurements.tasks import scrape_latest
+def test_scrape_latest_co2_existing_models(mocked_latest_co2_csv):
+    from carbondoomsday.measurements.tasks import scrape_latest_co2
 
-    scrape_latest()
+    scrape_latest_co2()
     assert CO2.objects.count() == 4
-    scrape_latest()
+    scrape_latest_co2()
     assert CO2.objects.count() == 4
 
 
-def test_scrape_historic_success(mocked_historic_co2_csv):
-    from carbondoomsday.measurements.tasks import scrape_historic
+def test_scrape_historic_co2_success(mocked_historic_co2_csv):
+    from carbondoomsday.measurements.tasks import scrape_historic_co2
 
-    scrape_historic()
+    scrape_historic_co2()
     assert CO2.objects.count() == 2
 
 
-def test_scrape_historic_network_failure(mocker):
-    from carbondoomsday.measurements.tasks import scrape_historic
+def test_scrape_historic_co2_network_failure(mocker):
+    from carbondoomsday.measurements.tasks import scrape_historic_co2
 
     target = "carbondoomsday.measurements.tasks.urlopen"
     with mocker.patch(target, side_effect=Timeout()):
-        scrape_historic()
+        scrape_historic_co2()
     assert CO2.objects.count() == 0
 
 
-def test_scrape_historic_parse_date_failure(mocker):
-    from carbondoomsday.measurements.tasks import scrape_historic
+def test_scrape_historic_co2_parse_date_failure(mocker):
+    from carbondoomsday.measurements.tasks import scrape_historic_co2
 
     mocked = mocker.Mock()
     mocked_historic_co2_csv = bytes("MLO FOO BAR BAZ", "utf-8")
@@ -98,11 +98,11 @@ def test_scrape_historic_parse_date_failure(mocker):
     target = "carbondoomsday.measurements.tasks.urlopen"
 
     with mocker.patch(target, return_value=mocked):
-        scrape_historic()
+        scrape_historic_co2()
 
 
-def test_scrape_historic_parse_ppm_failure(mocker):
-    from carbondoomsday.measurements.tasks import scrape_historic
+def test_scrape_historic_co2_parse_ppm_failure(mocker):
+    from carbondoomsday.measurements.tasks import scrape_historic_co2
 
     mocked = mocker.Mock()
     mocked_historic_co2_csv = bytes("MLO 1974 1 1", "utf-8")
@@ -111,15 +111,15 @@ def test_scrape_historic_parse_ppm_failure(mocker):
     target = "carbondoomsday.measurements.tasks.urlopen"
 
     with mocker.patch(target, return_value=mocked):
-        scrape_historic()
+        scrape_historic_co2()
 
     assert CO2.objects.count() == 0
 
 
-def test_scrape_historic_existing_models(mocked_historic_co2_csv):
-    from carbondoomsday.measurements.tasks import scrape_historic
+def test_scrape_historic_co2_existing_models(mocked_historic_co2_csv):
+    from carbondoomsday.measurements.tasks import scrape_historic_co2
 
-    scrape_historic()
+    scrape_historic_co2()
     assert CO2.objects.count() == 2
-    scrape_historic()
+    scrape_historic_co2()
     assert CO2.objects.count() == 2

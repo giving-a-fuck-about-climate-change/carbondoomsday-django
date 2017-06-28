@@ -92,12 +92,12 @@ dbadmin:  ##@django Create an admin user for the Django admin.
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # DATA
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-scrapelatest:  ##@data Get the latest CO2 measurement data.
-	@$(PIPENVRUN) $(MANAGEPY) scrape_latest
+scrapelatest:  ##@data Get the latest CO2 data.
+	@$(PIPENVRUN) $(MANAGEPY) scrape_latest_co2
 .PHONY: scrapelatest
 
-scrapehistoric:  ##@data Get historical CO2 measurement data.
-	@$(PIPENVRUN) $(MANAGEPY) scrape_historic
+scrapehistoric:  ##@data Get historical CO2 data.
+	@$(PIPENVRUN) $(MANAGEPY) scrape_historic_co2
 .PHONY: scrapehistoric
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
