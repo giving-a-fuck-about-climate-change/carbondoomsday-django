@@ -80,5 +80,5 @@ $ make dbmigrate
 And get the latest data:
 
 ``` bash
-$ make scrape_latest_co2
+$ make scrapelatest
 ```
