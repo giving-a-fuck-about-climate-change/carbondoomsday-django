@@ -27,7 +27,7 @@ interactive environments.
 
 Please see the [Swagger API documentation] to get started.
 
-[Swagger API documentation]: http://api.carbondoomsday.com/
+[Swagger API documentation]: http://api.carbondoomsday.com/apidocs/
 
 Please see the [contribution documentation] if you'd like to help out.
 
