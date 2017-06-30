@@ -23,6 +23,11 @@ API to allow front-end client creators consume climate change related data in
 order to fuel a new wave of interesting and engaging visualisations and
 interactive environments.
 
+Climate change related data is largely free to access from various scientific
+bodies but is distributed in inconvenient formats for web services to consume.
+We want to scrape and gather what we can and expose it on the usual well known
+RESTish web API interface.
+
 [free]: https://fsfe.org/about/basics/freesoftware.en.html
 
 Please see the [Swagger API documentation] to get started.
