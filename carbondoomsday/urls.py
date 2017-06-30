@@ -11,6 +11,6 @@ schema_view = get_swagger_view(title=settings.SCHEMA_TITLE)
 
 urlpatterns = [
     url(r"^admin/", admin.site.urls),
-    url(r"^apidocs/", schema_view),
-    url(r"^api/", include(urls))
+    url(r"^api/", include(urls)),
+    url(r"^", schema_view),
 ]

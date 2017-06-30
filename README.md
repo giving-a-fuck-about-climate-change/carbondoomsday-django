@@ -32,7 +32,7 @@ RESTish web API interface.
 
 Please see the [Swagger API documentation] to get started.
 
-[Swagger API documentation]: http://api.carbondoomsday.com/apidocs/
+[Swagger API documentation]: http://api.carbondoomsday.com/
 
 Please see the [contribution documentation] if you'd like to help out.
 
