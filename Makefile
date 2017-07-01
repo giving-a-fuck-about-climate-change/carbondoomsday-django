@@ -78,7 +78,7 @@ celery:  ##@django Run the celery worker.
 .PHONY: celery
 
 shell:  ##@django Run a completion powered Django shell.
-	@$(PIPENVRUN) $(MANAGEPY) shell_plus --bpython
+	@$(PIPENVRUN) $(MANAGEPY) shell_plus --bpython --quiet-load
 .PHONY: shell
 
 server:  ##@django Run the development mode server.
