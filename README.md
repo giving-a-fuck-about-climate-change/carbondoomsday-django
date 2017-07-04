@@ -30,10 +30,15 @@ RESTish web API interface.
 
 [free]: https://fsfe.org/about/basics/freesoftware.en.html
 
-Please see the [Swagger API documentation] to get started.
+We've been featured on [HackADay], check the [chat log here]!
+
+[HackADay]: https://hackaday.io/event/25601-climate-change-hack-chat
+[chat log here]: https://hackaday.io/event/25601-climate-change-hack-chat/log/62377-climate-change-hack-chat-transcript
+
+Please see the [Swagger API documentation] to get started consuming the API.
 
 [Swagger API documentation]: http://api.carbondoomsday.com/
 
-Please see the [contribution documentation] if you'd like to help out.
+Please see the [contribution documentation] if you'd like to help build the API.
 
 [contribution documentation]: https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/blob/master/CONTRIBUTING.md
