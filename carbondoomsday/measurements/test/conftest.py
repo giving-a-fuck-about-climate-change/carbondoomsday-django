@@ -11,7 +11,7 @@ from carbondoomsday.measurements.models import CO2
 
 
 @pytest.fixture
-def mocked_latest_co2_csv(mocker):
+def mlo_co2_since_2015(mocker):
     mocked_csv = (
         'Date,day,month,week\n'
         '2017-06-08,409.49,409.65,409.65\n'
@@ -23,12 +23,12 @@ def mocked_latest_co2_csv(mocker):
 
     mocked = mocker.Mock()
     mocked.content = bytes(mocked_csv, 'utf-8')
-    target = 'carbondoomsday.measurements.tasks.requests.get'
+    target = 'carbondoomsday.measurements.scrapers.requests.get'
     mocker.patch(target, return_value=mocked)
 
 
 @pytest.fixture
-def mocked_historic_co2_csv(mocker):
+def mlo_co2_since_1974(mocker):
     mocked_csv = (
         '# FOO\n'
         'MLO 1974 1 1 0 0 0 -999.99 -99.99 0 19.536 '
@@ -42,7 +42,7 @@ def mocked_historic_co2_csv(mocker):
     mocked = mocker.Mock()
     mocked_function_kwargs = {'read.return_value': bytes(mocked_csv, 'utf-8')}
     mocked.configure_mock(**mocked_function_kwargs)
-    target = 'carbondoomsday.measurements.tasks.urlopen'
+    target = 'carbondoomsday.measurements.scrapers.urlopen'
     mocker.patch(target, return_value=mocked)
 
 
