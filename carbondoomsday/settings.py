@@ -53,9 +53,9 @@ class Base(Configuration):
     )
 
     MIDDLEWARE_CLASSES = (
+        'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
         'django.middleware.security.SecurityMiddleware',
         'whitenoise.middleware.WhiteNoiseMiddleware',
-        'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
         'corsheaders.middleware.CorsMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
