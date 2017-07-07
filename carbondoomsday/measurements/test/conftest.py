@@ -4,6 +4,7 @@ from datetime import date
 from decimal import Decimal
 
 import pytest
+from freezegun import freeze_time
 from rest_framework.test import APIClient
 
 from carbondoomsday.measurements.models import CO2
@@ -54,3 +55,10 @@ def co2():
 @pytest.fixture
 def client():
     return APIClient()
+
+
+@pytest.fixture
+def today():
+    today = date.today()
+    with freeze_time(today):
+        yield today
