@@ -1,5 +1,5 @@
 PROJECT_ROOT := .
-SOURCE_DIR   := $(PROJECT_ROOT)/carbondoomsday
+SOURCE_DIR   := $(PROJECT_ROOT)/carbondoomsday/
 MANAGEPY     := python manage.py
 PIPENVRUN    := pipenv run
 DOCKER_IMAGE := carbondoomsday/measurements/
