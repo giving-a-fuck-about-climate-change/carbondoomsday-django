@@ -92,13 +92,13 @@ dbadmin:  ##@django Create an admin user for the Django admin.
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # DATA
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-scrapelatest:  ##@data Get the latest CO2 data.
-	@$(PIPENVRUN) $(MANAGEPY) scrape_latest_co2
-.PHONY: scrapelatest
+scrape_mlo_co2_since_2015:  ##@data Scrape daily MLO CO2 measurements since 2015.
+	@$(PIPENVRUN) $(MANAGEPY) scrape_mlo_co2_since_2015
+.PHONY: scrape_mlo_co2_since_2015
 
-scrapehistoric:  ##@data Get historical CO2 data.
-	@$(PIPENVRUN) $(MANAGEPY) scrape_historic_co2
-.PHONY: scrapehistoric
+scrape_mlo_co2_since_1974:  ##@data Scrape daily MLO CO2 measurements since 1974.
+	@$(PIPENVRUN) $(MANAGEPY) scrape_mlo_co2_since_1974
+.PHONY: scrape_mlo_co2_since_1974
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # HEROKU

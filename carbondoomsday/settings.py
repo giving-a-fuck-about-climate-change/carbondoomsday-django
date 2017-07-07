@@ -7,7 +7,19 @@ import dj_database_url
 from configurations import Configuration, values
 
 
-class Base(Configuration):
+class MLODataSources():
+    """Mauna Loa Observatory CO2 measurement URLs."""
+    MLO_DAILY_CO2_2015_TO_2017 = (
+        'https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2_mlo_weekly.csv'
+    )
+
+    MLO_DAILY_CO2_1974_TO_2017 = (
+        'ftp://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ/'
+        'surface/mlo/co2_mlo_surface-insitu_1_ccgg_DailyData.txt'
+    )
+
+
+class Base(Configuration, MLODataSources):
     """The base configuration for each environment."""
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -100,15 +112,6 @@ class Base(Configuration):
 
     CELERY_BROKER_URL = values.Value()
     CELERY_RESULT_BACKEND = values.Value()
-
-    LATEST_CO2_URL = (
-        'https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2_mlo_weekly.csv'
-    )
-
-    HISTORIC_CO2_URL = (
-        'ftp://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ/'
-        'surface/mlo/co2_mlo_surface-insitu_1_ccgg_DailyData.txt'
-    )
 
     REST_FRAMEWORK = {
         'DEFAULT_FILTER_BACKENDS': (
