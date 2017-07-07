@@ -32,4 +32,3 @@ asgi_redis = "*"
 
 [packages.celery]
 extras = [ "redis",]
-version = "*"
