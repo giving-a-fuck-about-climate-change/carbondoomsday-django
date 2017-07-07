@@ -69,7 +69,7 @@ Please refer to the relevant installation method for your operating system.
 [PostgreSQL]: https://www.postgresql.org/
 [Redis]: https://redis.io/
 
-# Setup the Database
+# Populate the Database
 
 You can load the latest data into your PostgreSQL with:
 
