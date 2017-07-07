@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "155da64ff98e4212b43ba03f322d4871c9e9ef72224b8d9582a3443b08c415f9"
+            "sha256": "d3959faddd1e4adbeac6c31e869712c5a5fd675c2790ad1e83b658e6f1d58853"
         },
         "requires": {},
         "sources": [
@@ -13,9 +13,6 @@
     },
     "default": {
         "-e .": "*",
-        "amqp": {
-            "version": "==2.1.4"
-        },
         "asgi-redis": {
             "version": "==1.4.2"
         },
@@ -31,17 +28,17 @@
         "automat": {
             "version": "==0.6.0"
         },
-        "billiard": {
-            "version": "==3.5.0.2"
-        },
         "celery": {
-            "version": "==4.0.2"
+            "extras": [
+                "redis"
+            ],
+            "version": "*"
         },
         "certifi": {
             "version": "==2017.4.17"
         },
         "channels": {
-            "version": "==1.1.5"
+            "version": "==1.1.6"
         },
         "chardet": {
             "version": "==3.0.4"
@@ -62,7 +59,7 @@
             "version": "==0.4.2"
         },
         "django": {
-            "version": "==1.11.2"
+            "version": "==1.11.3"
         },
         "django-configurations": {
             "version": "==2.0"
@@ -71,7 +68,7 @@
             "version": "==2.1.0"
         },
         "django-extensions": {
-            "version": "==1.7.9"
+            "version": "==1.8.1"
         },
         "django-filter": {
             "version": "==1.0.4"
@@ -102,9 +99,6 @@
         },
         "jinja2": {
             "version": "==2.9.6"
-        },
-        "kombu": {
-            "version": "==4.0.2"
         },
         "markupsafe": {
             "version": "==1.0"
@@ -157,9 +151,6 @@
         "uwsgi": {
             "version": "==2.0.15"
         },
-        "vine": {
-            "version": "==1.1.3"
-        },
         "whitenoise": {
             "version": "==3.3.0"
         },
@@ -170,6 +161,9 @@
     "develop": {
         "coverage": {
             "version": "==4.4.1"
+        },
+        "freezegun": {
+            "version": "==0.3.9"
         },
         "isort": {
             "version": "==4.2.15"
@@ -190,10 +184,10 @@
             "version": "==1.5.0"
         },
         "pylama": {
-            "version": "==7.3.3"
+            "version": "==7.4.1"
         },
         "pytest": {
-            "version": "==3.1.2"
+            "version": "==3.1.3"
         },
         "pytest-cov": {
             "version": "==2.5.1"
@@ -203,6 +197,9 @@
         },
         "pytest-mock": {
             "version": "==1.6.0"
+        },
+        "python-dateutil": {
+            "version": "==2.6.0"
         },
         "setuptools": {
             "version": "==36.0.1"
