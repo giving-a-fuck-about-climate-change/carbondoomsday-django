@@ -33,4 +33,5 @@ class CO2ViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = CO2Serializer
     filter_class = CO2Filter
     ordering_fields = '__all__'
+    ordering = ('-date',)
     renderer_classes = (JSONRenderer, PaginatedCSVRenderer,)
