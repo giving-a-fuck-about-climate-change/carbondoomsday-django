@@ -9,7 +9,7 @@ from django.urls import reverse
 pytestmark = pytest.mark.django_db()
 
 
-def test_always_date_reverse_descending_order(client, today):
+def test_co2_default_date_reverse_order(client, today):
     from carbondoomsday.measurements.models import CO2
 
     yesterday = today - timedelta(days=1)
