@@ -3,7 +3,7 @@
   * [Configure the Environment](#configure-the-environment)
   * [Install Python Dependencies](#install-python-dependencies)
   * [Install System Dependencies](#install-system-dependencies)
-  * [Setup the Database](#setup-the-database)
+  * [Populate Database](#populate-database)
 
 # Get a Local Copy
 
@@ -69,7 +69,7 @@ Please refer to the relevant installation method for your operating system.
 [PostgreSQL]: https://www.postgresql.org/
 [Redis]: https://redis.io/
 
-# Populate the Database
+# Populate Database
 
 You can load the latest data into your PostgreSQL with:
 
@@ -80,5 +80,5 @@ $ make dbmigrate
 And get the latest data:
 
 ``` bash
-$ make scrapelatest
+$ make scrape_mlo_co2_since_2015
 ```
