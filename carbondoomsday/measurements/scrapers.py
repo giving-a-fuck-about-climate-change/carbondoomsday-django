@@ -1,4 +1,4 @@
-"""Scraping tasks. If adding one, implement the abstract class."""
+"""Data scrapers. If adding one, implement the abstract class."""
 
 import csv
 import datetime
@@ -11,7 +11,7 @@ import requests
 from carbondoomsday.measurements.models import CO2
 
 
-class AbstractScrapeTask(ABC):
+class AbstractScraper(ABC):
     """An abstract class for specifying scraping behaviour."""
     @abstractmethod
     def retrieve(self, location):
@@ -32,7 +32,7 @@ class AbstractScrapeTask(ABC):
         self.insert(parsed)
 
 
-class DailyMLOCO2Since2015(AbstractScrapeTask):
+class DailyMLOCO2Since2015(AbstractScraper):
     """Daily CO2 measurements from the Mauna Loa Observatory since 2015."""
     def retrieve(self, location):
         """Retrieve the data set over the network."""
@@ -69,7 +69,7 @@ class DailyMLOCO2Since2015(AbstractScrapeTask):
                 CO2.objects.create(date=co2_date, ppm=co2_ppm)
 
 
-class DailyMLOCO2Since1974(AbstractScrapeTask):
+class DailyMLOCO2Since1974(AbstractScraper):
     """Daily CO2 measurements from the Mauna Loa Observatory since 1974."""
     def retrieve(self, location):
         """Retrieve the text file."""
