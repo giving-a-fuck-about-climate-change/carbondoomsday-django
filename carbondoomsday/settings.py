@@ -166,6 +166,11 @@ class OpbeatCredentials():
     }
 
 
+class CORSHeaderAllowAll():
+    """Disable all cross-origin resource sharing restrictions."""
+    CORS_ORIGIN_ALLOW_ALL = values.BooleanValue(True)
+
+
 class Production(ChannelsWithRedis, OpbeatCredentials, Base):
     """The production environment."""
     ENVIRONMENT = 'Production'
@@ -175,7 +180,7 @@ class Production(ChannelsWithRedis, OpbeatCredentials, Base):
     ]
 
 
-class Staging(ChannelsWithRedis, OpbeatCredentials, Base):
+class Staging(ChannelsWithRedis, OpbeatCredentials, CORSHeaderAllowAll, Base):
     """The staging environment."""
     ENVIRONMENT = 'Staging'
     ALLOWED_HOSTS = [
@@ -183,14 +188,12 @@ class Staging(ChannelsWithRedis, OpbeatCredentials, Base):
     ]
 
 
-class Development(Base):
+class Development(CORSHeaderAllowAll, Base):
     """The development environment."""
     ENVIRONMENT = 'Development'
     DEBUG = values.BooleanValue(True)
     CELERY_TASK_ALWAYS_EAGER = values.BooleanValue(True)
     OPBEAT_DISABLE_SEND = values.BooleanValue(True)
-    CORS_ORIGIN_ALLOW_ALL = values.BooleanValue(True)
-    CORS_ALLOW_CREDENTIALS = values.BooleanValue(False)
 
     CHANNEL_LAYERS = {
         'default': {
