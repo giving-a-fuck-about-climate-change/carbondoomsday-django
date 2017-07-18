@@ -47,6 +47,21 @@ def mlo_co2_since_1974(mocker):
 
 
 @pytest.fixture
+def mlo_co2_since_1958(mocker):
+    mocked_csv = (
+        'foobar\n'
+        'bazfoo\n'
+        '2017-06-24,408.42\n'
+        '2017-07-01,407.77\n'
+    )
+
+    mocked = mocker.Mock()
+    mocked.content = bytes(mocked_csv, 'utf-8')
+    target = 'carbondoomsday.measurements.scrapers.requests.get'
+    mocker.patch(target, return_value=mocked)
+
+
+@pytest.fixture
 def co2():
     today, ppm = date.today(), Decimal('449.15')
     return CO2.objects.create(date=today, ppm=ppm)
