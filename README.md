@@ -11,7 +11,7 @@
 
 # carbondoomsday
 
-A [Django] web API for climate change data inspired by [no one giving a fuck].
+A [Django] web API for climate change related data inspired by [no one giving a fuck].
 
 [Django]: https://www.djangoproject.com/
 [no one giving a fuck]: http://titojankowski.com/no-one-gives-a-fck-about-climate-change/
