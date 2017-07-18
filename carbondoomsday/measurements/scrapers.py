@@ -104,3 +104,32 @@ class DailyMLOCO2Since1974(AbstractScraper):
 
             if not CO2.objects.filter(date=co2_date).exists():
                 CO2.objects.create(date=co2_date, ppm=co2_ppm)
+
+
+class DailyMLOCO2Since1958(AbstractScraper):
+    """Daily CO2 measurements from the Mauna Loa Observatory since 1958."""
+    def retrieve(self, location):
+        """Retrieve the CSV file."""
+        return requests.get(location)
+
+    def parse(self, response):
+        """Parse the CO2 measurements CSV data set."""
+        decoded = str(response.content, 'utf-8')
+        separated = decoded.split('\n')
+        return list(csv.reader(separated))
+
+    def insert(self, parsed):
+        """Create new CO2 measurements."""
+        for entry in parsed:
+            try:
+                co2_date = dt.strptime(entry[0], '%Y-%m-%d')
+            except (ValueError, IndexError):
+                continue
+
+            try:
+                co2_ppm = Decimal(entry[1])
+            except (InvalidOperation, IndexError):
+                continue
+
+            if not CO2.objects.filter(date=co2_date).exists():
+                CO2.objects.create(date=co2_date, ppm=co2_ppm)
