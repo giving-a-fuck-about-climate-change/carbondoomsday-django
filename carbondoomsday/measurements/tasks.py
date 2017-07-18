@@ -6,7 +6,7 @@ from django.db import transaction
 
 from carbondoomsday.celeryconf import app
 from carbondoomsday.measurements.scrapers import (
-    DailyMLOCO2Since1974, DailyMLOCO2Since2015
+    DailyMLOCO2Since1958, DailyMLOCO2Since1974, DailyMLOCO2Since2015
 )
 
 

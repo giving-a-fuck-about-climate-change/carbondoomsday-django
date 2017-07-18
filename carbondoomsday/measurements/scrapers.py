@@ -3,6 +3,7 @@
 import csv
 import datetime
 from abc import ABC, abstractmethod
+from datetime import datetime as dt
 from decimal import Decimal, InvalidOperation
 from urllib.request import urlopen
 

@@ -128,3 +128,64 @@ def test_scrape_daily_mlo_co2_since_1974_existing_models(mlo_co2_since_1974):
     assert CO2.objects.count() == 2
     scrape_mlo_co2_measurements_since_1974()
     assert CO2.objects.count() == 2
+
+
+def test_scrape_daily_mlo_co2_since_1958(mlo_co2_since_1958):
+    from carbondoomsday.measurements.tasks import (
+        scrape_mlo_co2_measurements_since_1958
+    )
+
+    scrape_mlo_co2_measurements_since_1958()
+
+    assert CO2.objects.count() == 2
+
+    expected_date = datetime.date(2017, 6, 24)
+    expected_ppm = Decimal("408.42")
+    assert CO2.objects.filter(
+        date=expected_date, ppm=expected_ppm
+    ).exists()
+
+
+def test_scrape_daily_mlo_co2_since_1958_network_failure(mocker):
+    from carbondoomsday.measurements.tasks import (
+        scrape_mlo_co2_measurements_since_1958
+    )
+
+    target = "carbondoomsday.measurements.scrapers.requests.get"
+    with mocker.patch(target, side_effect=Timeout()):
+        with pytest.raises(Timeout):
+            scrape_mlo_co2_measurements_since_1958()
+    assert CO2.objects.count() == 0
+
+
+def test_scrape_daily_mlo_co2_since_1958_parse_skip(mocker):
+    from carbondoomsday.measurements.tasks import (
+        scrape_mlo_co2_measurements_since_1958
+    )
+
+    mocked = mocker.Mock()
+    mocked_co2_csv = "foobar\n9999-999-999, 408.92"
+    mocked.content = bytes(mocked_co2_csv, "utf-8")
+    target = "carbondoomsday.measurements.scrapers.requests.get"
+    with mocker.patch(target, return_value=mocked):
+        scrape_mlo_co2_measurements_since_1958()
+    assert CO2.objects.count() == 0
+
+    mocked = mocker.Mock()
+    mocked_co2_csv = "foobar\n2017-01-02, barbaz"
+    mocked.content = bytes(mocked_co2_csv, "utf-8")
+    target = "carbondoomsday.measurements.scrapers.requests.get"
+    with mocker.patch(target, return_value=mocked):
+        scrape_mlo_co2_measurements_since_1958()
+    assert CO2.objects.count() == 0
+
+
+def test_scrape_daily_mlo_co2_since_1958_existing_models(mlo_co2_since_1958):
+    from carbondoomsday.measurements.tasks import (
+        scrape_mlo_co2_measurements_since_1958
+    )
+
+    scrape_mlo_co2_measurements_since_1958()
+    assert CO2.objects.count() == 2
+    scrape_mlo_co2_measurements_since_1958()
+    assert CO2.objects.count() == 2
