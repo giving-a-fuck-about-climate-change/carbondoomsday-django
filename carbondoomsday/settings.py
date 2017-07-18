@@ -18,6 +18,11 @@ class MLODataSources():
         'surface/mlo/co2_mlo_surface-insitu_1_ccgg_DailyData.txt'
     )
 
+    MLO_DAILY_CO2_1958_TO_2017 = (
+        'http://scrippsco2.ucsd.edu/sites/default/files/'
+        'data/in_situ_co2/weekly_mlo.csv'
+    )
+
 
 class Base(Configuration, MLODataSources):
     """The base configuration for each environment."""
