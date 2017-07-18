@@ -8,6 +8,7 @@ from decimal import Decimal, InvalidOperation
 from urllib.request import urlopen
 
 import requests
+from django.conf import settings
 
 from carbondoomsday.measurements.models import CO2
 
@@ -35,6 +36,10 @@ class AbstractScraper(ABC):
 
 class DailyMLOCO2Since2015(AbstractScraper):
     """Daily CO2 measurements from the Mauna Loa Observatory since 2015."""
+    def __str__(self):
+        """Human readable representation."""
+        return "daily-mlo-co2-since-2015"
+
     def retrieve(self, location):
         """Retrieve the data set over the network."""
         return requests.get(location)
@@ -68,6 +73,26 @@ class DailyMLOCO2Since2015(AbstractScraper):
 
             if not CO2.objects.filter(date=co2_date).exists():
                 CO2.objects.create(date=co2_date, ppm=co2_ppm)
+
+    def run(self, location):
+        """Run the scraper."""
+        response = self.retrieve(location)
+        parsed = self.parse(response)
+
+        pre_count = CO2.objects.count()
+        self.insert(parsed)
+        post_count = CO2.objects.count()
+        num_inserted = post_count - pre_count
+
+        self.notify(num_inserted)
+
+    def notify(self, num_inserted):
+        """Notify Gitter after task success."""
+        msg = "The {} task added {} CO2 measurements just now"
+        requests.post(
+            settings.GITTER_URL,
+            data={'message': msg.format(str(self), num_inserted)}
+        )
 
 
 class DailyMLOCO2Since1974(AbstractScraper):
