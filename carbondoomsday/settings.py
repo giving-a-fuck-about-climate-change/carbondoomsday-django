@@ -146,6 +146,8 @@ class Base(Configuration, MLODataSources):
         }
     }
 
+    GITTER_URL = 'https://webhooks.gitter.im/e/878b5dd1e49288236569'
+
 
 class ChannelsWithRedis():
     """Channels production settings."""
