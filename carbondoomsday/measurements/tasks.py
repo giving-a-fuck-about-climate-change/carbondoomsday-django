@@ -21,6 +21,14 @@ def scrape_mlo_co2_measurements_since_2015():
 @app.task
 @transaction.atomic
 def scrape_mlo_co2_measurements_since_1974():
-    """Scrape historical Mauna Loa CO2 measurements."""
+    """Scrape daily CO2 measurements from MLO since 1974."""
     scraper = DailyMLOCO2Since1974()
     scraper.run(settings.MLO_DAILY_CO2_1974_TO_2017)
+
+
+@app.task
+@transaction.atomic
+def scrape_mlo_co2_measurements_since_1958():
+    """Scrape daily CO2 measurements from MLO since 1958."""
+    scraper = DailyMLOCO2Since1958()
+    scraper.run(settings.MLO_DAILY_CO2_1958_TO_2017)
