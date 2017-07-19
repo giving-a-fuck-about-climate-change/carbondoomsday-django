@@ -23,9 +23,13 @@ class CO2ViewSet(viewsets.ReadOnlyModelViewSet):
 
       * [co2_mlo_weekly.csv]
       * [co2_mlo_surface-insitu_1_ccgg_DailyData.txt]
+      * [weekly_mlo.csv]
+
+    We have daily CO2 measurements as far back as 1958.
 
     [co2_mlo_weekly.csv]: https://www.esrl.noaa.gov/gmd/webdata/ccgg/trends/co2_mlo_weekly.csv
     [co2_mlo_surface-insitu_1_ccgg_DailyData.txt]: ftp://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ/surface/mlo/co2_mlo_surface-insitu_1_ccgg_DailyData.txt
+    [weekly_mlo.csv]: http://scrippsco2.ucsd.edu/sites/default/files/data/in_situ_co2/weekly_mlo.csv
 
     """ # noqa
     lookup_field = 'date'
