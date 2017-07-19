@@ -88,6 +88,9 @@ class DailyMLOCO2Since2015(AbstractScraper):
 
     def notify(self, inserted):
         """Notify Gitter after task success."""
+        if settings.DEBUG:
+            return
+
         msg = "{}: {} added {} CO2 measurements just now"
         args = [settings.ENVIRONMENT, str(self), inserted]
         requests.post(
