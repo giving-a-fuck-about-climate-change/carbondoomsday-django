@@ -142,7 +142,7 @@ class Base(Configuration, MLODataSources):
     CELERY_BEAT_SCHEDULE = {
         'scrape-latest-co2-measurements-from-MLO': {
             'task': 'carbondoomsday.measurements.tasks.scrape_mlo_co2_measurements_since_2015',  # noqa
-            'schedule': timedelta(hours=6)
+            'schedule': timedelta(hours=12)
         }
     }
 
