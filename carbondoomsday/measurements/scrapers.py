@@ -91,12 +91,15 @@ class DailyMLOCO2Since2015(AbstractScraper):
         if settings.DEBUG:
             return
 
-        msg = "{}: {} added {} CO2 measurements just now"
-        args = [settings.ENVIRONMENT, str(self), inserted]
-        requests.post(
-            settings.GITTER_URL,
-            data={'message': msg.format(*args)}
-        )
+        if inserted > 0:
+            args = (settings.ENVIRONMENT, str(self), inserted)
+            msg = "{}: {} added {} CO2 measurements just now"
+        else:
+            args = (settings.ENVIRONMENT, str(self))
+            msg = "{}: {} didn't find any fresh data today"
+
+        payload = {'message': msg.format(*args)}
+        requests.post(settings.GITTER_URL, data=payload)
 
 
 class DailyMLOCO2Since1974(AbstractScraper):
