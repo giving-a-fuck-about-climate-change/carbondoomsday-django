@@ -1,9 +1,10 @@
 """Database models."""
 
 from django.db import models
+from django_extensions.db.models import TimeStampedModel
 
 
-class CO2(models.Model):
+class CO2(TimeStampedModel):
     """CO2 measurement model."""
     class Meta:
         verbose_name = "CO2"
