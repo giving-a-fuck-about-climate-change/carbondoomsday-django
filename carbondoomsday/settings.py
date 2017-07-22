@@ -185,6 +185,9 @@ class Production(ChannelsWithRedis, OpbeatCredentials, Base):
         'carbondoomsday.herokuapp.com',
         'api.carbondoomsday.com',
     ]
+    CORS_ORIGIN_WHITELIST = [
+        'carbon-inferno.herokuapp.com',
+    ]
 
 
 class Staging(ChannelsWithRedis, OpbeatCredentials, CORSHeaderAllowAll, Base):
