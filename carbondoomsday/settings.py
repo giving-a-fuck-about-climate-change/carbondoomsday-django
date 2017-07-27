@@ -24,6 +24,35 @@ class MLODataSources():
     )
 
 
+class ChannelsWithRedis():
+    """Channels production settings."""
+    REDIS_URL = values.Value(environ_name='REDIS_URL')
+    CHANNEL_LAYERS = {
+        'default': {
+            'BACKEND': 'asgi_redis.RedisChannelLayer',
+            'ROUTING': 'carbondoomsday.routing.appchannels',
+            'CONFIG': {'hosts': [REDIS_URL]},
+        },
+    }
+
+
+class OpbeatCredentials():
+    """Opbeat communication credentials."""
+    OPBEAT_APP_ID = values.Value()
+    OPBEAT_ORGANIZATION_ID = values.Value()
+    OPBEAT_SECRET_TOKEN = values.SecretValue()
+    OPBEAT = {
+        'APP_ID': OPBEAT_APP_ID,
+        'ORGANIZATION_ID': OPBEAT_ORGANIZATION_ID,
+        'SECRET_TOKEN': OPBEAT_SECRET_TOKEN,
+    }
+
+
+class CORSHeaderAllowAll():
+    """Disable all cross-origin resource sharing restrictions."""
+    CORS_ORIGIN_ALLOW_ALL = values.BooleanValue(True)
+
+
 class Base(Configuration, MLODataSources):
     """The base configuration for each environment."""
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -150,35 +179,6 @@ class Base(Configuration, MLODataSources):
     }
 
     GITTER_URL = 'https://webhooks.gitter.im/e/878b5dd1e49288236569'
-
-
-class ChannelsWithRedis():
-    """Channels production settings."""
-    REDIS_URL = values.Value(environ_name='REDIS_URL')
-    CHANNEL_LAYERS = {
-        'default': {
-            'BACKEND': 'asgi_redis.RedisChannelLayer',
-            'ROUTING': 'carbondoomsday.routing.appchannels',
-            'CONFIG': {'hosts': [REDIS_URL]},
-        },
-    }
-
-
-class OpbeatCredentials():
-    """Opbeat communication credentials."""
-    OPBEAT_APP_ID = values.Value()
-    OPBEAT_ORGANIZATION_ID = values.Value()
-    OPBEAT_SECRET_TOKEN = values.SecretValue()
-    OPBEAT = {
-        'APP_ID': OPBEAT_APP_ID,
-        'ORGANIZATION_ID': OPBEAT_ORGANIZATION_ID,
-        'SECRET_TOKEN': OPBEAT_SECRET_TOKEN,
-    }
-
-
-class CORSHeaderAllowAll():
-    """Disable all cross-origin resource sharing restrictions."""
-    CORS_ORIGIN_ALLOW_ALL = values.BooleanValue(True)
 
 
 class Production(ChannelsWithRedis, OpbeatCredentials, Base):
