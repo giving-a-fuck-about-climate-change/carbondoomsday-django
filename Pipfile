@@ -2,15 +2,6 @@
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 
-[dev-packages]
-pytest = "*"
-pytest-cov = "*"
-pytest-django = "*"
-pytest-mock = "*"
-isort = "*"
-pylama = "*"
-freezegun = "*"
-
 [packages]
 dj-database-url = "*"
 Django = "*"
@@ -29,6 +20,16 @@ djangorestframework-csv = "*"
 django-cors-headers = "*"
 channels = "*"
 asgi_redis = "*"
+django-redis = "*"
+
+[dev-packages]
+pytest = "*"
+pytest-cov = "*"
+pytest-django = "*"
+pytest-mock = "*"
+isort = "*"
+pylama = "*"
+freezegun = "*"
 
 [packages.celery]
 extras = [ "redis",]
