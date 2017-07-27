@@ -186,7 +186,8 @@ class Base(MLODataSources, Configuration):
             "BACKEND": "django_redis.cache.RedisCache",
             "LOCATION": REDIS_URL,
             "OPTIONS": {
-                "CLIENT_CLASS": "django_redis.client.DefaultClient"
+                "CLIENT_CLASS": "django_redis.client.DefaultClient",
+                "COMPRESSOR": "django_redis.compressors.zlib.ZlibCompressor",
             }
         }
     }
