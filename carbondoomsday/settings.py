@@ -36,6 +36,16 @@ class ChannelsWithRedis():
     }
 
 
+class ChannelsInMemory():
+    """Channels development settings."""
+    CHANNEL_LAYERS = {
+        'default': {
+            'BACKEND': 'asgiref.inmemory.ChannelLayer',
+            'ROUTING': 'carbondoomsday.routing.appchannels',
+        },
+    }
+
+
 class OpbeatCredentials():
     """Opbeat communication credentials."""
     OPBEAT_APP_ID = values.Value()
@@ -233,10 +243,3 @@ class Development(ChannelsInMemory, CORSHeaderAllowAll, DummyCache, Base):
     DEBUG = values.BooleanValue(True)
     CELERY_TASK_ALWAYS_EAGER = values.BooleanValue(True)
     OPBEAT_DISABLE_SEND = values.BooleanValue(True)
-
-    CHANNEL_LAYERS = {
-        'default': {
-            'BACKEND': 'asgiref.inmemory.ChannelLayer',
-            'ROUTING': 'carbondoomsday.routing.appchannels',
-        },
-    }
