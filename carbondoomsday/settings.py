@@ -53,7 +53,7 @@ class CORSHeaderAllowAll():
     CORS_ORIGIN_ALLOW_ALL = values.BooleanValue(True)
 
 
-class Base(Configuration, MLODataSources):
+class Base(MLODataSources, Configuration):
     """The base configuration for each environment."""
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
