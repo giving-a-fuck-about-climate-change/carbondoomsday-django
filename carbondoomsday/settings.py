@@ -25,7 +25,7 @@ class MLODataSources():
 
 
 class ChannelsWithRedis():
-    """Channels production settings."""
+    """Channels Redis back-end settings."""
     REDIS_URL = values.Value(environ_name='REDIS_URL')
     CHANNEL_LAYERS = {
         'default': {
@@ -37,7 +37,7 @@ class ChannelsWithRedis():
 
 
 class ChannelsInMemory():
-    """Channels development settings."""
+    """Channels InMemory back-end settings."""
     CHANNEL_LAYERS = {
         'default': {
             'BACKEND': 'asgiref.inmemory.ChannelLayer',
