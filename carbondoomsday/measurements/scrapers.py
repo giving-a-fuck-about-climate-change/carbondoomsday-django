@@ -88,7 +88,7 @@ class DailyMLOCO2Since2015(AbstractScraper):
 
     def notify(self, inserted):
         """Notify Gitter after task success."""
-        if settings.DEBUG:
+        if settings.ENVIRONMENT == 'Development':
             return
 
         if inserted > 0:
