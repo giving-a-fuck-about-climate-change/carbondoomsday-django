@@ -226,6 +226,7 @@ class Production(ChannelsWithRedis, OpbeatCredentials, Base):
     ]
     CORS_ORIGIN_WHITELIST = [
         'carbon-inferno.herokuapp.com',
+        'carbondoomsday.com',
     ]
 
 
