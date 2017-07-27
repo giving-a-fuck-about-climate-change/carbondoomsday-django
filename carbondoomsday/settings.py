@@ -144,8 +144,9 @@ class Base(MLODataSources, Configuration):
         },
     }
 
-    CELERY_BROKER_URL = values.Value()
-    CELERY_RESULT_BACKEND = values.Value()
+    REDIS_URL = values.Value(environ_name='REDIS_URL')
+    CELERY_BROKER_URL = REDIS_URL
+    CELERY_RESULT_BACKEND = REDIS_URL
 
     REST_FRAMEWORK = {
         'DEFAULT_FILTER_BACKENDS': (
@@ -179,6 +180,16 @@ class Base(MLODataSources, Configuration):
     }
 
     GITTER_URL = 'https://webhooks.gitter.im/e/878b5dd1e49288236569'
+
+    CACHES = {
+        "default": {
+            "BACKEND": "django_redis.cache.RedisCache",
+            "LOCATION": REDIS_URL,
+            "OPTIONS": {
+                "CLIENT_CLASS": "django_redis.client.DefaultClient"
+            }
+        }
+    }
 
 
 class Production(ChannelsWithRedis, OpbeatCredentials, Base):
