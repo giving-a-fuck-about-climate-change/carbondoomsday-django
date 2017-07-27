@@ -53,7 +53,31 @@ class CORSHeaderAllowAll():
     CORS_ORIGIN_ALLOW_ALL = values.BooleanValue(True)
 
 
-class Base(MLODataSources, Configuration):
+class RedisCache():
+    """Redis based web API view cache."""
+    REDIS_URL = values.Value(environ_name='REDIS_URL')
+    CACHES = {
+        "default": {
+            "BACKEND": "django_redis.cache.RedisCache",
+            "LOCATION": REDIS_URL,
+            "OPTIONS": {
+                "CLIENT_CLASS": "django_redis.client.DefaultClient",
+                "COMPRESSOR": "django_redis.compressors.zlib.ZlibCompressor",
+            }
+        }
+    }
+
+
+class DummyCache():
+    """A fake web API view cache."""
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+        }
+    }
+
+
+class Base(MLODataSources, RedisCache, Configuration):
     """The base configuration for each environment."""
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -146,9 +170,8 @@ class Base(MLODataSources, Configuration):
         },
     }
 
-    REDIS_URL = values.Value(environ_name='REDIS_URL')
-    CELERY_BROKER_URL = REDIS_URL
-    CELERY_RESULT_BACKEND = REDIS_URL
+    CELERY_BROKER_URL = values.Value()
+    CELERY_RESULT_BACKEND = values.Value()
 
     REST_FRAMEWORK = {
         'DEFAULT_FILTER_BACKENDS': (
@@ -183,17 +206,6 @@ class Base(MLODataSources, Configuration):
 
     GITTER_URL = 'https://webhooks.gitter.im/e/878b5dd1e49288236569'
 
-    CACHES = {
-        "default": {
-            "BACKEND": "django_redis.cache.RedisCache",
-            "LOCATION": REDIS_URL,
-            "OPTIONS": {
-                "CLIENT_CLASS": "django_redis.client.DefaultClient",
-                "COMPRESSOR": "django_redis.compressors.zlib.ZlibCompressor",
-            }
-        }
-    }
-
 
 class Production(ChannelsWithRedis, OpbeatCredentials, Base):
     """The production environment."""
@@ -215,7 +227,7 @@ class Staging(ChannelsWithRedis, OpbeatCredentials, CORSHeaderAllowAll, Base):
     ]
 
 
-class Development(CORSHeaderAllowAll, Base):
+class Development(ChannelsInMemory, CORSHeaderAllowAll, DummyCache, Base):
     """The development environment."""
     ENVIRONMENT = 'Development'
     DEBUG = values.BooleanValue(True)
