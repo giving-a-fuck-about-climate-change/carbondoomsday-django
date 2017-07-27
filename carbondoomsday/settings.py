@@ -47,7 +47,7 @@ class ChannelsInMemory():
 
 
 class OpbeatCredentials():
-    """Opbeat communication credentials."""
+    """Opbeat settings."""
     OPBEAT_APP_ID = values.Value()
     OPBEAT_ORGANIZATION_ID = values.Value()
     OPBEAT_SECRET_TOKEN = values.SecretValue()
@@ -59,12 +59,12 @@ class OpbeatCredentials():
 
 
 class CORSHeaderAllowAll():
-    """Disable all cross-origin resource sharing restrictions."""
+    """CORS disabled settings."""
     CORS_ORIGIN_ALLOW_ALL = values.BooleanValue(True)
 
 
 class RedisCache():
-    """Redis based web API view cache."""
+    """Redis based cache settings."""
     REDIS_URL = values.Value(environ_name='REDIS_URL')
     CACHES = {
         "default": {
@@ -79,7 +79,7 @@ class RedisCache():
 
 
 class DummyCache():
-    """A fake web API view cache."""
+    """Fake cache settings."""
     CACHES = {
         'default': {
             'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
@@ -87,13 +87,61 @@ class DummyCache():
     }
 
 
-class Base(MLODataSources, RedisCache, Configuration):
+class GitterWebHooks():
+    """Gitter web hook URLs."""
+    GITTER_URL = 'https://webhooks.gitter.im/e/878b5dd1e49288236569'
+
+
+class DjangoRestFramework():
+    """DRF general settings."""
+    REST_FRAMEWORK = {
+        'DEFAULT_FILTER_BACKENDS': (
+            'rest_framework_filters.backends.DjangoFilterBackend',
+            'rest_framework.filters.OrderingFilter',
+        ),
+        'DEFAULT_PAGINATION_CLASS': (
+            'rest_framework.pagination.LimitOffsetPagination'
+        ),
+        'DEFAULT_RENDERER_CLASSES': (
+            'rest_framework.renderers.JSONRenderer',
+        ),
+        'PAGE_SIZE': 50,
+    }
+
+
+class Swagger():
+    """Swagger settings."""
+    SCHEMA_TITLE = 'CarbonDoomsDay Web API'
+    SWAGGER_SETTINGS = {
+        'APIS_SORTER': 'alpha',
+        'DOC_EXPANSION': 'list',
+        'JSON_EDITOR': True,
+        'SHOW_REQUEST_HEADERS': True,
+    }
+
+
+class CeleryAndCeleryBeat():
+    """Celery and Celery Beat settings."""
+    CELERY_BROKER_URL = values.Value()
+    CELERY_RESULT_BACKEND = values.Value()
+    CELERY_BEAT_SCHEDULE = {
+        'scrape-latest-co2-measurements-from-MLO': {
+            'task': (
+                'carbondoomsday.measurements.tasks.'
+                'scrape_mlo_co2_measurements_since_2015'
+            ),
+            'schedule': timedelta(hours=12)
+        }
+    }
+
+
+class Base(MLODataSources, RedisCache, GitterWebHooks,
+           DjangoRestFramework, Swagger, CeleryAndCeleryBeat,
+           Configuration):
     """The base configuration for each environment."""
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
     PROJECT = 'carbondoomsday'
-
-    SCHEMA_TITLE = 'CarbonDoomsDay Web API'
 
     DEBUG = values.BooleanValue(False)
 
@@ -179,42 +227,6 @@ class Base(MLODataSources, RedisCache, Configuration):
             },
         },
     }
-
-    CELERY_BROKER_URL = values.Value()
-    CELERY_RESULT_BACKEND = values.Value()
-
-    REST_FRAMEWORK = {
-        'DEFAULT_FILTER_BACKENDS': (
-            'rest_framework_filters.backends.DjangoFilterBackend',
-            'rest_framework.filters.OrderingFilter',
-        ),
-        'DEFAULT_PAGINATION_CLASS': (
-            'rest_framework.pagination.LimitOffsetPagination'
-        ),
-        'DEFAULT_RENDERER_CLASSES': (
-            'rest_framework.renderers.JSONRenderer',
-        ),
-        'PAGE_SIZE': 50,
-    }
-
-    SWAGGER_SETTINGS = {
-        'APIS_SORTER': 'alpha',
-        'DOC_EXPANSION': 'list',
-        'JSON_EDITOR': True,
-        'SHOW_REQUEST_HEADERS': True,
-    }
-
-    CELERY_BEAT_SCHEDULE = {
-        'scrape-latest-co2-measurements-from-MLO': {
-            'task': (
-                'carbondoomsday.measurements.tasks.'
-                'scrape_mlo_co2_measurements_since_2015'
-            ),
-            'schedule': timedelta(hours=12)
-        }
-    }
-
-    GITTER_URL = 'https://webhooks.gitter.im/e/878b5dd1e49288236569'
 
 
 class Production(ChannelsWithRedis, OpbeatCredentials, Base):
