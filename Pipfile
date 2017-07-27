@@ -24,10 +24,7 @@ whitenoise = "*"
 
 [dev-packages]
 freezegun = "*"
-freezegun = "*"
 isort = "*"
-isort = "*"
-pylama = "*"
 pylama = "*"
 pytest = "*"
 pytest-cov = "*"
