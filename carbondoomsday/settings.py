@@ -99,6 +99,7 @@ class Base(MLODataSources, Configuration):
     )
 
     MIDDLEWARE_CLASSES = (
+        'django.middleware.cache.UpdateCacheMiddleware',
         'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
         'django.middleware.security.SecurityMiddleware',
         'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -110,6 +111,7 @@ class Base(MLODataSources, Configuration):
         'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        'django.middleware.cache.FetchFromCacheMiddleware',
     )
 
     TEMPLATES = [
