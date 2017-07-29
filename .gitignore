@@ -7,7 +7,4 @@
 staticfiles
 mediafiles
 celerybeat-schedule
-node_modules
-webpack-stats*.json
-frontend/bundles/
-frontend/dist/
+tags
