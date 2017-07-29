@@ -130,7 +130,7 @@ class CeleryAndCeleryBeat():
                 'carbondoomsday.measurements.tasks.'
                 'scrape_mlo_co2_measurements_since_2015'
             ),
-            'schedule': timedelta(hours=12)
+            'schedule': timedelta(hours=3)
         }
     }
 
