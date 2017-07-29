@@ -36,7 +36,6 @@ times may vary.
 
 [Swagger API documentation]: http://api.carbondoomsday.com/
 
-We were featured on [HackADay]. Review the [chat log here]!
+Please read [our Wiki] for more information about the project.
 
-[HackADay]: https://hackaday.io/event/25601-climate-change-hack-chat
-[chat log here]: https://hackaday.io/event/25601-climate-change-hack-chat/log/62377-climate-change-hack-chat-transcript
+[our Wiki]: https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/wiki
