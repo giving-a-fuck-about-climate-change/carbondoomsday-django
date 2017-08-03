@@ -1,0 +1,4 @@
+#!/bin/bash
+
+curl -X GET http://carbondoomsday.herokuapp.com/
+curl -X GET http://carbondoomsday-test.herokuapp.com/
