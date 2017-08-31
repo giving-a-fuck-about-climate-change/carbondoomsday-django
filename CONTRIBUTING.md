@@ -51,6 +51,7 @@ We manage our Python dependencies with [Pipenv], [install it via Pipsi]:
 
 ``` bash
 $ curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python3
+$ pipsi install pew
 $ pipsi install pipenv
 ```
 
@@ -58,6 +59,22 @@ Then run:
 
 ``` bash
 $ pipenv install --dev
+```
+
+# Using Pipenv
+
+There are many helpful commands contained in the Makefile. Each of them
+make sure to run commands inside the pipenv environment. If you're not
+using the targets, please remember to prefix your commands with:
+
+```bash
+$ pipenv run <command>
+```
+
+Or else, just drop into a configured environment with:
+
+```bash
+$ pipenv shell
 ```
 
 # Install System Dependencies
@@ -81,4 +98,10 @@ And get the latest data:
 
 ``` bash
 $ make scrape_mlo_co2_since_2015
+```
+
+# Start Application
+
+```bash
+$ make server
 ```
