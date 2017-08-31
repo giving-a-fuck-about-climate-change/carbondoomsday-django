@@ -51,6 +51,7 @@ We manage our Python dependencies with [Pipenv], [install it via Pipsi]:
 
 ``` bash
 $ curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python3
+$ pipsi install pew
 $ pipsi install pipenv
 ```
 
@@ -81,4 +82,11 @@ And get the latest data:
 
 ``` bash
 $ make scrape_mlo_co2_since_2015
+```
+
+# Start App
+
+```bash
+$ pipenv shell
+$ DJANGO_SECRET_KEY=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa python manage.py runserver --settings=carbondoomsday.settings --configuration=Development
 ```
