@@ -24,14 +24,14 @@ class AbstractScraper(ABC):
         """Parse the received data set."""
 
     @abstractmethod
-    def insert(self, entry):
-        """Insert the parsed data into the database."""
+    def handle(self, entry):
+        """Handle the parsed data and get it into the database."""
 
     def run(self, location):
         """Run the scraper."""
         response = self.retrieve(location)
         parsed = self.parse(response)
-        self.insert(parsed)
+        self.handle(parsed)
 
 
 class DailyMLOCO2Since2015(AbstractScraper):
@@ -52,7 +52,7 @@ class DailyMLOCO2Since2015(AbstractScraper):
         drop_headers = slice(1, len(parsed))
         return parsed[drop_headers]
 
-    def insert(self, parsed):
+    def handle(self, parsed):
         """Create new CO2 measurements."""
         for entry in parsed:
             if not entry:
@@ -84,7 +84,7 @@ class DailyMLOCO2Since2015(AbstractScraper):
         parsed = self.parse(response)
 
         pre_count = CO2.objects.count()
-        self.insert(parsed)
+        self.handle(parsed)
         post_count = CO2.objects.count()
         num_inserted = post_count - pre_count
 
@@ -112,7 +112,7 @@ class DailyMLOCO2Since1974(AbstractScraper):
         separated = decoded.split('\n')
         return [line for line in separated if line.startswith('MLO')]
 
-    def insert(self, parsed):
+    def handle(self, parsed):
         """Create new CO2 measurements."""
         NOT_RECORDED = '-999.99'
         PPM_HEADER = 7
@@ -153,7 +153,7 @@ class DailyMLOCO2Since1958(AbstractScraper):
         separated = decoded.split('\n')
         return list(csv.reader(separated))
 
-    def insert(self, parsed):
+    def handle(self, parsed):
         """Create new CO2 measurements."""
         for entry in parsed:
             try:
