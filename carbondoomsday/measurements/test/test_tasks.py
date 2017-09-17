@@ -189,3 +189,26 @@ def test_scrape_daily_mlo_co2_since_1958_existing_models(mlo_co2_since_1958):
     assert CO2.objects.count() == 2
     scrape_mlo_co2_measurements_since_1958()
     assert CO2.objects.count() == 2
+
+
+def test_scrape_will_update_existing_values_from_mlo(mlo_co2_since_1958):
+    from carbondoomsday.measurements.tasks import (
+        scrape_mlo_co2_measurements_since_1958
+    )
+
+    assert CO2.objects.count() == 0
+
+    scrape_mlo_co2_measurements_since_1958()
+    assert CO2.objects.count() == 2
+
+    co2_measurement = CO2.objects.get(ppm=Decimal('407.77'))
+    co2_measurement.ppm = Decimal('666.66')
+    co2_measurement.save()
+
+    assert not CO2.objects.filter(ppm=Decimal('407.77')).exists()
+
+    scrape_mlo_co2_measurements_since_1958()
+    assert CO2.objects.count() == 2
+
+    assert CO2.objects.filter(ppm=Decimal('407.77')).exists()
+    assert not CO2.objects.filter(ppm=Decimal('666.66')).exists()
