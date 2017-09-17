@@ -9,6 +9,7 @@ from urllib.request import urlopen
 
 import requests
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 
 from carbondoomsday.measurements.models import CO2
 
@@ -16,22 +17,40 @@ from carbondoomsday.measurements.models import CO2
 class AbstractScraper(ABC):
     """An abstract class for specifying scraping behaviour."""
     @abstractmethod
-    def retrieve(self, location):
+    def get_from_network(self, location):
         """Retrieve the data set over the network."""
 
     @abstractmethod
-    def parse(self, response):
+    def parse_data_set(self, response):
         """Parse the received data set."""
 
     @abstractmethod
-    def handle(self, entry):
-        """Handle the parsed data and get it into the database."""
+    def parse_values(self, entries):
+        """Retrieve the values from the data set."""
+
+    def handle_values(self, values):
+        """Get the parsed values into the database.
+
+        If it's a new value pair, create it. If there is an
+        existing measurement, make sure we update our stored
+        PPM value. This ensures consistency with our data
+        sources.
+        """
+        for new_date, new_ppm in values:
+            try:
+                existing_measurement = CO2.objects.get(date=new_date)
+                if not existing_measurement.ppm == new_ppm:
+                    existing_measurement.ppm = new_ppm
+                    existing_measurement.save()
+            except ObjectDoesNotExist:
+                CO2.objects.create(date=new_date, ppm=new_ppm)
 
     def run(self, location):
         """Run the scraper."""
-        response = self.retrieve(location)
-        parsed = self.parse(response)
-        self.handle(parsed)
+        response = self.get_from_network(location)
+        entries = self.parse_data_set(response)
+        values = self.parse_values(entries)
+        self.handle_values(values)
 
 
 class DailyMLOCO2Since2015(AbstractScraper):
@@ -40,23 +59,24 @@ class DailyMLOCO2Since2015(AbstractScraper):
         """Human readable representation."""
         return "daily-mlo-co2-since-2015"
 
-    def retrieve(self, location):
+    def get_from_network(self, location):
         """Retrieve the data set over the network."""
         return requests.get(location)
 
-    def parse(self, response):
-        """Parse the CO2 measurements CSV based data set."""
+    def parse_data_set(self, response):
+        """Parse the received data set."""
         decoded = str(response.content, 'utf-8')
         separated = decoded.split('\n')
         parsed = list(csv.reader(separated))
         drop_headers = slice(1, len(parsed))
         return parsed[drop_headers]
 
-    def handle(self, parsed):
-        """Create new CO2 measurements."""
-        for entry in parsed:
+    def parse_values(self, entries):
+        """Retrieve the values from the data set."""
+        values = []
+        for entry in entries:
             if not entry:
-                return
+                continue
 
             date, daily, _, _ = entry
             try:
@@ -71,20 +91,18 @@ class DailyMLOCO2Since2015(AbstractScraper):
             except InvalidOperation:
                 continue
 
-            existing_measurement = CO2.objects.filter(date=co2_date)
-            if not existing_measurement.exists():
-                CO2.objects.create(date=co2_date, ppm=co2_ppm)
-            elif not existing_measurement.ppm == co2_ppm:
-                existing_measurement.ppm = co2_ppm
-                existing_measurement.save()
+            values.append((co2_date, co2_ppm))
+
+        return values
 
     def run(self, location):
         """Run the scraper."""
-        response = self.retrieve(location)
-        parsed = self.parse(response)
+        response = self.get_from_network(location)
+        entries = self.parse_data_set(response)
+        values = self.parse_values(entries)
 
         pre_count = CO2.objects.count()
-        self.handle(parsed)
+        self.handle_values(values)
         post_count = CO2.objects.count()
         num_inserted = post_count - pre_count
 
@@ -102,22 +120,25 @@ class DailyMLOCO2Since2015(AbstractScraper):
 
 class DailyMLOCO2Since1974(AbstractScraper):
     """Daily CO2 measurements from the Mauna Loa Observatory since 1974."""
-    def retrieve(self, location):
+    def get_from_network(self, location):
         """Retrieve the text file."""
         return urlopen(location).read()
 
-    def parse(self, response):
+    def parse_data_set(self, response):
         """Parse the CO2 measurements text based data set."""
         decoded = str(response, 'utf-8')
         separated = decoded.split('\n')
         return [line for line in separated if line.startswith('MLO')]
 
-    def handle(self, parsed):
-        """Create new CO2 measurements."""
+    def parse_values(self, entries):
+        """Retrieve the values from the data set."""
+        values = []
+
         NOT_RECORDED = '-999.99'
         PPM_HEADER = 7
         time_of_year = slice(1, 4)
-        for entry in parsed:
+
+        for entry in entries:
             try:
                 year, month, day = entry.split()[time_of_year]
                 intified = map(int, (year, month, day))
@@ -133,29 +154,28 @@ class DailyMLOCO2Since1974(AbstractScraper):
             except (InvalidOperation, IndexError, ValueError, TypeError):
                 continue
 
-            existing_measurement = CO2.objects.filter(date=co2_date)
-            if not existing_measurement.exists():
-                CO2.objects.create(date=co2_date, ppm=co2_ppm)
-            elif not existing_measurement.ppm == co2_ppm:
-                existing_measurement.ppm = co2_ppm
-                existing_measurement.save()
+            values.append((co2_date, co2_ppm))
+
+        return values
 
 
 class DailyMLOCO2Since1958(AbstractScraper):
     """Daily CO2 measurements from the Mauna Loa Observatory since 1958."""
-    def retrieve(self, location):
+    def get_from_network(self, location):
         """Retrieve the CSV file."""
         return requests.get(location)
 
-    def parse(self, response):
+    def parse_data_set(self, response):
         """Parse the CO2 measurements CSV data set."""
         decoded = str(response.content, 'utf-8')
         separated = decoded.split('\n')
         return list(csv.reader(separated))
 
-    def handle(self, parsed):
+    def parse_values(self, entries):
         """Create new CO2 measurements."""
-        for entry in parsed:
+        values = []
+
+        for entry in entries:
             try:
                 co2_date = dt.strptime(entry[0], '%Y-%m-%d')
             except (ValueError, IndexError):
@@ -166,9 +186,6 @@ class DailyMLOCO2Since1958(AbstractScraper):
             except (InvalidOperation, IndexError):
                 continue
 
-            existing_measurement = CO2.objects.filter(date=co2_date)
-            if not existing_measurement.exists():
-                CO2.objects.create(date=co2_date, ppm=co2_ppm)
-            elif not existing_measurement.ppm == co2_ppm:
-                existing_measurement.ppm = co2_ppm
-                existing_measurement.save()
+            values.append((co2_date, co2_ppm))
+
+        return values
