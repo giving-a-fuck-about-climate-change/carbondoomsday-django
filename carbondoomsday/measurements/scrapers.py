@@ -71,8 +71,12 @@ class DailyMLOCO2Since2015(AbstractScraper):
             except InvalidOperation:
                 continue
 
-            if not CO2.objects.filter(date=co2_date).exists():
+            existing_measurement = CO2.objects.filter(date=co2_date)
+            if not existing_measurement.exists():
                 CO2.objects.create(date=co2_date, ppm=co2_ppm)
+            elif not existing_measurement.ppm == co2_ppm:
+                existing_measurement.ppm = co2_ppm
+                existing_measurement.save()
 
     def run(self, location):
         """Run the scraper."""
@@ -129,8 +133,12 @@ class DailyMLOCO2Since1974(AbstractScraper):
             except (InvalidOperation, IndexError, ValueError, TypeError):
                 continue
 
-            if not CO2.objects.filter(date=co2_date).exists():
+            existing_measurement = CO2.objects.filter(date=co2_date)
+            if not existing_measurement.exists():
                 CO2.objects.create(date=co2_date, ppm=co2_ppm)
+            elif not existing_measurement.ppm == co2_ppm:
+                existing_measurement.ppm = co2_ppm
+                existing_measurement.save()
 
 
 class DailyMLOCO2Since1958(AbstractScraper):
@@ -158,5 +166,9 @@ class DailyMLOCO2Since1958(AbstractScraper):
             except (InvalidOperation, IndexError):
                 continue
 
-            if not CO2.objects.filter(date=co2_date).exists():
+            existing_measurement = CO2.objects.filter(date=co2_date)
+            if not existing_measurement.exists():
                 CO2.objects.create(date=co2_date, ppm=co2_ppm)
+            elif not existing_measurement.ppm == co2_ppm:
+                existing_measurement.ppm = co2_ppm
+                existing_measurement.save()
