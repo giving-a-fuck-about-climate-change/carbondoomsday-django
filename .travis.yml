@@ -30,7 +30,7 @@ matrix:
 before_install:
   - psql -c 'create database carbondoomsday;' -U postgres
   - psql -c 'create database carbondoomsday_test;' -U postgres
-  - pip install pipenv
+  - pip install -IU pip pipenv
 
 install:
   - pipenv install --dev
