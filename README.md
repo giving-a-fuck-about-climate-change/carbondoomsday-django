@@ -28,11 +28,11 @@ API. Please see the [contribution documentation] if you'd like to help out.
 [free]: https://fsfe.org/about/basics/freesoftware.en.html
 [contribution documentation]: https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/blob/master/CONTRIBUTING.md
 
-We hope to provide front-end client creators consume climate change related
-data in order to fuel a new wave of interesting and engaging visualisations and
-interactive environments. Please see the [Swagger API documentation] to get
-started. The service is currently hosted on the Heroku free tier. Response
-times may vary.
+We hope to enable front-end client creators to consume climate change related
+data in order to fuel (no pun intended) a new wave of interesting and engaging
+visualisations and interactive environments. Please see the [Swagger API
+documentation] to get started. The service is currently hosted on the Heroku
+free tier. Response times may vary.
 
 [Swagger API documentation]: http://api.carbondoomsday.com/
 
