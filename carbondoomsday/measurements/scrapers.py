@@ -1,8 +1,8 @@
 """Data scrapers.
 
 Each subclass of the AbstractScraper is a CO2 meausurement data scraper from a
-different source. This ABC pattern came out of realising that most tasks to scrape
-the measurements end up looking the same.
+different source. This ABC pattern came out of realising that most tasks to
+scrape the measurements end up looking the same.
 
 If adding one, implement the abstract class.
 """
