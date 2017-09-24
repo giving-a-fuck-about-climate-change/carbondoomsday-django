@@ -127,6 +127,10 @@ class DailyMLOCO2Since2015(AbstractScraper):
 
 class DailyMLOCO2Since1974(AbstractScraper):
     """Daily CO2 measurements from the Mauna Loa Observatory since 1974."""
+    def __str__(self):
+        """Human readable representation."""
+        return "daily-mlo-co2-since-1974"
+
     def get_from_network(self, location):
         """Retrieve the text file."""
         return urlopen(location).read()
@@ -168,6 +172,10 @@ class DailyMLOCO2Since1974(AbstractScraper):
 
 class DailyMLOCO2Since1958(AbstractScraper):
     """Daily CO2 measurements from the Mauna Loa Observatory since 1958."""
+    def __str__(self):
+        """Human readable representation."""
+        return "daily-mlo-co2-since-1958"
+
     def get_from_network(self, location):
         """Retrieve the CSV file."""
         return requests.get(location)
