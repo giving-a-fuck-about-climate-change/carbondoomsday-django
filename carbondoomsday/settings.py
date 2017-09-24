@@ -131,7 +131,21 @@ class CeleryAndCeleryBeat():
                 'scrape_mlo_co2_measurements_since_2015'
             ),
             'schedule': timedelta(minutes=30)
-        }
+        },
+        'scrape-co2-since-1958-measurements-from-MLO': {
+            'task': (
+                'carbondoomsday.measurements.tasks.'
+                'scrape_mlo_co2_measurements_since_1958'
+            ),
+            'schedule': timedelta(minutes=40)
+        },
+        'scrape-co2-since-1974-measurements-from-MLO': {
+            'task': (
+                'carbondoomsday.measurements.tasks.'
+                'scrape_mlo_co2_measurements_since_1974'
+            ),
+            'schedule': timedelta(minutes=50)
+        },
     }
 
 
