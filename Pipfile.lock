@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e31828e01557f18d7f871a8e8de9a29168692bb79dc94c24a1e699eacbc9e148"
+            "sha256": "f392cc9cde2a9fe5a488bf94ed4bdf3055f81cf4266ae3ac78e7ff59e4796065"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -17,7 +17,9 @@
             "sys_platform": "linux"
         },
         "pipfile-spec": 6,
-        "requires": {},
+        "requires": {
+            "python_version": "3.6"
+        },
         "sources": [
             {
                 "url": "https://pypi.python.org/simple",
