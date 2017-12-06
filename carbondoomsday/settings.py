@@ -247,6 +247,7 @@ class Production(ChannelsWithRedis, OpbeatCredentials, Base):
     """The production environment."""
     ENVIRONMENT = 'Production'
     ALLOWED_HOSTS = [
+        'www.carbondoomsday.herokuapp.com',
         'carbondoomsday.herokuapp.com',
         'api.carbondoomsday.com',
     ]
