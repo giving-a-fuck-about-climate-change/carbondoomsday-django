@@ -75,7 +75,6 @@ prodbash:
 	@heroku run bash -a carbondoomsday
 .PHONY: prodbash
 
-
 prodrelease:
 	@git push heroku-prod master
 .PHONY: prodrelease
