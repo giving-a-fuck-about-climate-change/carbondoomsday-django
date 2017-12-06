@@ -16,7 +16,10 @@ sort:
 	@find $(SOURCE_DIR) -name "*.py" | xargs $(PIPENVRUN) isort -c --diff -sp=setup.cfg
 .PHONY: sort
 
-test:
+pyclean:
+	@find $(SOURCE_DIR) -name "*.pyc" | xargs rm
+
+test: pyclean
 	@$(PIPENVRUN) pytest --cov=carbondoomsday
 .PHONY: test
 
