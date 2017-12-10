@@ -1,2 +1,2 @@
 ignore:
-  - "carbondoomsday/carbondioxide/migrations"
+  - "carbondoomsday/measurements/migrations"
