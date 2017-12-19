@@ -10,6 +10,6 @@ class CO2Filter(filters.FilterSet):
     class Meta:
         model = CO2
         fields = {
-            'ppm': '__all__',
-            'date': '__all__',
+            'ppm': ['exact'],
+            'date': ['exact', 'range']
         }
