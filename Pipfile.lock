@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f392cc9cde2a9fe5a488bf94ed4bdf3055f81cf4266ae3ac78e7ff59e4796065"
+            "sha256": "2a77095a4763b3c9f5afeef0ab7fbd8cd5302ffa9d01d955cd6b6a33b436a3de"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -11,14 +11,14 @@
             "platform_python_implementation": "CPython",
             "platform_release": "4.9.0-4-amd64",
             "platform_system": "Linux",
-            "platform_version": "#1 SMP Debian 4.9.51-1 (2017-09-28)",
+            "platform_version": "#1 SMP Debian 4.9.65-3 (2017-12-03)",
             "python_full_version": "3.5.3",
             "python_version": "3.5",
             "sys_platform": "linux"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.6"
+            "python_version": "3.5"
         },
         "sources": [
             {
@@ -274,21 +274,9 @@
         },
         "opbeat": {
             "hashes": [
-                "sha256:e4c97eaaeb5e9f5f12935446d92821d2cfa12c31aaa7d02af8d4bb67be7eb8ac",
-                "sha256:83f7f64f99baa7d62976717a7e71f6bdfb5552860e5da850865926b84b4cbfed",
-                "sha256:2b73bc118fb7382f760f1e7e74ff7e8fc878f9a7c63c46b270e4b85da1aef574",
-                "sha256:54c9dd207aa70d1ff61da106f3822c24c9829303f95a3dc051356dc32ddfaa86",
-                "sha256:47a0ddfd8a228295cc0ea938a5232ebe48b875641e3f45a8861cc8249d116888",
-                "sha256:ad8c66d622a7b84909c7a9dbcdcff2334554ad4597c0ac22ea70c2419154176c",
-                "sha256:70d41972f8f9b6902fa63ba4463d34a04e147c3e5a9db54519aed55b16c41dcc",
-                "sha256:2da2cdf9f943c2f6096504564920f6c7122bd9e58233fe38a6ed6ff86fc410db",
-                "sha256:88567f723a0be06380cd334345a038e8569cbeb2ba13b55240b668467251ac24",
-                "sha256:1de2a4d48041d26608cfd08ccd19495678bfd2ff98ec0075ad18a577b459d3ad",
-                "sha256:effc0b4724ace209b54f2529eb7746c6c7b0974b653f464516af23a16c984cee",
-                "sha256:4e0d45a43b988a23d8178f1f3f170b5ccf95b2a7ebf87b9fd43330b1ad2ae41f",
-                "sha256:32354c83171a67c76e837d41973c6964dce3c874ec7ef5cf47aaf8d7dd9fa7cb"
+                "sha256:d9b24bcdf7b09c6a32f83d855bb85acd30ecb5815f93242ff4caab808dfbec97"
             ],
-            "version": "==3.5.3"
+            "version": "==3.6.0"
         },
         "openapi-codec": {
             "hashes": [
