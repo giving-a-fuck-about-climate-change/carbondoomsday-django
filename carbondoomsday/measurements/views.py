@@ -5,6 +5,7 @@ from rest_framework.renderers import JSONRenderer
 
 from carbondoomsday.measurements.filters import CO2Filter
 from carbondoomsday.measurements.models import CO2
+from carbondoomsday.measurements.paginators import CustomPageNumberPagination
 from carbondoomsday.measurements.renderers import PaginatedCSVRenderer
 from carbondoomsday.measurements.serializers import CO2Serializer
 
@@ -42,3 +43,4 @@ class CO2ViewSet(viewsets.ReadOnlyModelViewSet):
     ordering_fields = '__all__'
     ordering = ('-date',)
     renderer_classes = (JSONRenderer, PaginatedCSVRenderer,)
+    pagination_class = CustomPageNumberPagination
