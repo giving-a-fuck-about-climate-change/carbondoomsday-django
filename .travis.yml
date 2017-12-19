@@ -33,7 +33,7 @@ before_install:
   - pip install -IU pip pipenv
 
 install:
-  - pipenv install --dev
+  - pipenv install --dev --three
 
 script:
   - |
@@ -55,9 +55,6 @@ script:
     esac
     set +ex
 
-notifications:
-  email: false
-
 after_success:
   - pip install codecov
   - codecov --token=29a4b58d-9ed9-44aa-b44e-16efe2219614
@@ -65,3 +62,6 @@ after_success:
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
     docker push $DOCKER_USERNAME/carbondoomsday;
     fi
+
+notifications:
+  email: false

@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# A script to waking up the sleepy Heroku dynos.
-
-curl -X GET http://carbondoomsday.herokuapp.com/
-curl -X GET http://carbondoomsday-test.herokuapp.com/

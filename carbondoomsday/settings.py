@@ -24,28 +24,6 @@ class MLODataSources():
     )
 
 
-class ChannelsWithRedis():
-    """Channels Redis back-end settings."""
-    REDIS_URL = values.Value(environ_name='REDIS_URL')
-    CHANNEL_LAYERS = {
-        'default': {
-            'BACKEND': 'asgi_redis.RedisChannelLayer',
-            'ROUTING': 'carbondoomsday.routing.appchannels',
-            'CONFIG': {'hosts': [REDIS_URL]},
-        },
-    }
-
-
-class ChannelsInMemory():
-    """Channels InMemory back-end settings."""
-    CHANNEL_LAYERS = {
-        'default': {
-            'BACKEND': 'asgiref.inmemory.ChannelLayer',
-            'ROUTING': 'carbondoomsday.routing.appchannels',
-        },
-    }
-
-
 class OpbeatCredentials():
     """Opbeat settings."""
     OPBEAT_APP_ID = values.Value()
@@ -190,8 +168,7 @@ class Base(MLODataSources, RedisCache, GitterWebHooks,
         'rest_framework',
         'rest_framework_swagger',
         'opbeat.contrib.django',
-        'corsheaders',
-        'channels',
+        'corsheaders'
     )
 
     MIDDLEWARE_CLASSES = (
@@ -242,7 +219,7 @@ class Base(MLODataSources, RedisCache, GitterWebHooks,
     }
 
 
-class Production(ChannelsWithRedis, OpbeatCredentials, Base):
+class Production(OpbeatCredentials, Base):
     """The production environment."""
     ENVIRONMENT = 'Production'
     ALLOWED_HOSTS = [
@@ -256,7 +233,7 @@ class Production(ChannelsWithRedis, OpbeatCredentials, Base):
     ]
 
 
-class Staging(ChannelsWithRedis, OpbeatCredentials, CORSHeaderAllowAll, Base):
+class Staging(OpbeatCredentials, CORSHeaderAllowAll, Base):
     """The staging environment."""
     ENVIRONMENT = 'Staging'
     ALLOWED_HOSTS = [
@@ -264,7 +241,7 @@ class Staging(ChannelsWithRedis, OpbeatCredentials, CORSHeaderAllowAll, Base):
     ]
 
 
-class Development(ChannelsInMemory, CORSHeaderAllowAll, DummyCache, Base):
+class Development(CORSHeaderAllowAll, DummyCache, Base):
     """The development environment."""
     ENVIRONMENT = 'Development'
     DEBUG = values.BooleanValue(True)
