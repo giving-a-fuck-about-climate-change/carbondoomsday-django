@@ -174,7 +174,7 @@ class Base(MLODataSources, RedisCache, GitterWebHooks,
         'corsheaders'
     )
 
-    MIDDLEWARE_CLASSES = (
+    MIDDLEWARE = (
         'django.middleware.cache.UpdateCacheMiddleware',
         'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
         'django.middleware.security.SecurityMiddleware',
