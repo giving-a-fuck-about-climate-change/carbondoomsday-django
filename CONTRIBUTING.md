@@ -16,35 +16,9 @@ Firstly, [fork the repository] and [git clone] it:
 $ git clone git@github.com:<your-username>/carbondoomsday.git
 ```
 
-# Configure the Environment
-
-We use [django-configurations] to configure the application in the spirit of
-the [The Twelve-Factor App].
-
-You'll need to export a number of environment variables to configure the
-application. You'll have to change the values slightly to suit your local setup.
-Please see [the example configuration to get started].
-
-You can export them into your environment with:
-
-``` bash
-$ set -a
-$ source example.env
-$ set +a
-```
-
-Or, for convenience, you can place all of these in a `.env` file in the project
-root and use [autoenv] to automatically export all those values whenever you
-enter the directory.
-
-[django-configurations]: https://github.com/jazzband/django-configurations
-[The Twelve-Factor App]: https://12factor.net/config
-[autoenv]:https://github.com/kennethreitz/autoenv
-[the example configuration to get started]: https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/blob/master/example.env
-
 # Install Python Dependencies
 
-We manage our Python dependencies with [Pipenv], [install it via Pipsi]:
+We manage our Python dependencies with [Pipenv], you can [install it via Pipsi]:
 
 [Pipenv]: http://pipenv.org/
 [install it via Pipsi]: http://docs.pipenv.org/en/latest/advanced.html#fancy-installation-of-pipenv
@@ -58,8 +32,24 @@ $ pipsi install pipenv
 Then run:
 
 ``` bash
-$ pipenv install --dev
+$ pipenv install --dev --three
 ```
+
+# Configure the Environment
+
+We use [django-configurations] to configure the application in the spirit of
+the [The Twelve-Factor App]. You'll need to have a number of environment
+variables to configure the application.
+
+[django-configurations]: https://github.com/jazzband/django-configurations
+[The Twelve-Factor App]: https://12factor.net/config
+
+Luckily, [pipenv does this for us]. You just need to make a copy of the
+existing [example.env], rename it as a `.env` file  and fill it with values
+that are right for your environment.
+
+[pipenv does this for us]: https://docs.pipenv.org/advanced/#automatic-loading-of-env
+[the example configuration to get started]: https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/blob/master/example.env
 
 # Using Pipenv
 
