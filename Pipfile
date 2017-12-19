@@ -8,8 +8,6 @@ python_version = "3.5"
 [packages]
 "-e ." = "*"
 Django = "*"
-asgi_redis = "*"
-channels = "*"
 coreapi = "*"
 dj-database-url = "*"
 django-configurations = "*"
