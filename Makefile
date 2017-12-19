@@ -19,7 +19,7 @@ sort:
 pyclean:
 	@find $(SOURCE_DIR) -name "*.pyc" | xargs rm
 
-test: pyclean
+test:
 	@$(PIPENVRUN) pytest --cov=carbondoomsday
 .PHONY: test
 
