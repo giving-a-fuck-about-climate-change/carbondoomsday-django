@@ -25,6 +25,8 @@ whitenoise = "*"
 
 [dev-packages]
 freezegun = "*"
+ipdb = "*"
+ipython = "*"
 isort = "*"
 pylama = "*"
 pytest = "*"
