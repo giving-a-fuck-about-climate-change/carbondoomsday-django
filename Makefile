@@ -51,7 +51,7 @@ celery:
 .PHONY: celery
 
 shell:
-	@$(PIPENVRUN) $(MANAGEPY) shell_plus --bpython --quiet-load
+	@$(PIPENVRUN) $(MANAGEPY) shell_plus --ipython --quiet-load
 .PHONY: shell
 
 server:
