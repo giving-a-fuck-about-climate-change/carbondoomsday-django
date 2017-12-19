@@ -78,7 +78,7 @@ class DjangoRestFramework():
             'rest_framework.filters.OrderingFilter',
         ),
         'DEFAULT_PAGINATION_CLASS': (
-            'rest_framework.pagination.LimitOffsetPagination'
+            'rest_framework.pagination.PageNumberPagination'
         ),
         'DEFAULT_RENDERER_CLASSES': (
             'rest_framework.renderers.JSONRenderer',
