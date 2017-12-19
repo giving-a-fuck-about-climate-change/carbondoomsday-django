@@ -1,5 +1,6 @@
 """Web API view sets."""
 
+from django.conf import settings
 from rest_framework import viewsets
 from rest_framework.renderers import JSONRenderer
 
@@ -36,7 +37,7 @@ class CO2ViewSet(viewsets.ReadOnlyModelViewSet):
     [weekly_mlo.csv]: http://scrippsco2.ucsd.edu/sites/default/files/data/in_situ_co2/weekly_mlo.csv
     [the 3rd party documentation]: http://www.django-rest-framework.org/api-guide/pagination/#pagenumberpagination
 
-    """.format(page_size=settings.PAGE_SIZE) # noqa
+    """.format(page_size=settings.REST_FRAMEWORK['PAGE_SIZE']) # noqa
     lookup_field = 'date'
     queryset = CO2.objects.all()
     serializer_class = CO2Serializer
