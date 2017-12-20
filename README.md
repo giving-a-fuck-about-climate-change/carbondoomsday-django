@@ -27,7 +27,10 @@ From [Carbon Doomsday: Tracking CO2 since 1958]:
 > of free software, open data access and a willingness to contribute to further
 > education on the global climate issue.
 
-Please see the [Swagger API documentation] to get started.
+Please see the [Swagger API documentation] to get started. Check out
+[carbondoomsday.com], our CO2 emissions tracker, which consumes this web API.
+
+[carbondoomsday.com]: http://carbondoomsday.com/
 
 The service is currently hosted on the Heroku free tier. Response times may vary.
 
