@@ -9,17 +9,29 @@
 [![GitHub stars](https://img.shields.io/github/watchers/giving-a-fuck-about-climate-change/carbondoomsday.svg)](https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/watchers)
 [![Gitter chat](https://badges.gitter.im/giving-a-fuck-about-climate-change/gitter.png)](https://gitter.im/giving-a-fuck-about-climate-change/Lobby)
 
-# carbondoomsday
+![CarbonDoomsDay Logo](https://i.imgur.com/jfj3CMs.png)
 
 A [Django] web API for climate change related data inspired by [no one giving a fuck].
 
 [Django]: https://www.djangoproject.com/
 [no one giving a fuck]: http://titojankowski.com/no-one-gives-a-fck-about-climate-change/
 
-Climate change related data is largely free to access from various scientific
-bodies but is distributed in inconvenient formats for web services to consume.
-We want to scrape and gather what we can and expose it on the usual well known
-RESTish web API interface.
+From [Carbon Doomsday: Tracking CO2 since 1958]:
+
+[Carbon Doomsday: Tracking CO2 since 1958]: http://datadrivenjournalism.net/featured_projects/carbon_doomsday_tracking_co2_since_1958
+
+> Carbon Doomsday is a real-time API and chart of worldwide carbon dioxide
+> levels. Developed as a community project, its goal is to be an open-source
+> platform for climate data. Data for the API and chart comes from NOAA’s Earth
+> System Research Lab in Mauna Loa, Hawaii. The project is rooted in principles
+> of free software, open data access and a willingness to contribute to further
+> education on the global climate issue.
+
+Please see the [Swagger API documentation] to get started.
+
+The service is currently hosted on the Heroku free tier. Response times may vary.
+
+[Swagger API documentation]: http://api.carbondoomsday.com/
 
 This is a community driven project which aims to bring all levels of
 contributor to engage in providing a reliable, [free] and feature packed web
@@ -27,14 +39,6 @@ API. Please see the [contribution documentation] if you'd like to help out.
 
 [free]: https://fsfe.org/about/basics/freesoftware.en.html
 [contribution documentation]: https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/blob/master/CONTRIBUTING.md
-
-We hope to enable front-end client creators to consume climate change related
-data in order to fuel (no pun intended) a new wave of interesting and engaging
-visualisations and interactive environments. Please see the [Swagger API
-documentation] to get started. The service is currently hosted on the Heroku
-free tier. Response times may vary.
-
-[Swagger API documentation]: http://api.carbondoomsday.com/
 
 Please read [our Wiki] for more information about the project.
 
