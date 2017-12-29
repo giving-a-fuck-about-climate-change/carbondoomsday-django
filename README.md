@@ -47,3 +47,7 @@ API. Please see the [contribution documentation] if you'd like to help out.
 Please read [our Wiki] for more information about the project.
 
 [our Wiki]: https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/wiki
+
+If you're interested in contributing, we need you! Please join us in the [Gitter Lobby].
+
+[Gitter Lobby]: https://gitter.im/giving-a-fuck-about-climate-change/Lobby
