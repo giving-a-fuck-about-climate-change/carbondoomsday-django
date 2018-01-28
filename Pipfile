@@ -1,38 +1,44 @@
 [[source]]
-url = "https://pypi.python.org/simple"
+
 verify_ssl = true
+url = "https://pypi.python.org/simple"
 
-[requires]
-python_version = "3.5"
-
-[packages]
-"-e ." = "*"
-Django = "*"
-coreapi = "*"
-dj-database-url = "*"
-django-configurations = "*"
-django-cors-headers = "*"
-django-extensions = "*"
-django-redis = "*"
-django-rest-swagger = "*"
-djangorestframework-csv = "*"
-djangorestframework-filters = "*"
-opbeat = "*"
-psycopg2 = "*"
-redis = "*"
-uWSGI = "*"
-whitenoise = "*"
 
 [dev-packages]
-freezegun = "*"
-ipdb = "*"
-ipython = "*"
-isort = "*"
-pylama = "*"
-pytest = "*"
-pytest-cov = "*"
-pytest-django = "*"
-pytest-mock = "*"
 
-[packages.celery]
-extras = [ "redis",]
+pytest-django = "*"
+ipython = "*"
+pylama = "*"
+freezegun = "*"
+pytest-cov = "*"
+pytest-mock = "*"
+pytest = "*"
+isort = "*"
+ipdb = "*"
+
+
+[packages]
+
+django = "*"
+djangorestframework-csv = "*"
+coreapi = "*"
+django-cors-headers = "*"
+django-rest-swagger = "*"
+django-extensions = "*"
+django-configurations = "*"
+redis = "*"
+celery = { extras = [ "redis",] }
+whitenoise = "*"
+"psycopg2" = "*"
+opbeat = "*"
+uwsgi = "*"
+django-redis = "*"
+djangorestframework-filters = "*"
+"-e ." = "*"
+dj-database-url = "*"
+drf-yasg = "*"
+
+
+[requires]
+
+python_version = "3.5"
