@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a45a61395e93758f90c1ba398bda90ab3581c9ea6405265f9232fd11a1084aaa"
+            "sha256": "f708f990c557381ddc576ce6b41ee8d95731777a0817e03858ff866b01b5e3b5"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -18,7 +18,7 @@
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.5"
+            "python_version": "3.6.4"
         },
         "sources": [
             {
