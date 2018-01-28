@@ -1,6 +1,7 @@
 """Project settings."""
 
 import os
+import socket
 from datetime import timedelta
 
 import dj_database_url
@@ -242,9 +243,19 @@ class Staging(OpbeatCredentials, CORSHeaderAllowAll, Base):
     ENVIRONMENT = 'Staging'
     ALLOWED_HOSTS = [
         'carbondoomsday-test.herokuapp.com',
-        '172.17.0.4',
-        '178.62.103.145',
     ]
+
+
+class DokkuStaging(OpbeatCredentials, CORSHeaderAllowAll, Base):
+    ENVIRONMENT = 'DokkuStaging'
+    ALLOWED_HOSTS = []
+
+    @classmethod
+    def post_setup(cls):
+        super(DokkuStaging, cls).post_setup()
+        hostname = socket.gethostname()
+        address = socket.getaddrinfo(hostname)
+        ALLOWED_HOSTS.append(address, 'http')[0][4][0])
 
 
 class Development(CORSHeaderAllowAll, DummyCache, Base):
