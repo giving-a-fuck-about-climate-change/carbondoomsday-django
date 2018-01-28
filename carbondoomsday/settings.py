@@ -170,6 +170,7 @@ class Base(MLODataSources, RedisCache, GitterWebHooks,
         'django_filters',
         'rest_framework',
         'rest_framework_swagger',
+        'drf_yasg',
         'opbeat.contrib.django',
         'corsheaders'
     )
