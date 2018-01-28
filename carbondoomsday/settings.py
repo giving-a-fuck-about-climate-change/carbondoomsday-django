@@ -254,8 +254,8 @@ class DokkuStaging(OpbeatCredentials, CORSHeaderAllowAll, Base):
     def post_setup(cls):
         super(DokkuStaging, cls).post_setup()
         hostname = socket.gethostname()
-        address = socket.getaddrinfo(hostname)
-        ALLOWED_HOSTS.append(address, 'http')[0][4][0])
+        address = socket.getaddrinfo(hostname, 'http')
+        cls.ALLOWED_HOSTS.append(address[0][4][0])
 
 
 class Development(CORSHeaderAllowAll, DummyCache, Base):
