@@ -39,7 +39,7 @@ dbcheckmigrations:
 .PHONY: dbcheckmigrations
 
 dbmigrate:
-	@$(PIPENVRUN) $(MANAGEPY) migrate
+	@$(PIPENVRUN) $(MANAGEPY) migrate --noinput
 .PHONY: dbmigrate
 
 dbreset:
