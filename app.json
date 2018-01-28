@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "dokku": {
+      "predeploy": "make dbmigrate"
+    }
+  }
+}
+
