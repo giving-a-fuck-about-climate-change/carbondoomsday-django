@@ -243,6 +243,7 @@ class Staging(OpbeatCredentials, CORSHeaderAllowAll, Base):
     ALLOWED_HOSTS = [
         'carbondoomsday-test.herokuapp.com',
         '172.17.0.4',
+        '178.62.103.145',
     ]
 
 
