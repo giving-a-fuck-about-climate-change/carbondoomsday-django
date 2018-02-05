@@ -254,6 +254,7 @@ class Staging(Dokku, OpbeatCredentials, CORSHeaderAllowAll, Base):
     ENVIRONMENT = 'Staging'
     ALLOWED_HOSTS = [
         'carbondoomsday-test.herokuapp.com',
+        '178.62.103.145',  # Hacking with Dokku
     ]
 
 
