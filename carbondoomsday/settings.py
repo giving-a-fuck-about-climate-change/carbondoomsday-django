@@ -8,6 +8,18 @@ import dj_database_url
 from configurations import Configuration, values
 
 
+class Dokku():
+    """Dokku configuration necessities."""
+    BUILDPACK_URL = 'https://github.com/heroku/heroku-buildpack-python'
+
+    @classmethod
+    def post_setup(cls):
+        super(Dokku, cls).post_setup()
+        hostname = socket.gethostname()
+        cls.ALLOWED_HOSTS.append(hostname)
+        cls.ALLOWED_HOSTS.append(socket.gethostbyname(hostname))
+
+
 class MLODataSources():
     """Mauna Loa Observatory CO2 measurement URLs."""
     MLO_DAILY_CO2_2015_TO_2017 = (
@@ -224,7 +236,7 @@ class Base(MLODataSources, RedisCache, GitterWebHooks,
     }
 
 
-class Production(OpbeatCredentials, Base):
+class Production(Dokku, OpbeatCredentials, Base):
     """The production environment."""
     ENVIRONMENT = 'Production'
     ALLOWED_HOSTS = [
@@ -238,24 +250,12 @@ class Production(OpbeatCredentials, Base):
     ]
 
 
-class Staging(OpbeatCredentials, CORSHeaderAllowAll, Base):
+class Staging(Dokku, OpbeatCredentials, CORSHeaderAllowAll, Base):
     """The staging environment."""
     ENVIRONMENT = 'Staging'
     ALLOWED_HOSTS = [
         'carbondoomsday-test.herokuapp.com',
     ]
-
-
-class DokkuStaging(OpbeatCredentials, CORSHeaderAllowAll, Base):
-    ENVIRONMENT = 'DokkuStaging'
-    ALLOWED_HOSTS = []
-
-    @classmethod
-    def post_setup(cls):
-        super(DokkuStaging, cls).post_setup()
-        hostname = socket.gethostname()
-        address = socket.getaddrinfo(hostname, 'http')
-        cls.ALLOWED_HOSTS.append(address[0][4][0])
 
 
 class Development(CORSHeaderAllowAll, DummyCache, Base):
