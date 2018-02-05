@@ -16,7 +16,6 @@ class Dokku():
     def post_setup(cls):
         super(Dokku, cls).post_setup()
         hostname = socket.gethostname()
-        cls.ALLOWED_HOSTS.append(hostname)
         cls.ALLOWED_HOSTS.append(socket.gethostbyname(hostname))
 
 
