@@ -50,4 +50,7 @@ Please read [our Wiki] for more information about the project.
 
 If you're interested in contributing, we need you! Please join us in the [Gitter Lobby].
 
+You can also suggest ideas of changes over at our [vision] repository.
+
 [Gitter Lobby]: https://gitter.im/giving-a-fuck-about-climate-change/Lobby
+[vision]: https://github.com/giving-a-fuck-about-climate-change/vision
