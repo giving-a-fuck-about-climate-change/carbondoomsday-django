@@ -27,15 +27,15 @@ From [Carbon Doomsday: Tracking CO2 since 1958]:
 > of free software, open data access and a willingness to contribute to further
 > education on the global climate issue.
 
+Check out [carbondoomsday.com], (powered by [carbon-inferno]) our CO2 emissions tracker, which consumes this web API.
+
 Please see the [Swagger API documentation] to get started.
 
-Check out [carbondoomsday.com], our CO2 emissions tracker, which consumes this web API.
-
 [carbondoomsday.com]: http://carbondoomsday.com/
+[carbon-inferno]: https://github.com/giving-a-fuck-about-climate-change/carbon-inferno
+[Swagger API documentation]: http://api.carbondoomsday.com/
 
 The service is currently hosted on the Heroku free tier. Response times may vary.
-
-[Swagger API documentation]: http://api.carbondoomsday.com/
 
 This is a community driven project which aims to bring all levels of
 contributor to engage in providing a reliable, [free] and feature packed web
