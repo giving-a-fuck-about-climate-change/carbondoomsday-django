@@ -2,6 +2,7 @@
 [![codecov](https://codecov.io/gh/giving-a-fuck-about-climate-change/carbondoomsday/branch/master/graph/badge.svg)](https://codecov.io/gh/giving-a-fuck-about-climate-change/carbondoomsday)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
 [![Heroku](https://img.shields.io/badge/Heroku-Deployed-brightgreen.svg)](http://carbondoomsday.herokuapp.com/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 [![GitHub issues](https://img.shields.io/github/issues/giving-a-fuck-about-climate-change/carbondoomsday.svg)](https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/issues)
 [![GitHub forks](https://img.shields.io/github/forks/giving-a-fuck-about-climate-change/carbondoomsday.svg)](https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/network)
