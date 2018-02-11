@@ -29,28 +29,41 @@ From [Carbon Doomsday: Tracking CO2 since 1958]:
 
 Check out [carbondoomsday.com], (powered by [carbon-inferno]) our CO2 emissions tracker, which consumes this web API.
 
-Please see the [Swagger API documentation] to get started.
-
 [carbondoomsday.com]: http://carbondoomsday.com/
 [carbon-inferno]: https://github.com/giving-a-fuck-about-climate-change/carbon-inferno
+
+# Use the API
+
+Please see the [Swagger API documentation] to get started.
+
 [Swagger API documentation]: http://api.carbondoomsday.com/
 
 The service is currently hosted on the Heroku free tier. Response times may vary.
 
+# Contribute
+
 This is a community driven project which aims to bring all levels of
 contributor to engage in providing a reliable, [free] and feature packed web
-API. Please see the [contribution documentation] if you'd like to help out.
+API.
 
 [free]: https://fsfe.org/about/basics/freesoftware.en.html
-[contribution documentation]: https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/blob/master/CONTRIBUTING.md
 
-Please read [our Wiki] for more information about the project.
+If you're interested in contributing, we need you! Please check out the following:
 
-[our Wiki]: https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/wiki
+  * [Contribution Documentation]: Contribute some source code!
+  * [Wiki]: Read about the project!
+  * [Gitter Lobby]: Come chat to us!
+  * [Vision] Repository: Weigh in and let us know your opinion!
 
-If you're interested in contributing, we need you! Please join us in the [Gitter Lobby].
-
-You can also suggest ideas of changes over at our [vision] repository.
-
+[Contribution Documentation]: https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/blob/master/CONTRIBUTING.md
+[Wiki]: https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/wiki
 [Gitter Lobby]: https://gitter.im/giving-a-fuck-about-climate-change/Lobby
-[vision]: https://github.com/giving-a-fuck-about-climate-change/vision
+[Vision]: https://github.com/giving-a-fuck-about-climate-change/vision
+
+# Support
+
+Support us with a monthly donation and help us continue our activities.
+
+> [Become a backer!](https://opencollective.com/giving-a-fuck-about-climate-change)
+
+<a href="https://opencollective.com/giving-a-fuck-about-climate-change/backer/0/website" target="_blank"><img src="https://opencollective.com/giving-a-fuck-about-climate-change/backer/0/avatar.svg"></a>
