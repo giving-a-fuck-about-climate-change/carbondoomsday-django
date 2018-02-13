@@ -1,7 +1,6 @@
 [![Build Status](https://travis-ci.org/giving-a-fuck-about-climate-change/carbondoomsday.svg?branch=master)](https://travis-ci.org/giving-a-fuck-about-climate-change/carbondoomsday)
 [![codecov](https://codecov.io/gh/giving-a-fuck-about-climate-change/carbondoomsday/branch/master/graph/badge.svg)](https://codecov.io/gh/giving-a-fuck-about-climate-change/carbondoomsday)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
-[![Heroku](https://img.shields.io/badge/Heroku-Deployed-brightgreen.svg)](http://carbondoomsday.herokuapp.com/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 [![GitHub issues](https://img.shields.io/github/issues/giving-a-fuck-about-climate-change/carbondoomsday.svg)](https://github.com/giving-a-fuck-about-climate-change/carbondoomsday/issues)
@@ -38,8 +37,6 @@ Check out [carbondoomsday.com], (powered by [carbon-inferno]) our CO2 emissions 
 Please see the [Swagger API documentation] to get started.
 
 [Swagger API documentation]: http://api.carbondoomsday.com/
-
-The service is currently hosted on the Heroku free tier. Response times may vary.
 
 # Contribute
 

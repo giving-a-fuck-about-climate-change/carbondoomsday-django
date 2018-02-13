@@ -10,8 +10,6 @@ from configurations import Configuration, values
 
 class Dokku():
     """Dokku configuration necessities."""
-    BUILDPACK_URL = 'https://github.com/heroku/heroku-buildpack-python'
-
     @classmethod
     def post_setup(cls):
         super(Dokku, cls).post_setup()
@@ -239,22 +237,10 @@ class Production(Dokku, OpbeatCredentials, Base):
     """The production environment."""
     ENVIRONMENT = 'Production'
     ALLOWED_HOSTS = [
-        'carbondoomsday.herokuapp.com',
-        'api.carbondoomsday.com',
+        'api.carbondoomsday.com'
     ]
     CORS_ORIGIN_WHITELIST = [
-        'carbon-inferno.herokuapp.com',
-        'carbondoomsday.com',
-        'www.carbondoomsday.com',
-    ]
-
-
-class Staging(Dokku, OpbeatCredentials, CORSHeaderAllowAll, Base):
-    """The staging environment."""
-    ENVIRONMENT = 'Staging'
-    ALLOWED_HOSTS = [
-        'carbondoomsday-test.herokuapp.com',
-        '178.62.103.145',  # Hacking with Dokku
+        'carbondoomsday.com'
     ]
 
 

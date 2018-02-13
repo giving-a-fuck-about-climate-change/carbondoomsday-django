@@ -16,35 +16,12 @@ sort:
 	@find $(SOURCE_DIR) -name "*.py" | xargs $(PIPENVRUN) isort -c --diff -sp=setup.cfg
 .PHONY: sort
 
-pyclean:
-	@find $(SOURCE_DIR) -name "*.pyc" | xargs rm
-
 test:
 	@$(PIPENVRUN) pytest --cov=carbondoomsday
 .PHONY: test
 
 proof: lint sort test dbcheckmigrations
 .PHONY: proof
-
-showurls:
-	@$(PIPENVRUN) $(MANAGEPY) show_urls -f aligned | less
-.PHONY: showurls
-
-dbmigrations:
-	@$(PIPENVRUN) $(MANAGEPY) makemigrations measurements
-.PHONY: dbmigrations
-
-dbcheckmigrations:
-	@$(PIPENVRUN) $(MANAGEPY) makemigrations --check
-.PHONY: dbcheckmigrations
-
-dbmigrate:
-	@$(PIPENVRUN) $(MANAGEPY) migrate --noinput
-.PHONY: dbmigrate
-
-dbreset:
-	@$(PIPENVRUN) $(MANAGEPY) reset_db
-.PHONY: dbreset
 
 celery:
 	@$(PIPENVRUN) celery -A carbondoomsday -l info worker -B -E
@@ -58,10 +35,6 @@ server:
 	@$(PIPENVRUN) $(MANAGEPY) runserver
 .PHONY: server
 
-dbadmin:
-	@$(PIPENVRUN) $(MANAGEPY) createsuperuser
-.PHONY: dbadmin
-
 scrape_mlo_co2_since_2015:
 	@$(PIPENVRUN) $(MANAGEPY) scrape_mlo_co2_since_2015
 .PHONY: scrape_mlo_co2_since_2015
@@ -73,23 +46,3 @@ scrape_mlo_co2_since_1974:
 scrape_mlo_co2_since_1958:
 	@$(PIPENVRUN) $(MANAGEPY) scrape_mlo_co2_since_1958
 .PHONY: scrape_mlo_co2_since_1958
-
-prodbash:
-	@heroku run bash -a carbondoomsday
-.PHONY: prodbash
-
-prodrelease:
-	@git push heroku-prod master
-.PHONY: prodrelease
-
-prodlogs:
-	@heroku logs -t -a carbondoomsday
-.PHONY: prodlogs
-
-testbash:
-	@heroku run bash -a carbondoomsday-test
-.PHONY: testbash
-
-testlogs:
-	@heroku logs -t -a carbondoomsday-test
-.PHONY: testlogs
