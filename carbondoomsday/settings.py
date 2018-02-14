@@ -12,6 +12,13 @@ class Dokku():
     """Dokku configuration necessities."""
     @classmethod
     def post_setup(cls):
+        """We dynamically configure the `ALLOWED_HOSTS` for Dokku checks.
+
+        Please see the lower part of:
+
+        > http://dokku.viewdocs.io/dokku/deployment/zero-downtime-deploys/#zero-downtime-deploys
+
+        """  # noqa
         super(Dokku, cls).post_setup()
         hostname = socket.gethostname()
         cls.ALLOWED_HOSTS.append(socket.gethostbyname(hostname))
