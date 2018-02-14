@@ -240,6 +240,14 @@ class Base(MLODataSources, RedisCache, GitterWebHooks,
     }
 
 
+class Staging(Dokku, OpbeatCredentials, CORSHeaderAllowAll, Base):
+    """The staging environment."""
+    ENVIRONMENT = 'Staging'
+    ALLOWED_HOSTS = [
+        'api-test.carbondoomsday.com'
+    ]
+
+
 class Production(Dokku, OpbeatCredentials, Base):
     """The production environment."""
     ENVIRONMENT = 'Production'
