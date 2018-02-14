@@ -9,7 +9,7 @@
 
 Firstly, [fork the repository] and [git clone] it:
 
-[fork the repository]: https://help.github.com/articles/fork-a-repo://help.github.com/articles/fork-a-repo/
+[fork the repository]: https://help.github.com/articles/fork-a-repo/
 [git clone]: https://git-scm.com/book/en/Getting-Started-Git-Basics
 
 ``` bash
@@ -21,7 +21,7 @@ $ git clone git@github.com:<your-username>/carbondoomsday.git
 We manage our Python dependencies with [Pipenv], you can [install it via Pipsi]:
 
 [Pipenv]: http://pipenv.org/
-[install it via Pipsi]: http://docs.pipenv.org/en/latest/advanced.html#fancy-installation-of-pipenv
+[install it via Pipsi]: https://pipenv.readthedocs.io/en/latest/install/#fancy-installation-of-pipenv
 
 ``` bash
 $ curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python3
