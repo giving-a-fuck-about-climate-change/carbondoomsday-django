@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dokku": {
-      "predeploy": "pipenv run python manage.py migrate --noinput"
+      "predeploy": "make dbmigrate"
     }
   }
 }
