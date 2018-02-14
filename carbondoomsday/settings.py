@@ -248,14 +248,11 @@ class Staging(Dokku, OpbeatCredentials, CORSHeaderAllowAll, Base):
     ]
 
 
-class Production(Dokku, OpbeatCredentials, Base):
+class Production(Dokku, OpbeatCredentials, CORSHeaderAllowAll, Base):
     """The production environment."""
     ENVIRONMENT = 'Production'
     ALLOWED_HOSTS = [
         'api.carbondoomsday.com'
-    ]
-    CORS_ORIGIN_WHITELIST = [
-        'carbondoomsday.com'
     ]
 
 
