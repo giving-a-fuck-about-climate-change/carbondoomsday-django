@@ -46,3 +46,11 @@ scrape_mlo_co2_since_1974:
 scrape_mlo_co2_since_1958:
 	@$(PIPENVRUN) $(MANAGEPY) scrape_mlo_co2_since_1958
 .PHONY: scrape_mlo_co2_since_1958
+
+dbcheckmigrations:
+	@$(PIPENVRUN) $(MANAGEPY) makemigrations --check
+.PHONY: dbcheckmigrations
+
+dbmigrate:
+	@$(PIPENVRUN) $(MANAGEPY) migrate --noinput
+.PHONY: dbmigrate

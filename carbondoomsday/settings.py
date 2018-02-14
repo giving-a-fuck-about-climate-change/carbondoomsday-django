@@ -12,6 +12,13 @@ class Dokku():
     """Dokku configuration necessities."""
     @classmethod
     def post_setup(cls):
+        """We dynamically configure the `ALLOWED_HOSTS` for Dokku checks.
+
+        Please see the lower part of:
+
+        > http://dokku.viewdocs.io/dokku/deployment/zero-downtime-deploys/#zero-downtime-deploys
+
+        """  # noqa
         super(Dokku, cls).post_setup()
         hostname = socket.gethostname()
         cls.ALLOWED_HOSTS.append(socket.gethostbyname(hostname))
@@ -231,6 +238,14 @@ class Base(MLODataSources, RedisCache, GitterWebHooks,
             },
         },
     }
+
+
+class Staging(Dokku, OpbeatCredentials, CORSHeaderAllowAll, Base):
+    """The staging environment."""
+    ENVIRONMENT = 'Staging'
+    ALLOWED_HOSTS = [
+        'api-test.carbondoomsday.com'
+    ]
 
 
 class Production(Dokku, OpbeatCredentials, Base):
