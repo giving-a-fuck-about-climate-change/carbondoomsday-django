@@ -125,7 +125,13 @@ class CeleryAndCeleryBeat():
                 'carbondoomsday.measurements.tasks.'
                 'scrape_mlo_co2_measurements_since_2015'
             ),
-            'schedule': timedelta(minutes=30)
+            'schedule': timedelta(minutes=30),
+            'options': {
+                'link': (
+                    'carbondoomsday.email_signature.tasks.'
+                    'update_email_signature'
+                )
+            }
         },
         'scrape-co2-since-1958-measurements-from-MLO': {
             'task': (
@@ -140,7 +146,7 @@ class CeleryAndCeleryBeat():
                 'scrape_mlo_co2_measurements_since_1974'
             ),
             'schedule': timedelta(minutes=50)
-        },
+        }
     }
 
 
@@ -183,6 +189,7 @@ class Base(MLODataSources, RedisCache, GitterWebHooks,
         'whitenoise.runserver_nostatic',
         'django.contrib.staticfiles',
         'carbondoomsday.measurements',
+        'carbondoomsday.email_signature',
         'django_extensions',
         'django_filters',
         'rest_framework',
