@@ -25,6 +25,8 @@ We manage our Python dependencies with [Pipenv], you can [install it via Pipsi]:
 
 ``` bash
 $ curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python3
+$ echo 'export PATH=/Users/{your_user_name}/.local/bin:$PATH' >> ~/.bashrc  # OPTIONAL, depending on your operating system and configuration
+$ source ~/.bashrc  # OPTIONAL, depending on your operating system and configuration
 $ pipsi install pew
 $ pipsi install pipenv
 ```
@@ -94,4 +96,10 @@ $ make scrape_mlo_co2_since_2015
 
 ```bash
 $ make server
+```
+
+# Run the Test Suite
+
+```bash
+$ make test
 ```
