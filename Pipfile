@@ -37,7 +37,7 @@ djangorestframework-filters = "*"
 "-e ." = "*"
 dj-database-url = "*"
 drf-yasg = "*"
-
+pluggy = "*"
 
 [requires]
 
