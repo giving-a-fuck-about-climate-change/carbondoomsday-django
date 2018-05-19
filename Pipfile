@@ -12,9 +12,9 @@ pytest = "*"
 pytest-cov = "*"
 pytest-django = "*"
 pytest-mock = "*"
+"e1839a8" = {path = ".", editable = true}
 
 [packages]
-"-e ." = "*"
 "psycopg2" = "*"
 celery = { extras = [ "redis",] }
 coreapi = "*"
