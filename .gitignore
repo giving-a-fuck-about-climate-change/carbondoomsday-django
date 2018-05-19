@@ -8,3 +8,4 @@ staticfiles
 mediafiles
 celerybeat-schedule
 tags
+.pytest_cache/
