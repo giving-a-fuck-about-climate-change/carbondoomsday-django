@@ -20,16 +20,18 @@ $ git clone git@github.com:<your-username>/carbondoomsday.git
 
 We manage our Python dependencies with [Pipenv], you can [install it via Pipsi]:
 
+
 [Pipenv]: http://pipenv.org/
 [install it via Pipsi]: https://pipenv.readthedocs.io/en/latest/install/#fancy-installation-of-pipenv
 
 ``` bash
 $ curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python3
-$ echo 'export PATH=/Users/{your_user_name}/.local/bin:$PATH' >> ~/.bashrc  # OPTIONAL, depending on your operating system and configuration
 $ source ~/.bashrc  # OPTIONAL, depending on your operating system and configuration
 $ pipsi install pew
 $ pipsi install pipenv
 ```
+
+> Pipsi is installed in a location that you may have to add to your $PATH environment variable. You'll have to add $HOME/.local/bin to your $PATH in order to get access to the pipsi executable
 
 Then run:
 
