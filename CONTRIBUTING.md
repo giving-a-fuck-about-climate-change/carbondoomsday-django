@@ -31,7 +31,7 @@ $ pipsi install pew
 $ pipsi install pipenv
 ```
 
-> Pipsi is installed in a location that you may have to add to your $PATH environment variable. You'll have to add $HOME/.local/bin to your $PATH in order to get access to the pipsi executable
+> Pipsi is installed in a location that you may have to add to your $PATH environment variable. You'll have to add $HOME/.local/bin to your $PATH in order to get access to the `pipsi` executable
 
 Then run:
 
