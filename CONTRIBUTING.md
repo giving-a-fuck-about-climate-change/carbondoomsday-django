@@ -105,3 +105,9 @@ $ make server
 ```bash
 $ make test
 ```
+
+# Run the Linter, isort, Test Suite, and dbcheckmigrations
+
+```bash
+$ make proof
+```
