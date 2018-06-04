@@ -1,2 +1,3 @@
 ignore:
   - "carbondoomsday/measurements/migrations"
+  - "carbondoomsday/settings.py"
